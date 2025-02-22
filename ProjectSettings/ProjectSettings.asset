@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
-  productGUID: 539f9a9a95c295b49b81ee370db46f11
+  productGUID: c4eef3fe059b29749909fe6e87039993
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -797,7 +797,7 @@ PlayerSettings:
   cloudProjectId: d450152b-bde1-41ee-a2b1-fc1e22409346
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: SpaceHero 2025-02-22_00-14-01
+  projectName: 
   organizationId: imperor0103
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
