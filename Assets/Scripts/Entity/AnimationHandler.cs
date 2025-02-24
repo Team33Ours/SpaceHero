@@ -6,6 +6,7 @@ public class AnimationHandler : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer characterRenderer;
     private static readonly int IsMoving = Animator.StringToHash("IsMove");
+    private static readonly int IsAttack = Animator.StringToHash("IsAttack");
     private static readonly int IsDamage = Animator.StringToHash("IsDamage");
     
     private static readonly int MoveX = Animator.StringToHash("MoveX");
@@ -27,6 +28,11 @@ public class AnimationHandler : MonoBehaviour
         
         animator.SetFloat(MoveX, obj.x);
         animator.SetFloat(MoveY, obj.y);
+    }
+
+    public void Attack(bool isAttack)
+    {
+        animator.SetBool(IsAttack, isAttack);
     }
 
     public void Damage()

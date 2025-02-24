@@ -3,27 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ÇÃ·¹ÀÌ¾î¿Í ¸ó½ºÅÍÀÇ Ã¼·Â,¸¶·Â,¼Óµµ
+/// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½,ï¿½Óµï¿½
 /// 2025.02.24.ImSeonggyun
 /// </summary>
 public class StatHandler : MonoBehaviour
 {
-    // Ã¼·ÂÀº »ç¿ëÇÏ°í ½ÍÀº Å¬·¡½º¿¡¼­ ÇÒ´çÇÑ´Ù
-    [SerializeField] private float maxHealth;    // ÃÖ´ëÃ¼·Â 
-    [SerializeField] private float health;       // ½Ç½Ã°£ Ã¼·Â
-    [SerializeField] private float maxMana;    // ÃÖ´ë¸¶³ª
-    [SerializeField] private float mana;       // ½Ç½Ã°£ ¸¶³ª
-    [SerializeField] private float speed;       // ½ºÇÇµå
-    // ÇÃ·¹ÀÌ¾î, ¸ó½ºÅÍ »ý¼ºÇÒ¶§ ÇÒ´çÇÑ´Ù
+    // Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò´ï¿½ï¿½Ñ´ï¿½
+    [SerializeField] private float maxHealth;    // ï¿½Ö´ï¿½Ã¼ï¿½ï¿½ 
+    [SerializeField] private float health;       // ï¿½Ç½Ã°ï¿½ Ã¼ï¿½ï¿½
+    [SerializeField] private float maxMana;    // ï¿½Ö´ë¸¶ï¿½ï¿½
+    [SerializeField] private float mana;       // ï¿½Ç½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
+    [SerializeField] private float speed;       // ï¿½ï¿½ï¿½Çµï¿½
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ ï¿½Ò´ï¿½ï¿½Ñ´ï¿½
     public float MaxHealth
     {
         get => maxHealth;
-        set => maxHealth = Mathf.Max(1, value); // ÃÖ¼Ò 1 ÀÌ»óÀ¸·Î ¼³Á¤
+        set => maxHealth = Mathf.Max(1, value); // ï¿½Ö¼ï¿½ 1 ï¿½Ì»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
     public float Health
     {
         get => health;
-        set => health = Mathf.Max(0, value);    // ÃÖ¼Ò 0 ÀÌ»óÀ¸·Î ¼³Á¤
+        set => health = Mathf.Max(0, value);    // ï¿½Ö¼ï¿½ 0 ï¿½Ì»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
     public float MaxMana
     {
