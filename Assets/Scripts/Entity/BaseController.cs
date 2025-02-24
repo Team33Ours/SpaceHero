@@ -2,28 +2,45 @@ using UnityEngine;
 
 public class BaseController : MonoBehaviour
 {
+    
+    /// <summary>
+    /// / ì£¼ì„ í™•ì¸ í•œê¸€ USA 
+    /// </summary>
     protected Rigidbody2D _rigidbody;
 
     [SerializeField] private SpriteRenderer characterRenderer;
     [SerializeField] private Transform weaponPivot;
 
     protected Vector2 movementDirection = Vector2.zero;
-    public Vector2 MovementDirection { get { return movementDirection; } }
-
-    protected float speed = 5f;
-    public float Speed { get { return speed; } }
-
+    public Vector2 MovementDirection{get{return movementDirection;}}
+    
     protected Vector2 lookDirection = Vector2.zero;
     public Vector2 LookDirection { get { return lookDirection; } }
 
     private Vector2 knockback = Vector2.zero;
     private float knockbackDuration = 0.0f;
-    protected AnimationHandler animationHandler;
 
+    protected AnimationHandler animationHandler;
+    
+    protected StatHandler statHandler;
+    
+    [SerializeField] public WeaponHandler WeaponPrefab;
+	protected WeaponHandler weaponHandler;
+
+    protected bool isMoving;
+	protected bool isAttacking;
+	private float timeSinceLastAttack = float.MaxValue;
+		
     protected virtual void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         animationHandler = GetComponent<AnimationHandler>();
+        statHandler = GetComponent<StatHandler>();
+
+        if (WeaponPrefab != null)
+	        weaponHandler = Instantiate(WeaponPrefab, weaponPivot);
+        else
+	        weaponHandler = GetComponentInChildren<WeaponHandler>();
     }
 
     protected virtual void Start()
@@ -34,7 +51,8 @@ public class BaseController : MonoBehaviour
     protected virtual void Update()
     {
         HandleAction();
-        // Rotate(lookDirection);
+        Rotate(lookDirection);
+        HandleAttackDelay();
     }
 
     protected virtual void FixedUpdate()
@@ -53,11 +71,17 @@ public class BaseController : MonoBehaviour
 
     private void Movment(Vector2 direction)
     {
-        direction = direction * 5;
-        if (knockbackDuration > 0.0f)
+        direction = direction * statHandler.Speed;
+        if(knockbackDuration > 0.0f)
         {
             direction *= 0.2f;
             direction += knockback;
+        }
+        
+        isMoving = true;
+        if (direction.magnitude < .9f)
+        {
+            isMoving = false;
         }
 
         _rigidbody.velocity = direction;
@@ -75,6 +99,8 @@ public class BaseController : MonoBehaviour
         {
             weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ);
         }
+        
+        weaponHandler?.Rotate(isLeft);
     }
 
     public void ApplyKnockback(Transform other, float power, float duration)
@@ -83,22 +109,47 @@ public class BaseController : MonoBehaviour
         knockback = -(other.position - transform.position).normalized * power;
     }
 
-    // ÇÃ·¹ÀÌ¾î¿Í ¸ó½ºÅÍÀÇ »ç¸ÁÃ³¸®
+    private void HandleAttackDelay()
+    {
+	    if (weaponHandler == null)
+		    return;
+
+	    if (timeSinceLastAttack <= weaponHandler.Delay)
+	    {
+            animationHandler.Attack(false);
+		    timeSinceLastAttack += Time.deltaTime;
+	    }
+
+	    if (!isMoving &&isAttacking && timeSinceLastAttack > weaponHandler.Delay)
+	    {
+		    timeSinceLastAttack = 0;
+            animationHandler.Attack(true);
+		    Attack();
+	    }
+    }
+
+    protected virtual void Attack()
+    {
+        if (lookDirection != Vector2.zero)
+            weaponHandler?.Attack();
+    }
+
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã³ï¿½ï¿½
     public virtual void Death()
     {
-        // ÇÏÀ§¿¡ ÀÖ´Â ¸ğµç ½ºÇÁ¶óÀÌÆ®¸¦ Ã£¾Æ¿Â´Ù
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Ã£ï¿½Æ¿Â´ï¿½
         foreach (SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
         {
-            // a°ª¸¸ ¹Ù²Û´Ù
+            // aï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Û´ï¿½
             Color color = renderer.color;
             color.a = 0.3f;
             renderer.color = color; 
         }
         foreach (Behaviour component in transform.GetComponentsInChildren<Behaviour>())
         {
-            // ÄÚµå°¡ µ¿ÀÛÇÏÁö ¾Êµµ·Ï ¸ğµÎ disable
+            // ï¿½Úµå°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Êµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ disable
             component.enabled = false;
         }
-        // Destroy´Â °¢°¢ÀÇ Controller¿¡¼­ ¼±¾ğ
+        // Destroyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Controllerï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 }
