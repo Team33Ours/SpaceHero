@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class BaseController : MonoBehaviour
 {
+    
+    /// <summary>
+    /// / 주석 확인 한글 USA 
+    /// </summary>
     protected Rigidbody2D _rigidbody;
 
     [SerializeField] private SpriteRenderer characterRenderer;
@@ -22,7 +26,8 @@ public class BaseController : MonoBehaviour
     
     [SerializeField] public WeaponHandler WeaponPrefab;
 	protected WeaponHandler weaponHandler;
-		
+
+    protected bool isMoving;
 	protected bool isAttacking;
 	private float timeSinceLastAttack = float.MaxValue;
 		
@@ -46,7 +51,7 @@ public class BaseController : MonoBehaviour
     protected virtual void Update()
     {
         HandleAction();
-        // Rotate(lookDirection);
+        Rotate(lookDirection);
         HandleAttackDelay();
     }
 
@@ -71,6 +76,12 @@ public class BaseController : MonoBehaviour
         {
             direction *= 0.2f;
             direction += knockback;
+        }
+        
+        isMoving = true;
+        if (direction.magnitude < .9f)
+        {
+            isMoving = false;
         }
 
         _rigidbody.velocity = direction;
@@ -105,20 +116,24 @@ public class BaseController : MonoBehaviour
 
 	    if (timeSinceLastAttack <= weaponHandler.Delay)
 	    {
+            animationHandler.Attack(false);
 		    timeSinceLastAttack += Time.deltaTime;
 	    }
 
-	    if (isAttacking && timeSinceLastAttack > weaponHandler.Delay)
+	    if (!isMoving &&isAttacking && timeSinceLastAttack > weaponHandler.Delay)
 	    {
 		    timeSinceLastAttack = 0;
+            animationHandler.Attack(true);
 		    Attack();
 	    }
     }
 
     protected virtual void Attack()
     {
-	    if (lookDirection != Vector2.zero)
-		    weaponHandler?.Attack();
+        if (lookDirection != Vector2.zero)
+            weaponHandler?.Attack();
+    }
+
     // �÷��̾�� ������ ���ó��
     public virtual void Death()
     {
