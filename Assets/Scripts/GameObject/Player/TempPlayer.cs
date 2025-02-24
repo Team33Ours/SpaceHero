@@ -1,18 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TempPlayer : MonoBehaviour
 {
+    public static TempPlayer instance { get; private set; }
+
     public TempPlayerStatus Stat;
 
-    public float ReturnMaxHP()
+    private void Awake()
     {
-        return Stat.maxHP;
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
-    public float ReturnCurrentHP()
+    private void Update()
     {
-        return Stat.currentHP;
+        Stat.currentHP -= Time.deltaTime;
+    }
+
+    public TempPlayer GetInstance()
+    {
+        return instance;
     }
 }
