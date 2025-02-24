@@ -38,7 +38,7 @@ public class ObstacleSpawner : MonoBehaviour
     void Start()
     {
         InitTileDictionary();
-        CreateFloorTiles(1, 3, 100);
+        CreateFloorTiles(2, 3, 100);
     }
 
     // Update is called once per frame
@@ -67,7 +67,7 @@ public class ObstacleSpawner : MonoBehaviour
     // 주어진 stage에 맞는 바닥 타일을 생성하고, 해당 타일에 벽 타일과 아이템 장애물을 배치
     void CreateFloorTiles(int stage, int wallTileCount, int ItemObstacleCount)
     {
-        // 특정 바닥 타일을 선택해서 생성
+        // 특정 바닥 타일을 선택해서 생성. ElementAt: 인덱스에 해당하는 요소를 반환
         GameObject selectedFloorTile = tileToWalls.Keys.ElementAt(stage - 1); // 선택된 바닥 타일을 가져옴 (stage에 맞춰 타일을 선택)
         List<GameObject> wallTiles = tileToWalls[selectedFloorTile]; // 해당 바닥 타일에 맞는 벽 타일 목록
         List<GameObject> itemObstacles = tileToItemObstacle[selectedFloorTile]; // 해당 바닥 타일에 맞는 아이템 장애물 목록
@@ -98,6 +98,7 @@ public class ObstacleSpawner : MonoBehaviour
                 Bounds combinedBounds = renderers[0].bounds;
                 foreach (var r in renderers)
                 {
+                    // Encapsulate: Bounds를 합침
                     combinedBounds.Encapsulate(r.bounds); // 여러 렌더러의 Bounds를 합쳐서 하나의 큰 Bounds 생성
                 }
                 wallBoundsList.Add(combinedBounds); // 생성된 벽의 Bounds를 리스트에 추가
@@ -129,8 +130,8 @@ public class ObstacleSpawner : MonoBehaviour
                 Bounds newItemBounds = new Bounds(spawnPos, itemBounds.size);
 
                 // 새로운 위치가 벽이나 다른 아이템 장애물과 겹치는지 체크
-                isOverlapping = wallBoundsList.Any(wallBounds => wallBounds.Intersects(newItemBounds)) ||
-                                 itemObstacleBoundsList.Any(itemBounds => itemBounds.Intersects(newItemBounds));
+                isOverlapping = wallBoundsList.Any(wallBounds => wallBounds.Intersects(newItemBounds)) || // Any: 조건에 맞는 요소가 하나라도 있는지 확인
+                                 itemObstacleBoundsList.Any(itemBounds => itemBounds.Intersects(newItemBounds)); // Intersects: 두 Bounds가 겹치는지 확인
 
                 attempt++;
                 if (attempt >= maxAttempts) break; // 시도 횟수 초과 시 중단
