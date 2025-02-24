@@ -38,7 +38,7 @@ public class ObstacleSpawner : MonoBehaviour
     void Start()
     {
         InitTileDictionary();
-        CreateFloorTiles(2, 3, 100);
+        CreateFloorTiles(1, 3, 100);
     }
 
     // Update is called once per frame
@@ -123,7 +123,7 @@ public class ObstacleSpawner : MonoBehaviour
             do
             {
                 float itemXPos = Random.Range(-5f, 5f); 
-                float itemYPos = Random.Range(-9f, 14f);
+                float itemYPos = Random.Range(-9f, 24f);
                 spawnPos = transform.position + new Vector3(itemXPos, itemYPos, 0);
 
                 // 아이템 장애물의 새로운 Bounds를 생성
