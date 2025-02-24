@@ -24,6 +24,8 @@ public class BossMonsterController : BaseController
     private Transform target;
     private eBossPhase phase;
 
+    // 보스는 Base의 WeaponPrefab에는 근거리 무기를 할당
+    [SerializeField] public WeaponHandler RangeWeaponPrefab;     // RangeWeaponPrefab에는 원거리 무기를 할당
 
     // 몬스터 종류에 따라 다른 값들
     [SerializeField] private float followRange;
