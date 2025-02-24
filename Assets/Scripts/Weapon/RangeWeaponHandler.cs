@@ -32,6 +32,41 @@ public class RangeWeaponHandler : WeaponHandler
     [SerializeField] private Color projectileColor;     // 총알의 색깔을 다양하게
     public Color ProjectileColor { get { return projectileColor; } }
 
+    private ProjectileManager projectileManager;
+    protected override void Start()
+    {
+        base.Start();
+        projectileManager = ProjectileManager.Instance;
+    }
+    public override void Attack()
+    {
+        base.Attack();
 
+        float projectilesAngleSpace = multipleProjectilesAngle;  // 각각의 탄의 퍼짐 정도
+        int numberOfProjectilesPerShot = numberofProjectilesPerShot;    // 몇발을 쏠 것인가
+
+        // 발사해야하는 최소각도 
+        float minAngle = -(numberOfProjectilesPerShot / 2f) * projectilesAngleSpace;
+
+
+        for (int i = 0; i < numberOfProjectilesPerShot; i++)
+        {
+            float angle = minAngle + projectilesAngleSpace * i;
+            float randomSpread = Random.Range(-spread, spread); // 랜덤의 탄 퍼짐을 적용
+            angle += randomSpread;  // 다채로운 각으로 탄이 퍼진다
+            CreateProjectile(Controller.LookDirection, angle);
+        }
+    }
+
+    private void CreateProjectile(Vector2 _lookDirection, float angle)
+    {
+        // 생성할 때 매니저를 통해 생성하고 발사
+        projectileManager.ShootBullet(this, projectileSpawnPosition.position, RotateVector2(_lookDirection, angle));
+    }
+    private static Vector2 RotateVector2(Vector2 v, float degree)
+    {
+        return Quaternion.Euler(0, 0, degree) * v;  // 회전수치만큼 벡터(v)를 회전
+        /// 주의: 쿼터니언 * 벡터의 교환법칙은 성립하지 않는다
+    }
 
 }
