@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/ObstacleSpawner.cs.meta
 guid: f233bb7729a473c418ce49030ce78b20
+========
+guid: ce51db1d4afad2b44a0f97d919edd570
+>>>>>>>> Dev:Assets/Scripts/Player/AnimationHandler.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
