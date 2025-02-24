@@ -345,6 +345,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5614620029656390972}
+  - component: {fileID: -7955804816385776773}
   m_Layer: 0
   m_Name: YellowWall_1
   m_TagString: Untagged
@@ -371,3 +372,17 @@ Transform:
   - {fileID: 7839544439935373901}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-7955804816385776773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6702508250168462968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e3280d04586f70419fb4519a014ba73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highPosX: 4
+  lowPosX: -5
