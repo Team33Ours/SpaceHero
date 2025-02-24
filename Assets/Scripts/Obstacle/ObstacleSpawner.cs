@@ -4,6 +4,11 @@ using System.Linq;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 
+
+/// <summary>
+/// 생성할 오브젝트를 그룹으로 나타내는 클래스
+/// 2025.02.24.한만진
+/// </summary>
 [System.Serializable]
 public class TileGroup
 {
@@ -12,6 +17,12 @@ public class TileGroup
     public List<GameObject> itemObstacle; // 아이템 장애물
 }
 
+
+/// <summary>
+/// 오브젝트들의 생성과 배치를 담당하는 클래스
+/// 중복된 벽이나 아이템 장애물이 생성되지 않도록 Bounds를 이용하여 위치를 검사
+/// 2025.02.24.한만진
+/// </summary>
 public class ObstacleSpawner : MonoBehaviour
 {
     [SerializeField]
@@ -57,61 +68,67 @@ public class ObstacleSpawner : MonoBehaviour
     void CreateFloorTiles(int stage, int wallTileCount, int ItemObstacleCount)
     {
         // 특정 바닥 타일을 선택해서 생성
-        GameObject selectedFloorTile = tileToWalls.Keys.ElementAt(stage - 1); // 1 ~ 5 선택 후 생성
-        List<GameObject> wallTiles = tileToWalls[selectedFloorTile];
-        List<GameObject> itemObstacles = tileToItemObstacle[selectedFloorTile];
+        GameObject selectedFloorTile = tileToWalls.Keys.ElementAt(stage - 1); // 선택된 바닥 타일을 가져옴 (stage에 맞춰 타일을 선택)
+        List<GameObject> wallTiles = tileToWalls[selectedFloorTile]; // 해당 바닥 타일에 맞는 벽 타일 목록
+        List<GameObject> itemObstacles = tileToItemObstacle[selectedFloorTile]; // 해당 바닥 타일에 맞는 아이템 장애물 목록
 
         // 선택된 바닥 타일을 생성
         GameObject instantiatedFloorTile = Instantiate(selectedFloorTile, transform.position, Quaternion.identity);
         wallBoundsList.Clear(); // 벽 Bounds 리스트 초기화
         itemObstacleBoundsList.Clear(); // 아이템 장애물 Bounds 리스트 초기화
 
+
+        // 벽 타일을 랜덤하게 생성
         for (int i = 0; i < wallTileCount; i++)
         {
-            GameObject selectedWallTile = wallTiles[Random.Range(0, wallTiles.Count)];
-            WallObstacle wallObstacle = selectedWallTile.GetComponent<WallObstacle>();
+            GameObject selectedWallTile = wallTiles[Random.Range(0, wallTiles.Count)]; // 벽 타일을 랜덤하게 선택
+            WallObstacle wallObstacle = selectedWallTile.GetComponent<WallObstacle>(); // 벽 타일의 WallObstacle 컴포넌트 가져오기
             float wallXPos = Random.Range(wallObstacle.lowPosX, wallObstacle.highPosX);
             int wallYPos = i * 8;
 
-            // 벽 타일을 생성
+            // 벽 타일을 생성하고 부모 오브젝트에 추가
             GameObject instantiatedWallTile = 
                 Instantiate(selectedWallTile, transform.position + new Vector3(wallXPos, wallYPos, 0), Quaternion.identity);
             instantiatedWallTile.transform.SetParent(instantiatedFloorTile.transform.Find("Wall")); // Wall 오브젝트의 자식으로 설정
 
-            // 벽의 Bounds 저장
+            // 생성된 벽의 Bounds를 구해서 wallBoundsList에 추가
             Renderer[] renderers = instantiatedWallTile.GetComponentsInChildren<Renderer>();
             if (renderers.Length > 0 )
             {
                 Bounds combinedBounds = renderers[0].bounds;
                 foreach (var r in renderers)
                 {
-                    combinedBounds.Encapsulate(r.bounds); // 여러 렌더러를 포함하는 Bounds 생성
+                    combinedBounds.Encapsulate(r.bounds); // 여러 렌더러의 Bounds를 합쳐서 하나의 큰 Bounds 생성
                 }
-                wallBoundsList.Add(combinedBounds);
+                wallBoundsList.Add(combinedBounds); // 생성된 벽의 Bounds를 리스트에 추가
             }
         }
 
 
-
+        // 아이템 장애물을 랜덤하게 생성
         for (int i = 0; i < ItemObstacleCount; i++)
         {
+            // 아이템 장애물을 랜덤하게 선택
             GameObject selectedItemObstacle = itemObstacles[Random.Range(0, itemObstacles.Count)];
             Renderer itemRenderer = selectedItemObstacle.GetComponent<Renderer>();
 
-            Bounds itemBounds = itemRenderer.bounds; // 기존 Bounds 가져오기
+            Bounds itemBounds = itemRenderer.bounds; // 아이템 장애물의 Bounds를 구함
             Vector3 spawnPos;
             int maxAttempts = 10; // 최대 시도 횟수
             int attempt = 0;
             bool isOverlapping;
 
+            // 아이템 장애물이 벽이나 다른 아이템 장애물과 겹치지 않도록 위치를 찾음
             do
             {
-                float itemXPos = Random.Range(-5f, 5f); // 범위 수정 가능
+                float itemXPos = Random.Range(-5f, 5f); 
                 float itemYPos = Random.Range(-9f, 14f);
                 spawnPos = transform.position + new Vector3(itemXPos, itemYPos, 0);
 
-                Bounds newItemBounds = new Bounds(spawnPos, itemBounds.size); // 새로운 Bounds 생성
+                // 아이템 장애물의 새로운 Bounds를 생성
+                Bounds newItemBounds = new Bounds(spawnPos, itemBounds.size);
 
+                // 새로운 위치가 벽이나 다른 아이템 장애물과 겹치는지 체크
                 isOverlapping = wallBoundsList.Any(wallBounds => wallBounds.Intersects(newItemBounds)) ||
                                  itemObstacleBoundsList.Any(itemBounds => itemBounds.Intersects(newItemBounds));
 
@@ -120,12 +137,13 @@ public class ObstacleSpawner : MonoBehaviour
 
             } while (isOverlapping);
 
+            // 겹치지 않으면 아이템 장애물 생성
             if (!isOverlapping)
             {
                 GameObject instantiatedItemObstacle = Instantiate(selectedItemObstacle, spawnPos, Quaternion.identity);
                 instantiatedItemObstacle.transform.SetParent(instantiatedFloorTile.transform.Find("ItemObstacle"));
 
-                // 아이템 장애물의 Bounds 추가
+                // 생성된 아이템 장애물의 Bounds를 추가
                 itemObstacleBoundsList.Add(new Bounds(spawnPos, itemBounds.size));
             }
         }
