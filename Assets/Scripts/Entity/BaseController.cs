@@ -3,7 +3,7 @@ using UnityEngine;
 public class BaseController : MonoBehaviour
 {
     protected Rigidbody2D _rigidbody;
-    
+
     [SerializeField] private SpriteRenderer characterRenderer;
     [SerializeField] private Transform weaponPivot;
 
@@ -11,7 +11,7 @@ public class BaseController : MonoBehaviour
     public Vector2 MovementDirection{get{return movementDirection;}}
     
     protected Vector2 lookDirection = Vector2.zero;
-    public Vector2 LookDirection{get{return lookDirection;}}
+    public Vector2 LookDirection { get { return lookDirection; } }
 
     private Vector2 knockback = Vector2.zero;
     private float knockbackDuration = 0.0f;
@@ -40,28 +40,28 @@ public class BaseController : MonoBehaviour
 
     protected virtual void Start()
     {
-        
+
     }
-    
+
     protected virtual void Update()
     {
         HandleAction();
         // Rotate(lookDirection);
         HandleAttackDelay();
     }
-    
+
     protected virtual void FixedUpdate()
     {
         Movment(movementDirection);
-        if(knockbackDuration > 0.0f)
+        if (knockbackDuration > 0.0f)
         {
             knockbackDuration -= Time.fixedDeltaTime;
         }
     }
-    
+
     protected virtual void HandleAction()
     {
-        
+
     }
 
     private void Movment(Vector2 direction)
@@ -72,7 +72,7 @@ public class BaseController : MonoBehaviour
             direction *= 0.2f;
             direction += knockback;
         }
-        
+
         _rigidbody.velocity = direction;
         animationHandler.Move(direction);
     }
@@ -81,9 +81,9 @@ public class BaseController : MonoBehaviour
     {
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         bool isLeft = Mathf.Abs(rotZ) > 90f;
-        
+
         characterRenderer.flipX = isLeft;
-        
+
         if (weaponPivot != null)
         {
             weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ);
@@ -91,7 +91,7 @@ public class BaseController : MonoBehaviour
         
         weaponHandler?.Rotate(isLeft);
     }
-    
+
     public void ApplyKnockback(Transform other, float power, float duration)
     {
         knockbackDuration = duration;
@@ -119,5 +119,22 @@ public class BaseController : MonoBehaviour
     {
 	    if (lookDirection != Vector2.zero)
 		    weaponHandler?.Attack();
+    // �÷��̾�� ������ ���ó��
+    public virtual void Death()
+    {
+        // ������ �ִ� ��� ��������Ʈ�� ã�ƿ´�
+        foreach (SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
+        {
+            // a���� �ٲ۴�
+            Color color = renderer.color;
+            color.a = 0.3f;
+            renderer.color = color; 
+        }
+        foreach (Behaviour component in transform.GetComponentsInChildren<Behaviour>())
+        {
+            // �ڵ尡 �������� �ʵ��� ��� disable
+            component.enabled = false;
+        }
+        // Destroy�� ������ Controller���� ����
     }
 }
