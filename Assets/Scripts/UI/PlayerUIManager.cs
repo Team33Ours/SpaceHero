@@ -36,14 +36,18 @@ public class PlayerUIManager : MonoBehaviour
         // Player 정보 읽음
         tempPlayerInstance = TempPlayer.instance;
         if (TempPlayer.instance != null)
-        {
-            HPSlider.maxValue = TempPlayer.instance.Stat.maxHP;
-            HPSlider.value = TempPlayer.instance.Stat.currentHP;
-            hpDifferenceCheck = HPSlider.value;
-            HPText.text = HPSlider.value.ToString();
-        }
+            ReadPlayerInstance();
+
 
     }
+    private void ReadPlayerInstance()
+    {
+        HPSlider.maxValue = TempPlayer.instance.Stat.maxHP;
+        HPSlider.value = TempPlayer.instance.Stat.currentHP;
+        hpDifferenceCheck = HPSlider.value;
+        HPText.text = HPSlider.value.ToString();
+    }
+
     private void Update()
     {
         if (hpDifferenceCheck != TempPlayer.instance.Stat.currentHP)

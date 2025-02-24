@@ -4,7 +4,7 @@ public class TempPlayer : MonoBehaviour
 {
     public static TempPlayer instance { get; private set; }
 
-    public TempPlayerStatus Stat;
+    public TempStatus Stat;
 
     private void Awake()
     {
@@ -20,11 +20,7 @@ public class TempPlayer : MonoBehaviour
 
     private void Update()
     {
-        Stat.currentHP -= Time.deltaTime;
-    }
-
-    public TempPlayer GetInstance()
-    {
-        return instance;
+        // Å×½ºÆ®
+        //Stat.currentHP -= Time.deltaTime;
     }
 }
