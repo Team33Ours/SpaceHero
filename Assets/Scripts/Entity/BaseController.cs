@@ -71,7 +71,7 @@ public class BaseController : MonoBehaviour
 
     private void Movment(Vector2 direction)
     {
-        direction = direction * statHandler.Speed;
+        direction = direction * statHandler.MaxSpeed;  
         if(knockbackDuration > 0.0f)
         {
             direction *= 0.2f;
