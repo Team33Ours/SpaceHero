@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -35,6 +36,7 @@ public class NormalMonsterController : BaseController
         Vector2 direction = DirectionToTarget();
 
         // 공격하고 있지 않다
+        isAttacking = false;
 
         // 거리에 따른 판단
         if (distance <= followRange)
@@ -42,6 +44,23 @@ public class NormalMonsterController : BaseController
             // 이동
             lookDirection = direction;
             // 공격범위에 있다면 
+            if (distance <= weaponHandler.AttackRange)
+            {
+                // 공격
+                int layerMaskTarget = weaponHandler.target;
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, weaponHandler.AttackRange * 1.5f, 
+                    (1 << LayerMask.NameToLayer("Level")) | layerMaskTarget);
+
+                // 충돌체가 있다면, 충돌해서 처리해야하는 layer가 맞는지 확인한다
+                // layer가 "Level"의 layer이면 공격하지 않는다
+                if (hit.collider != null && layerMaskTarget == (layerMaskTarget | (1 << hit.collider.gameObject.layer)))
+                {
+                    isAttacking = true;
+                }
+                movementDirection = Vector2.zero;
+                return;
+            }
+            movementDirection = direction;
         }
     }
     protected float DistanceToTarget()

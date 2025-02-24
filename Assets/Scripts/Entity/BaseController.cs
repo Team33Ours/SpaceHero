@@ -20,10 +20,25 @@ public class BaseController : MonoBehaviour
     private float knockbackDuration = 0.0f;
     protected AnimationHandler animationHandler;
 
+    protected StatHandler statHandler;
+    [SerializeField] public WeaponHandler WeaponPrefab;     // 무기 프리팹
+    protected WeaponHandler weaponHandler;  // 무기 장착을 위한 핸들러
+
+    protected bool isAttacking;
+    private float timeSinceLastAttack = float.MaxValue;
+
+
     protected virtual void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         animationHandler = GetComponent<AnimationHandler>();
+        statHandler = GetComponent<StatHandler>();  // 스탯
+
+        // 무기 장착
+        if (WeaponPrefab != null)
+            weaponHandler = Instantiate(WeaponPrefab, weaponPivot); // 무기 피벗에 프리팹을 복사해서 생성한다
+        else
+            weaponHandler = GetComponentInChildren<WeaponHandler>();    // 이미 무기 장착 시, 찾아온다
     }
 
     protected virtual void Start()
@@ -34,7 +49,8 @@ public class BaseController : MonoBehaviour
     protected virtual void Update()
     {
         HandleAction();
-        // Rotate(lookDirection);
+        Rotate(lookDirection);  // 회전
+        HandleAttackDelay();
     }
 
     protected virtual void FixedUpdate()
@@ -82,6 +98,28 @@ public class BaseController : MonoBehaviour
         knockbackDuration = duration;
         knockback = -(other.position - transform.position).normalized * power;
     }
+    private void HandleAttackDelay()
+    {
+        if (weaponHandler == null)
+            return;
+        // 공격 딜레이
+        if (timeSinceLastAttack <= weaponHandler.Delay)
+        {
+            timeSinceLastAttack += Time.deltaTime;
+        }
+
+        // 딜레이가 다 되었으면 공격
+        if (isAttacking && timeSinceLastAttack > weaponHandler.Delay)
+        {
+            timeSinceLastAttack = 0;
+            Attack();
+        }
+    }
+    protected virtual void Attack()
+    {
+        if (lookDirection != Vector2.zero)
+            weaponHandler?.Attack();
+    }
 
     // 플레이어와 몬스터의 사망처리
     public virtual void Death()
@@ -92,7 +130,7 @@ public class BaseController : MonoBehaviour
             // a값만 바꾼다
             Color color = renderer.color;
             color.a = 0.3f;
-            renderer.color = color; 
+            renderer.color = color;
         }
         foreach (Behaviour component in transform.GetComponentsInChildren<Behaviour>())
         {
