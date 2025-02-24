@@ -65,5 +65,10 @@ public class BossMonsterController : BaseController
         return (target.position - transform.position).normalized;
     }
 
+    // 보스의 공격과 스킬
+    // 스킬은 BaseSkillHandler가 필요하며
+    // 이를 Player와 보스몬스터가 상속을 받아서 구현한다
+    // Controller는 그걸 가져와서 쓴다
+
 
 }
