@@ -4,33 +4,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ÇÃ·¹ÀÌ¾î¿Í ¸ó½ºÅÍÀÇ ½Ç½Ã°£ ÀÚ¿ø(Ã¼·Â,¸¶·Â)ÀÇ º¯È­
+/// í”Œë ˆì´ì–´ì™€ ëª¬ìŠ¤í„°ì˜ ì‹¤ì‹œê°„ ìì›(ì²´ë ¥,ë§ˆë ¥)ì˜ ë³€í™”
 /// 2025.02.24.ImSeonggyun
 /// </summary>
 public class ResourceController : MonoBehaviour
 {
-    [SerializeField] private float healthChangeDelay = .5f; // ÀÏÁ¤ÁÖ±âµ¿¾È ¹«Àû»óÅÂ
+    [SerializeField] private float healthChangeDelay = .5f; // ì¼ì •ì£¼ê¸°ë™ì•ˆ ë¬´ì ìƒíƒœ
 
     private BaseController baseController;
     private StatHandler statHandler;
     private AnimationHandler animationHandler;
 
-    private float timeSinceLastChange = float.MaxValue; // º¯È­¸¦ °¡Áø ½Ã°£ ÀúÀåÇÏ¿©, ÀÏÁ¤½Ã°£ÈÄ¿¡ ´Ù½Ã º¯È­¸¦ ¹Ş´Â´Ù
+    private float timeSinceLastChange = float.MaxValue; // ë³€í™”ë¥¼ ê°€ì§„ ì‹œê°„ ì €ì¥í•˜ì—¬, ì¼ì •ì‹œê°„í›„ì— ë‹¤ì‹œ ë³€í™”ë¥¼ ë°›ëŠ”ë‹¤
 
-    public float MaxHealth => statHandler.MaxHealth;    // Ä³¸¯ÅÍ, ¸ó½ºÅÍÀÇ ±âº» Ã¼·Â
-    public float CurrentHealth { get; private set; }    // ÀÇÁ¸°ü°è¸¦ ÁÙÀÌ±â À§ÇØ ½Ç½Ã°£ Ã¼·ÂÀº ResourceController¿¡¼­ ¼±¾ğ,°ü¸®
+    public float MaxHealth => statHandler.MaxHealth;    // ìºë¦­í„°, ëª¬ìŠ¤í„°ì˜ ê¸°ë³¸ ì²´ë ¥
+    public float CurrentHealth { get; private set; }    // ì˜ì¡´ê´€ê³„ë¥¼ ì¤„ì´ê¸° ìœ„í•´ ì‹¤ì‹œê°„ ì²´ë ¥ì€ ResourceControllerì—ì„œ ì„ ì–¸,ê´€ë¦¬
 
-    public float MaxMana => statHandler.MaxMana;    // Ä³¸¯ÅÍ, ¸ó½ºÅÍÀÇ ±âº» ¸¶³ª
+    public float MaxMana => statHandler.MaxMana;    // ìºë¦­í„°, ëª¬ìŠ¤í„°ì˜ ê¸°ë³¸ ë§ˆë‚˜
     public float CurrentMana { get; private set; }
 
-    public float MaxSpeed => statHandler.MaxSpeed;  // Ä³¸¯ÅÍ, ¸ó½ºÅÍÀÇ ±âº» ½ºÇÇµå
-    public float CurrentSpeed { get; private set; }    // ¼Óµµ Çâ»ó ¸¶¹ı ¶Ç´Â ¾ÆÀÌÅÛÀ» ¸ÔÀ¸¸é ÀÏ½ÃÀûÀ¸·Î »¡¶óÁö´Â Ãß°¡¼Óµµ
+    public float MaxSpeed => statHandler.MaxSpeed;  // ìºë¦­í„°, ëª¬ìŠ¤í„°ì˜ ê¸°ë³¸ ìŠ¤í”¼ë“œ
+    public float CurrentSpeed { get; private set; }    // ì†ë„ í–¥ìƒ ë§ˆë²• ë˜ëŠ” ì•„ì´í…œì„ ë¨¹ìœ¼ë©´ ì¼ì‹œì ìœ¼ë¡œ ë¹¨ë¼ì§€ëŠ” ì¶”ê°€ì†ë„
 
-    public AudioClip damageClip;   // ÇÇ°İ »ç¿îµå 
+    public AudioClip damageClip;   // í”¼ê²© ì‚¬ìš´ë“œ 
 
-    private Action<float, float> OnChangeHealth;    // delegate¸¦ ÅëÇÑ ÀÌº¥Æ® È£Ãâ
-    private Action<float, float> OnChangeMana;    // delegate¸¦ ÅëÇÑ ÀÌº¥Æ® È£Ãâ
-    private Action<float, float> OnChangeSpeed;    // delegate¸¦ ÅëÇÑ ÀÌº¥Æ® È£Ãâ
+    private Action<float, float> OnChangeHealth;    // delegateë¥¼ í†µí•œ ì´ë²¤íŠ¸ í˜¸ì¶œ
+    private Action<float, float> OnChangeMana;    // delegateë¥¼ í†µí•œ ì´ë²¤íŠ¸ í˜¸ì¶œ
+    private Action<float, float> OnChangeSpeed;    // delegateë¥¼ í†µí•œ ì´ë²¤íŠ¸ í˜¸ì¶œ
 
     private void Awake()
     {
@@ -64,13 +64,13 @@ public class ResourceController : MonoBehaviour
             return false;
         }
 
-        timeSinceLastChange = 0f;   // µ¥¹ÌÁö ¹Ş¾ÒÀ¸¸é ½Ã°£À» 0À¸·Î ¹Ù²Ù¾î Àá½Ã ¹«Àû»óÅÂ
-        CurrentHealth += change;    // +: È¸º¹, -: µ¥¹ÌÁö
-        CurrentHealth = CurrentHealth > MaxHealth ? MaxHealth : CurrentHealth;  // Ã¼·Â Max
-        CurrentHealth = CurrentHealth < 0 ? 0 : CurrentHealth;  // Ã¼·Â Min
+        timeSinceLastChange = 0f;   // ë°ë¯¸ì§€ ë°›ì•˜ìœ¼ë©´ ì‹œê°„ì„ 0ìœ¼ë¡œ ë°”ê¾¸ì–´ ì ì‹œ ë¬´ì ìƒíƒœ
+        CurrentHealth += change;    // +: íšŒë³µ, -: ë°ë¯¸ì§€
+        CurrentHealth = CurrentHealth > MaxHealth ? MaxHealth : CurrentHealth;  // ì²´ë ¥ Max
+        CurrentHealth = CurrentHealth < 0 ? 0 : CurrentHealth;  // ì²´ë ¥ Min
 
-        // HP º¯È­·®ÀÌ »ı°åÀ» ¶§ È£Ãâ
-        /// OnChangeHealth delegate¿¡ ¿¬°áµÈ ¸Ş¼­µå°¡ ÀÖ´Ù¸é, CurrentHealth¿Í MaxHealth ¸Ş¼­µå¸¦ ¸Å°³º¯¼ö·Î Àü´ŞÇØ¼­ È£ÃâÇÑ´Ù
+        // HP ë³€í™”ëŸ‰ì´ ìƒê²¼ì„ ë•Œ í˜¸ì¶œ
+        /// OnChangeHealth delegateì— ì—°ê²°ëœ ë©”ì„œë“œê°€ ìˆë‹¤ë©´, CurrentHealthì™€ MaxHealth ë©”ì„œë“œë¥¼ ë§¤ê°œë³€ìˆ˜ë¡œ ì „ë‹¬í•´ì„œ í˜¸ì¶œí•œë‹¤
         OnChangeHealth?.Invoke(CurrentHealth, MaxHealth);
 
         if (change < 0)
@@ -92,7 +92,7 @@ public class ResourceController : MonoBehaviour
         // BaseController knows who die
         baseController.Death();
     }
-    public void AddHealthChangeEven(Action<float, float> action)
+    public void AddHealthChangeEvent(Action<float, float> action)
     {
         OnChangeHealth += action;
     }
@@ -104,7 +104,7 @@ public class ResourceController : MonoBehaviour
     #region Mana
     public bool ChangeMana(float change)
     {
-        // mana´Â µô·¹ÀÌ°°Àº°Å ¾ø´Ù
+        // manaëŠ” ë”œë ˆì´ê°™ì€ê±° ì—†ë‹¤
         if (change == 0)
             return false;
 
@@ -129,9 +129,9 @@ public class ResourceController : MonoBehaviour
             return false;
         CurrentSpeed += change;
 
-        // ¾ÆÀÌÅÛ,¸¶¹ı¿¡ ÀÇÇÑ ¼ÓµµÇâ»óÀº ÀÏ½ÃÀûÀÌ¹Ç·Î Æ¯Á¤ ½Ã°£ÀÌ Áö³ª¸é ¼Óµµ°¡ ´Ù½Ã ´À·ÁÁ®¾ßÇÑ´Ù
-        // µû·Î ¸Ş¼­µå¸¦ È£ÃâÇÏµç°¡, ¿©±â¿¡ ´Ù½Ã ÀÛ¼ºÇÑ´Ù
-        // ÀÏÁ¤½Ã°£µÚ¿¡ ÀÚµ¿È£ÃâµÇ¾î ¼Óµµ¸¦ ´Ù½Ã ³»¸®°Ô ÇØ¾ßÇÑ´Ù
+        // ì•„ì´í…œ,ë§ˆë²•ì— ì˜í•œ ì†ë„í–¥ìƒì€ ì¼ì‹œì ì´ë¯€ë¡œ íŠ¹ì • ì‹œê°„ì´ ì§€ë‚˜ë©´ ì†ë„ê°€ ë‹¤ì‹œ ëŠë ¤ì ¸ì•¼í•œë‹¤
+        // ë”°ë¡œ ë©”ì„œë“œë¥¼ í˜¸ì¶œí•˜ë“ ê°€, ì—¬ê¸°ì— ë‹¤ì‹œ ì‘ì„±í•œë‹¤
+        // ì¼ì •ì‹œê°„ë’¤ì— ìë™í˜¸ì¶œë˜ì–´ ì†ë„ë¥¼ ë‹¤ì‹œ ë‚´ë¦¬ê²Œ í•´ì•¼í•œë‹¤
 
         return true;
     }

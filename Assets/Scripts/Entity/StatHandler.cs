@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,15 +7,16 @@ using UnityEngine;
 /// 플레이어와 몬스터의 체력,마력,스피드
 /// 2025.02.25.ImSeonggyun
 /// </summary>
+[Serializable]
 public class StatHandler : MonoBehaviour
 {
-    [SerializeField] private float maxHealth;    // ?????? 
-    [SerializeField] private float maxMana;    // ??븶??
-    [SerializeField] private float maxSpeed;       // ?????
+    [SerializeField] private float maxHealth;   
+    [SerializeField] private float maxMana;    
+    [SerializeField] private float maxSpeed;      
     public float MaxHealth
     {
         get => maxHealth;
-        set => maxHealth = Mathf.Max(1, value); // ??? 1 ??????? ????
+        set => maxHealth = Mathf.Max(1, value); 
     }
     public float MaxMana
     {
