@@ -1,44 +1,96 @@
+using System.Threading;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.VirtualTexturing;
 using UnityEngine.UI;
-
-//코인
-//    UIManager에서 인스턴스 만들어서 관리
-//    코인 양 보여주는 TextMeshProUGUI 변수 생성
-//    코인 늘어나는 메서드 AddCoin() 작성
-//    코인 감소하는 메서드 MinusCoin() 작성
-//스테이지
-//    스테이지 보여주는 TextMeshProUGUI 변수 생성
-//    레벨 생성자에서 스테이지 관리 쉽게끔 함수 작성
-//    스테이지 늘어나는 메서드 ClearStage()
-//퍼즈
-//    버튼 달아서 게임 일시정지 함수(시간 스케일) 추가 후 인스펙터에서 할당
-//    일시정지
-//        게임 재개
-//        메인메뉴
 
 public class UIManager : Singleton<UIManager>
 {
-    public GameObject CoinUI;
+    [SerializeField]
     private TextMeshProUGUI CoinText;
+    private int coin;
+    private int coinDifferenceCheck;
+    bool isThereCoin;
 
-    public GameObject StageUI;
-    private int stageFloor; 
-    private TextMeshProUGUI StageText;
-    
-    public GameObject PauseUI;
+    private int stageFloor;
+    public TextMeshProUGUI StageText;
 
-    private void Awake()
+    public Button PauseUI;
+
+    float testTimer = 0;
+
+    protected override void Awake()
     {
-        //CoinText = CoinUI.GetComponent<TextMeshProUGUI>();
-        //StageText = StageUI.GetComponent<TextMeshProUGUI>();
+        base.Awake();
+
+        coin = 0;
+        CoinText = GameObject.FindWithTag("Coin").GetComponent<TextMeshProUGUI>();
+        CoinText.text = $"{coin}";
+        isThereCoin = (CoinText != null) ? true : false;
+
         stageFloor = 0;
+        StageText.text = $"{stageFloor}";
+
+        PauseUI = GetComponent<Button>();
     }
 
+    private void Start()
+    {
+        // Test
+        InvokeRepeating(nameof(AcendStage), 1f, 1f);
+    }
+
+    private void Update()
+    {
+        // Test
+        testTimer += Time.deltaTime;
+        if (testTimer >= 1f)
+        {
+            PlusCoin(100);
+            testTimer = 0;
+        }
+    }
+
+    #region Coin
+    public void UpdateCoin()
+    {
+        if (coin != coinDifferenceCheck && isThereCoin)
+            CoinText.text = $"{coin}";
+    }
+
+    public void PlusCoin(int coin)
+    {
+        this.coin += coin;
+        if (isThereCoin)
+            CoinText.text = $"{this.coin}";
+    }
+
+    public void MinusCoin(int coin)
+    {
+        this.coin -= coin;
+        if (isThereCoin)
+            CoinText.text = $"{this.coin}";
+    }
+    #endregion
+
+    #region Stage
     public void AcendStage()
     {
-        stageFloor++;
+        StageText.text = $"{++stageFloor}";
         Debug.Log($"Stage: {stageFloor}");
-        //StageText.text = $"{stageFloor}";
     }
+
+    public void ResetStageFloor()
+    {
+        stageFloor = 0;
+    }
+    #endregion
+
+    #region Pause
+    public void OnClickPauseButton()
+    {
+        Time.timeScale = 0;
+        Debug.Log("Pause");
+    }
+    #endregion
 }
