@@ -71,7 +71,7 @@ public class BaseController : MonoBehaviour
 
     private void Movment(Vector2 direction)
     {
-        direction = direction * statHandler.Speed;
+        direction = direction * statHandler.MaxSpeed;  
         if(knockbackDuration > 0.0f)
         {
             direction *= 0.2f;
@@ -108,7 +108,6 @@ public class BaseController : MonoBehaviour
         knockbackDuration = duration;
         knockback = -(other.position - transform.position).normalized * power;
     }
-
     private void HandleAttackDelay()
     {
 	    if (weaponHandler == null)
@@ -134,20 +133,17 @@ public class BaseController : MonoBehaviour
             weaponHandler?.Attack();
     }
 
-    // �÷��̾�� ������ ���ó��
     public virtual void Death()
     {
-        // ������ �ִ� ��� ��������Ʈ�� ã�ƿ´�
         foreach (SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
         {
             // a���� �ٲ۴�
             Color color = renderer.color;
             color.a = 0.3f;
-            renderer.color = color; 
+            renderer.color = color;
         }
         foreach (Behaviour component in transform.GetComponentsInChildren<Behaviour>())
         {
-            // �ڵ尡 �������� �ʵ��� ��� disable
             component.enabled = false;
         }
         // Destroy�� ������ Controller���� ����
