@@ -38,7 +38,7 @@ public class ObstacleSpawner : MonoBehaviour
     void Start()
     {
         InitTileDictionary();
-        CreateFloorTiles(1, 3, 100);
+        CreateFloorTiles(5, 3, 100);
     }
 
     // Update is called once per frame
