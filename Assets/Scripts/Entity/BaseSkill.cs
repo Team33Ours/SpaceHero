@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ÇÃ·¹ÀÌ¾î¿Í ¸ó½ºÅÍÀÇ ½ºÅ³ Á¤º¸
+/// í”Œë ˆì´ì–´ì™€ ëª¬ìŠ¤í„°ì˜ ìŠ¤í‚¬ ì •ë³´
 /// </summary>
 public class BaseSkill : MonoBehaviour
 {
-    // ½ºÅ³¿¡ µé¾î°¥ ±âº» Á¤º¸
-    // ½ºÅ³ÀÇ ÀÌ¸§
+    // ìŠ¤í‚¬ì— ë“¤ì–´ê°ˆ ê¸°ë³¸ ì •ë³´
+    // ìŠ¤í‚¬ì˜ ì´ë¦„
     protected string skillName { get; private set; }
 
-    // ½ºÅ³¿¡ ÇÊ¿äÇÑ ¸¶³ª
+    // ìŠ¤í‚¬ì— í•„ìš”í•œ ë§ˆë‚˜
     protected float skillMana { get; private set; }
 
-    // ½ºÅ³ÀÇ ÄğÅ¸ÀÓ
+    // ìŠ¤í‚¬ì˜ ì¿¨íƒ€ì„
     protected float skillCoolTime { get; private set; }
     
-    // ½ºÅ³ÀÇ È¿°ú(°ø°İ, °ø°İ¼ÓµµÁõ°¡ °°Àº°Íµé)
+    // ìŠ¤í‚¬ì˜ íš¨ê³¼(ê³µê²©, ê³µê²©ì†ë„ì¦ê°€ ê°™ì€ê²ƒë“¤)
     
 
 
