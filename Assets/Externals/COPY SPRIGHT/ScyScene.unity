@@ -457,10 +457,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8845287074638479197, guid: 8a437f7b60e99694db7f99d32d4da398, type: 3}
-      propertyPath: Stat
-      value: 
-      objectReference: {fileID: 11400000, guid: 635a7ac385fa5984ba71ede70dea78e7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -513,18 +509,6 @@ PrefabInstance:
     - target: {fileID: 192429748396238371, guid: 7f9e31afa2770d441b08799ad189cdd7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1830833793516334531, guid: 7f9e31afa2770d441b08799ad189cdd7, type: 3}
-      propertyPath: Stat
-      value: 
-      objectReference: {fileID: 11400000, guid: 6eedae41581a4b84a848dd405fbbf048, type: 2}
-    - target: {fileID: 3741499545840283569, guid: 7f9e31afa2770d441b08799ad189cdd7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3741499545840283569, guid: 7f9e31afa2770d441b08799ad189cdd7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4870348103966258458, guid: 7f9e31afa2770d441b08799ad189cdd7, type: 3}
       propertyPath: m_AnchorMax.x

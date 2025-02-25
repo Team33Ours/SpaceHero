@@ -7,8 +7,8 @@ using System;
 
 public class GameObjectUI : MonoBehaviour
 {
-    // Status는 플레이어나 몬스터 GameObject에서 주입받아야함.
-    internal TempStatus? ObjectStat = null;
+    // Status should be injected from the game object class.
+    internal TempStatus ObjectStat = null;
     private bool isHealthPointDifferent;
     private float hpDifferenceCheck;
 
@@ -31,7 +31,7 @@ public class GameObjectUI : MonoBehaviour
         HPSlider.maxValue = ObjectStat.maxHP;
         HPSlider.value = ObjectStat.currentHP;
         hpDifferenceCheck = ObjectStat.currentHP;
-        HPText.text = ObjectStat.maxHP.ToString();
+        HPText.text = $"{HPSlider.value:F0}";
     }
     
     private void Update()
