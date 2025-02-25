@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 플레이어, 몬스터의 스킬을 저장하고 사용하는 기능
+/// 플레이어, 몬스터가 스킬을 호출할 때 delegate에 추가
 /// 2025.02.25.ImSeonggyun
 /// </summary>
 public class BaseSkillHandler : MonoBehaviour

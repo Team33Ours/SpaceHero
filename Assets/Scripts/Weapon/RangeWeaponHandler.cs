@@ -1,6 +1,9 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+/// <summary>
+/// 
+/// </summary>
 public class RangeWeaponHandler : WeaponHandler
 {
 
