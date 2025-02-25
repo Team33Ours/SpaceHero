@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class StatHandler : MonoBehaviour
 {
-    // ü���� ����ϰ� ���� Ŭ�������� �Ҵ��Ѵ�
-    [SerializeField] private float maxHealth;    // �ִ�ü�� 
-    //[SerializeField] private float health;       // �ǽð� ü��
-    [SerializeField] private float maxMana;    // �ִ븶��
-    //[SerializeField] private float mana;       // �ǽð� ����
-    [SerializeField] private float maxSpeed;       // ���ǵ�
-    // �÷��̾�, ���� �����Ҷ� �Ҵ��Ѵ�
+    // ????? ?????? ???? ????????? ??????
+    [SerializeField] private float maxHealth;    // ?????? 
+    //[SerializeField] private float health;       // ??ð? ???
+    [SerializeField] private float maxMana;    // ??븶??
+    //[SerializeField] private float mana;       // ??ð? ????
+    [SerializeField] private float maxSpeed;       // ?????
+    // ?÷????, ???? ??????? ??????
     public float MaxHealth
     {
         get => maxHealth;
-        set => maxHealth = Mathf.Max(1, value); // �ּ� 1 �̻����� ����
+        set => maxHealth = Mathf.Max(1, value); // ??? 1 ??????? ????
     }
     //public float Health
     //{
     //    get => health;
-    //    set => health = Mathf.Max(0, value);    // �ּ� 0 �̻����� ����
+    //    set => health = Mathf.Max(0, value);    // ??? 0 ??????? ????
     //}
     public float MaxMana
     {
