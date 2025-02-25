@@ -21,7 +21,7 @@ public class PlayerController : BaseController
         
     }
 
-    public void Attack(bool isAttack, Transform target)
+    public void IsAttack(bool isAttack, Transform target)
     {
         isAttacking = isAttack;
         lookDirection = ((Vector2)target.position - (Vector2)transform.position).normalized;

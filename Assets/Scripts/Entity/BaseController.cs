@@ -27,6 +27,7 @@ public class BaseController : MonoBehaviour
     [SerializeField] public WeaponHandler WeaponPrefab;
 	protected WeaponHandler weaponHandler;
 
+    protected bool isMonster;           // 애니메이션 flip문제로 캐릭터/몬스터 분할
     protected bool isMoving;
 	protected bool isAttacking;
 	private float timeSinceLastAttack = float.MaxValue;
@@ -93,6 +94,7 @@ public class BaseController : MonoBehaviour
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         bool isLeft = Mathf.Abs(rotZ) > 90f;
 
+        if(isMonster)
         characterRenderer.flipX = isLeft;
 
         if (weaponPivot != null)
@@ -125,6 +127,7 @@ public class BaseController : MonoBehaviour
             animationHandler.Attack(true);
 		    Attack();
 	    }
+        
     }
 
     protected virtual void Attack()

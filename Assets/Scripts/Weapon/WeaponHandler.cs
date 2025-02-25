@@ -61,6 +61,11 @@ public class WeaponHandler : MonoBehaviour
     {
         animator.SetTrigger(IsAttack);
     }
+    
+    public void AttackOutAnimation()
+    {
+        animator.ResetTrigger(IsAttack);
+    }
 
     public virtual void Rotate(bool isLeft)
     {

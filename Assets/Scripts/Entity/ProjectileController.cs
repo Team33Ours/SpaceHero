@@ -13,7 +13,7 @@ public class ProjectileController : MonoBehaviour
     
     private Rigidbody2D _rigidbody;
     private SpriteRenderer spriteRenderer;
-
+    
     public bool fxOnDestroy = true;
     
     private void Awake()
