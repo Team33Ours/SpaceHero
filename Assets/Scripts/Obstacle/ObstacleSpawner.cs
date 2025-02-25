@@ -6,22 +6,22 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 
 /// <summary>
-/// »ı¼ºÇÒ ¿ÀºêÁ§Æ®¸¦ ±×·ìÀ¸·Î ³ªÅ¸³»´Â Å¬·¡½º
-/// 2025.02.24.ÇÑ¸¸Áø
+/// ìƒì„±í•  ì˜¤ë¸Œì íŠ¸ë¥¼ ê·¸ë£¹ìœ¼ë¡œ ë‚˜íƒ€ë‚´ëŠ” í´ë˜ìŠ¤
+/// 2025.02.24.í•œë§Œì§„
 /// </summary>
 [System.Serializable]
 public class TileGroup
 {
-    public GameObject floorTile; // ¹Ù´Ú Å¸ÀÏ
-    public List<GameObject> wallTiles; // º® Å¸ÀÏ
-    public List<GameObject> itemObstacle; // ¾ÆÀÌÅÛ Àå¾Ö¹°
+    public GameObject floorTile; // ë°”ë‹¥ íƒ€ì¼
+    public List<GameObject> wallTiles; // ë²½ íƒ€ì¼
+    public List<GameObject> itemObstacle; // ì•„ì´í…œ ì¥ì• ë¬¼
 }
 
 
 /// <summary>
-/// ¿ÀºêÁ§Æ®µéÀÇ »ı¼º°ú ¹èÄ¡¸¦ ´ã´çÇÏ´Â Å¬·¡½º
-/// Áßº¹µÈ º®ÀÌ³ª ¾ÆÀÌÅÛ Àå¾Ö¹°ÀÌ »ı¼ºµÇÁö ¾Êµµ·Ï Bounds¸¦ ÀÌ¿ëÇÏ¿© À§Ä¡¸¦ °Ë»ç
-/// 2025.02.24.ÇÑ¸¸Áø
+/// ì˜¤ë¸Œì íŠ¸ë“¤ì˜ ìƒì„±ê³¼ ë°°ì¹˜ë¥¼ ë‹´ë‹¹í•˜ëŠ” í´ë˜ìŠ¤
+/// ì¤‘ë³µëœ ë²½ì´ë‚˜ ì•„ì´í…œ ì¥ì• ë¬¼ì´ ìƒì„±ë˜ì§€ ì•Šë„ë¡ Boundsë¥¼ ì´ìš©í•˜ì—¬ ìœ„ì¹˜ë¥¼ ê²€ì‚¬
+/// 2025.02.24.í•œë§Œì§„
 /// </summary>
 public class ObstacleSpawner : MonoBehaviour
 {
@@ -31,8 +31,8 @@ public class ObstacleSpawner : MonoBehaviour
     private Dictionary<GameObject, List<GameObject>> tileToWalls = new Dictionary<GameObject, List<GameObject>>();
     private Dictionary<GameObject, List<GameObject>> tileToItemObstacle = new Dictionary<GameObject, List<GameObject>>();
 
-    private List<Bounds> wallBoundsList = new List<Bounds>(); // º®ÀÇ Bounds ¸®½ºÆ®
-    private List<Bounds> itemObstacleBoundsList = new List<Bounds>(); // ¾ÆÀÌÅÛ Àå¾Ö¹°ÀÇ Bounds ¸®½ºÆ®
+    private List<Bounds> wallBoundsList = new List<Bounds>(); // ë²½ì˜ Bounds ë¦¬ìŠ¤íŠ¸
+    private List<Bounds> itemObstacleBoundsList = new List<Bounds>(); // ì•„ì´í…œ ì¥ì• ë¬¼ì˜ Bounds ë¦¬ìŠ¤íŠ¸
 
     // Start is called before the first frame update
     void Start()
@@ -54,97 +54,97 @@ public class ObstacleSpawner : MonoBehaviour
         {
             if (group.floorTile == null || group.wallTiles == null || group.wallTiles.Count == 0)
             {
-                Debug.LogWarning("¹Ù´Ú Å¸ÀÏ ¶Ç´Â º® Å¸ÀÏ ¸®½ºÆ®°¡ ºñ¾î ÀÖÀ½!");
+                Debug.LogWarning("ë°”ë‹¥ íƒ€ì¼ ë˜ëŠ” ë²½ íƒ€ì¼ ë¦¬ìŠ¤íŠ¸ê°€ ë¹„ì–´ ìˆìŒ!");
                 continue;
             }
 
-            // ¹Ù´Ú Å¸ÀÏÀ» Å°·Î, º® Å¸ÀÏ°ú ¾ÆÀÌÅÛ Àå¾Ö¹° ¸ñ·ÏÀ» °ªÀ¸·Î ÀúÀå
+            // ë°”ë‹¥ íƒ€ì¼ì„ í‚¤ë¡œ, ë²½ íƒ€ì¼ê³¼ ì•„ì´í…œ ì¥ì• ë¬¼ ëª©ë¡ì„ ê°’ìœ¼ë¡œ ì €ì¥
             tileToWalls[group.floorTile] = new List<GameObject>(group.wallTiles);
             tileToItemObstacle[group.floorTile] = new List<GameObject>(group.itemObstacle);
         }
     }
 
-    // ÁÖ¾îÁø stage¿¡ ¸Â´Â ¹Ù´Ú Å¸ÀÏÀ» »ı¼ºÇÏ°í, ÇØ´ç Å¸ÀÏ¿¡ º® Å¸ÀÏ°ú ¾ÆÀÌÅÛ Àå¾Ö¹°À» ¹èÄ¡
+    // ì£¼ì–´ì§„ stageì— ë§ëŠ” ë°”ë‹¥ íƒ€ì¼ì„ ìƒì„±í•˜ê³ , í•´ë‹¹ íƒ€ì¼ì— ë²½ íƒ€ì¼ê³¼ ì•„ì´í…œ ì¥ì• ë¬¼ì„ ë°°ì¹˜
     void CreateFloorTiles(int stage, int wallTileCount, int ItemObstacleCount)
     {
-        // Æ¯Á¤ ¹Ù´Ú Å¸ÀÏÀ» ¼±ÅÃÇØ¼­ »ı¼º. ElementAt: ÀÎµ¦½º¿¡ ÇØ´çÇÏ´Â ¿ä¼Ò¸¦ ¹İÈ¯
-        GameObject selectedFloorTile = tileToWalls.Keys.ElementAt(stage - 1); // ¼±ÅÃµÈ ¹Ù´Ú Å¸ÀÏÀ» °¡Á®¿È (stage¿¡ ¸ÂÃç Å¸ÀÏÀ» ¼±ÅÃ)
-        List<GameObject> wallTiles = tileToWalls[selectedFloorTile]; // ÇØ´ç ¹Ù´Ú Å¸ÀÏ¿¡ ¸Â´Â º® Å¸ÀÏ ¸ñ·Ï
-        List<GameObject> itemObstacles = tileToItemObstacle[selectedFloorTile]; // ÇØ´ç ¹Ù´Ú Å¸ÀÏ¿¡ ¸Â´Â ¾ÆÀÌÅÛ Àå¾Ö¹° ¸ñ·Ï
+        // íŠ¹ì • ë°”ë‹¥ íƒ€ì¼ì„ ì„ íƒí•´ì„œ ìƒì„±. ElementAt: ì¸ë±ìŠ¤ì— í•´ë‹¹í•˜ëŠ” ìš”ì†Œë¥¼ ë°˜í™˜
+        GameObject selectedFloorTile = tileToWalls.Keys.ElementAt(stage - 1); // ì„ íƒëœ ë°”ë‹¥ íƒ€ì¼ì„ ê°€ì ¸ì˜´ (stageì— ë§ì¶° íƒ€ì¼ì„ ì„ íƒ)
+        List<GameObject> wallTiles = tileToWalls[selectedFloorTile]; // í•´ë‹¹ ë°”ë‹¥ íƒ€ì¼ì— ë§ëŠ” ë²½ íƒ€ì¼ ëª©ë¡
+        List<GameObject> itemObstacles = tileToItemObstacle[selectedFloorTile]; // í•´ë‹¹ ë°”ë‹¥ íƒ€ì¼ì— ë§ëŠ” ì•„ì´í…œ ì¥ì• ë¬¼ ëª©ë¡
 
-        // ¼±ÅÃµÈ ¹Ù´Ú Å¸ÀÏÀ» »ı¼º
+        // ì„ íƒëœ ë°”ë‹¥ íƒ€ì¼ì„ ìƒì„±
         GameObject instantiatedFloorTile = Instantiate(selectedFloorTile, transform.position, Quaternion.identity);
-        wallBoundsList.Clear(); // º® Bounds ¸®½ºÆ® ÃÊ±âÈ­
-        itemObstacleBoundsList.Clear(); // ¾ÆÀÌÅÛ Àå¾Ö¹° Bounds ¸®½ºÆ® ÃÊ±âÈ­
+        wallBoundsList.Clear(); // ë²½ Bounds ë¦¬ìŠ¤íŠ¸ ì´ˆê¸°í™”
+        itemObstacleBoundsList.Clear(); // ì•„ì´í…œ ì¥ì• ë¬¼ Bounds ë¦¬ìŠ¤íŠ¸ ì´ˆê¸°í™”
 
 
-        // º® Å¸ÀÏÀ» ·£´ıÇÏ°Ô »ı¼º
+        // ë²½ íƒ€ì¼ì„ ëœë¤í•˜ê²Œ ìƒì„±
         for (int i = 0; i < wallTileCount; i++)
         {
-            GameObject selectedWallTile = wallTiles[Random.Range(0, wallTiles.Count)]; // º® Å¸ÀÏÀ» ·£´ıÇÏ°Ô ¼±ÅÃ
-            WallObstacle wallObstacle = selectedWallTile.GetComponent<WallObstacle>(); // º® Å¸ÀÏÀÇ WallObstacle ÄÄÆ÷³ÍÆ® °¡Á®¿À±â
+            GameObject selectedWallTile = wallTiles[Random.Range(0, wallTiles.Count)]; // ë²½ íƒ€ì¼ì„ ëœë¤í•˜ê²Œ ì„ íƒ
+            WallObstacle wallObstacle = selectedWallTile.GetComponent<WallObstacle>(); // ë²½ íƒ€ì¼ì˜ WallObstacle ì»´í¬ë„ŒíŠ¸ ê°€ì ¸ì˜¤ê¸°
             float wallXPos = Random.Range(wallObstacle.lowPosX, wallObstacle.highPosX);
             int wallYPos = i * 8;
 
-            // º® Å¸ÀÏÀ» »ı¼ºÇÏ°í ºÎ¸ğ ¿ÀºêÁ§Æ®¿¡ Ãß°¡
+            // ë²½ íƒ€ì¼ì„ ìƒì„±í•˜ê³  ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸ì— ì¶”ê°€
             GameObject instantiatedWallTile = 
                 Instantiate(selectedWallTile, transform.position + new Vector3(wallXPos, wallYPos, 0), Quaternion.identity);
-            instantiatedWallTile.transform.SetParent(instantiatedFloorTile.transform.Find("Wall")); // Wall ¿ÀºêÁ§Æ®ÀÇ ÀÚ½ÄÀ¸·Î ¼³Á¤
+            instantiatedWallTile.transform.SetParent(instantiatedFloorTile.transform.Find("Wall")); // Wall ì˜¤ë¸Œì íŠ¸ì˜ ìì‹ìœ¼ë¡œ ì„¤ì •
 
-            // »ı¼ºµÈ º®ÀÇ Bounds¸¦ ±¸ÇØ¼­ wallBoundsList¿¡ Ãß°¡
+            // ìƒì„±ëœ ë²½ì˜ Boundsë¥¼ êµ¬í•´ì„œ wallBoundsListì— ì¶”ê°€
             Renderer[] renderers = instantiatedWallTile.GetComponentsInChildren<Renderer>();
             if (renderers.Length > 0 )
             {
                 Bounds combinedBounds = renderers[0].bounds;
                 foreach (var r in renderers)
                 {
-                    // Encapsulate: Bounds¸¦ ÇÕÄ§
-                    combinedBounds.Encapsulate(r.bounds); // ¿©·¯ ·»´õ·¯ÀÇ Bounds¸¦ ÇÕÃÄ¼­ ÇÏ³ªÀÇ Å« Bounds »ı¼º
+                    // Encapsulate: Boundsë¥¼ í•©ì¹¨
+                    combinedBounds.Encapsulate(r.bounds); // ì—¬ëŸ¬ ë Œë”ëŸ¬ì˜ Boundsë¥¼ í•©ì³ì„œ í•˜ë‚˜ì˜ í° Bounds ìƒì„±
                 }
-                wallBoundsList.Add(combinedBounds); // »ı¼ºµÈ º®ÀÇ Bounds¸¦ ¸®½ºÆ®¿¡ Ãß°¡
+                wallBoundsList.Add(combinedBounds); // ìƒì„±ëœ ë²½ì˜ Boundsë¥¼ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€
             }
         }
 
 
-        // ¾ÆÀÌÅÛ Àå¾Ö¹°À» ·£´ıÇÏ°Ô »ı¼º
+        // ì•„ì´í…œ ì¥ì• ë¬¼ì„ ëœë¤í•˜ê²Œ ìƒì„±
         for (int i = 0; i < ItemObstacleCount; i++)
         {
-            // ¾ÆÀÌÅÛ Àå¾Ö¹°À» ·£´ıÇÏ°Ô ¼±ÅÃ
+            // ì•„ì´í…œ ì¥ì• ë¬¼ì„ ëœë¤í•˜ê²Œ ì„ íƒ
             GameObject selectedItemObstacle = itemObstacles[Random.Range(0, itemObstacles.Count)];
             Renderer itemRenderer = selectedItemObstacle.GetComponent<Renderer>();
 
-            Bounds itemBounds = itemRenderer.bounds; // ¾ÆÀÌÅÛ Àå¾Ö¹°ÀÇ Bounds¸¦ ±¸ÇÔ
+            Bounds itemBounds = itemRenderer.bounds; // ì•„ì´í…œ ì¥ì• ë¬¼ì˜ Boundsë¥¼ êµ¬í•¨
             Vector3 spawnPos;
-            int maxAttempts = 10; // ÃÖ´ë ½Ãµµ È½¼ö
+            int maxAttempts = 10; // ìµœëŒ€ ì‹œë„ íšŸìˆ˜
             int attempt = 0;
             bool isOverlapping;
 
-            // ¾ÆÀÌÅÛ Àå¾Ö¹°ÀÌ º®ÀÌ³ª ´Ù¸¥ ¾ÆÀÌÅÛ Àå¾Ö¹°°ú °ãÄ¡Áö ¾Êµµ·Ï À§Ä¡¸¦ Ã£À½
+            // ì•„ì´í…œ ì¥ì• ë¬¼ì´ ë²½ì´ë‚˜ ë‹¤ë¥¸ ì•„ì´í…œ ì¥ì• ë¬¼ê³¼ ê²¹ì¹˜ì§€ ì•Šë„ë¡ ìœ„ì¹˜ë¥¼ ì°¾ìŒ
             do
             {
                 float itemXPos = Random.Range(-5f, 5f); 
                 float itemYPos = Random.Range(-9f, 24f);
                 spawnPos = transform.position + new Vector3(itemXPos, itemYPos, 0);
 
-                // ¾ÆÀÌÅÛ Àå¾Ö¹°ÀÇ »õ·Î¿î Bounds¸¦ »ı¼º
+                // ì•„ì´í…œ ì¥ì• ë¬¼ì˜ ìƒˆë¡œìš´ Boundsë¥¼ ìƒì„±
                 Bounds newItemBounds = new Bounds(spawnPos, itemBounds.size);
 
-                // »õ·Î¿î À§Ä¡°¡ º®ÀÌ³ª ´Ù¸¥ ¾ÆÀÌÅÛ Àå¾Ö¹°°ú °ãÄ¡´ÂÁö Ã¼Å©
-                isOverlapping = wallBoundsList.Any(wallBounds => wallBounds.Intersects(newItemBounds)) || // Any: Á¶°Ç¿¡ ¸Â´Â ¿ä¼Ò°¡ ÇÏ³ª¶óµµ ÀÖ´ÂÁö È®ÀÎ
-                                 itemObstacleBoundsList.Any(itemBounds => itemBounds.Intersects(newItemBounds)); // Intersects: µÎ Bounds°¡ °ãÄ¡´ÂÁö È®ÀÎ
+                // ìƒˆë¡œìš´ ìœ„ì¹˜ê°€ ë²½ì´ë‚˜ ë‹¤ë¥¸ ì•„ì´í…œ ì¥ì• ë¬¼ê³¼ ê²¹ì¹˜ëŠ”ì§€ ì²´í¬
+                isOverlapping = wallBoundsList.Any(wallBounds => wallBounds.Intersects(newItemBounds)) || // Any: ì¡°ê±´ì— ë§ëŠ” ìš”ì†Œê°€ í•˜ë‚˜ë¼ë„ ìˆëŠ”ì§€ í™•ì¸
+                                 itemObstacleBoundsList.Any(itemBounds => itemBounds.Intersects(newItemBounds)); // Intersects: ë‘ Boundsê°€ ê²¹ì¹˜ëŠ”ì§€ í™•ì¸
 
                 attempt++;
-                if (attempt >= maxAttempts) break; // ½Ãµµ È½¼ö ÃÊ°ú ½Ã Áß´Ü
+                if (attempt >= maxAttempts) break; // ì‹œë„ íšŸìˆ˜ ì´ˆê³¼ ì‹œ ì¤‘ë‹¨
 
             } while (isOverlapping);
 
-            // °ãÄ¡Áö ¾ÊÀ¸¸é ¾ÆÀÌÅÛ Àå¾Ö¹° »ı¼º
+            // ê²¹ì¹˜ì§€ ì•Šìœ¼ë©´ ì•„ì´í…œ ì¥ì• ë¬¼ ìƒì„±
             if (!isOverlapping)
             {
                 GameObject instantiatedItemObstacle = Instantiate(selectedItemObstacle, spawnPos, Quaternion.identity);
                 instantiatedItemObstacle.transform.SetParent(instantiatedFloorTile.transform.Find("ItemObstacle"));
 
-                // »ı¼ºµÈ ¾ÆÀÌÅÛ Àå¾Ö¹°ÀÇ Bounds¸¦ Ãß°¡
+                // ìƒì„±ëœ ì•„ì´í…œ ì¥ì• ë¬¼ì˜ Boundsë¥¼ ì¶”ê°€
                 itemObstacleBoundsList.Add(new Bounds(spawnPos, itemBounds.size));
             }
         }

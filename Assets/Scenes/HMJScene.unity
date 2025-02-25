@@ -160,6 +160,9 @@ MonoBehaviour:
     - {fileID: 3479536357727931341, guid: bafc4c35089f57e489e26c009ce1ccc9, type: 3}
     - {fileID: 6407347731655046421, guid: 5d429a8970aa0414ea99191cc0985834, type: 3}
     - {fileID: 4618877018390959218, guid: 7a4670c95429b574a9a341aba87e78bb, type: 3}
+    - {fileID: 467839667778665279, guid: 203a033074054f34592588322643066e, type: 3}
+    - {fileID: 2840040902110815467, guid: 6b2a3c1c29bab2941b560224b747229f, type: 3}
+    - {fileID: 4475755177892178472, guid: 04e0c6905d6717a439cad81a47de750e, type: 3}
     itemObstacle:
     - {fileID: 3497053085759671725, guid: 98fe2119c3f7fd34ca845a129d8a78b4, type: 3}
     - {fileID: 5864004393206324055, guid: 617bfc3d76c1ed94788a52a60922f775, type: 3}
@@ -314,7 +317,7 @@ Transform:
   m_GameObject: {fileID: 1075711503}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0.14, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
