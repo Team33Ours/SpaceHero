@@ -4546,10 +4546,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PinkWall
       objectReference: {fileID: 0}
-    - target: {fileID: 2468324025906954065, guid: 11d859520d8714b4eb8438909ca14c92, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2759237141923466061, guid: 11d859520d8714b4eb8438909ca14c92, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.2

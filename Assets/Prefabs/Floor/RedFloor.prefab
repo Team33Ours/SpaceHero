@@ -4586,10 +4586,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RedWall
       objectReference: {fileID: 0}
-    - target: {fileID: 6544527083642523802, guid: f1c50c6b825feaf4f935e802a29a7673, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

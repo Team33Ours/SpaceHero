@@ -34,19 +34,11 @@ public class ObstacleSpawner : MonoBehaviour
     private List<Bounds> wallBoundsList = new List<Bounds>(); // 벽의 Bounds 리스트
     private List<Bounds> itemObstacleBoundsList = new List<Bounds>(); // 아이템 장애물의 Bounds 리스트
 
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         InitTileDictionary();
-        CreateFloorTiles(5, 3, 100);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
     void InitTileDictionary()
     {
@@ -65,10 +57,10 @@ public class ObstacleSpawner : MonoBehaviour
     }
 
     // 주어진 stage에 맞는 바닥 타일을 생성하고, 해당 타일에 벽 타일과 아이템 장애물을 배치
-    void CreateFloorTiles(int stage, int wallTileCount, int ItemObstacleCount)
+    public GameObject CreateFloorTiles(int stage, int wallTileCount, int ItemObstacleCount)
     {
         // 특정 바닥 타일을 선택해서 생성. ElementAt: 인덱스에 해당하는 요소를 반환
-        GameObject selectedFloorTile = tileToWalls.Keys.ElementAt(stage - 1); // 선택된 바닥 타일을 가져옴 (stage에 맞춰 타일을 선택)
+        GameObject selectedFloorTile = tileToWalls.Keys.ElementAt(stage); // 선택된 바닥 타일을 가져옴 (stage에 맞춰 타일을 선택)
         List<GameObject> wallTiles = tileToWalls[selectedFloorTile]; // 해당 바닥 타일에 맞는 벽 타일 목록
         List<GameObject> itemObstacles = tileToItemObstacle[selectedFloorTile]; // 해당 바닥 타일에 맞는 아이템 장애물 목록
 
@@ -146,10 +138,10 @@ public class ObstacleSpawner : MonoBehaviour
 
                 // 생성된 아이템 장애물의 Bounds를 추가
                 itemObstacleBoundsList.Add(new Bounds(spawnPos, itemBounds.size));
-            }
+            }     
         }
+        return instantiatedFloorTile;
     }  
 }
-
 
 

@@ -4586,10 +4586,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: YellowWall
       objectReference: {fileID: 0}
-    - target: {fileID: 5315738858362714911, guid: c7c70fa0c3f728742a0295b1d4543dc0, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

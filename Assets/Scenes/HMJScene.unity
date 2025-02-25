@@ -133,6 +133,8 @@ GameObject:
   m_Component:
   - component: {fileID: 841288344}
   - component: {fileID: 841288343}
+  - component: {fileID: 841288345}
+  - component: {fileID: 841288346}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -243,6 +245,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &841288345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841288342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6fb47e68b6f83b469401ae8eaa76bff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  killCount: 0
+  enemyCount: 10
+  stage: 1
+--- !u!114 &841288346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841288342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 917c4453322bc1b43b63d532d7d43f68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CoinUI: {fileID: 0}
+  StageUI: {fileID: 0}
+  PauseUI: {fileID: 0}
 --- !u!1 &1075711503
 GameObject:
   m_ObjectHideFlags: 0
