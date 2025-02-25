@@ -17,7 +17,10 @@ public class BaseSkill : MonoBehaviour
     // 스킬의 쿨타임
     protected float skillCoolTime { get; private set; }
     
-    // 스킬의 효과(공격, 공격속도증가 같은것들)
+    // ��ų�� ����
+    protected string skillDes { get; private set; }
+
+    // ��ų�� ȿ��(����, ���ݼӵ����� �����͵�)
     
 
 
