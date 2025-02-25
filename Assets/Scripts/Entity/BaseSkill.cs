@@ -17,11 +17,10 @@ public class BaseSkill : MonoBehaviour
     // 스킬의 쿨타임
     protected float skillCoolTime { get; private set; }
     
-    // ��ų�� ����
+    // 스킬의 설명
     protected string skillDes { get; private set; }
 
-    // ��ų�� ȿ��(����, ���ݼӵ����� �����͵�)
-    
+    // 스킬의 효과(여기가 문제다)
 
 
 }

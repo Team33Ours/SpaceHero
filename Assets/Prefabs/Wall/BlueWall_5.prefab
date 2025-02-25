@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7469848514760419334}
   - component: {fileID: 9165762610254424957}
+  - component: {fileID: 2810763027761723761}
   m_Layer: 0
   m_Name: BlueWall_5_7
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 916588447977033333}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -84,6 +85,57 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &2810763027761723761
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916588447977033333}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.5, y: -0.421875}
+      - {x: -0.4453125, y: -0.45703125}
+      - {x: 0.4140625, y: -0.45703125}
+      - {x: 0.5, y: -0.4453125}
+      - {x: 0.5, y: -0.1640625}
+      - {x: -0.5, y: -0.1640625}
+  m_UseDelaunayMesh: 0
 --- !u!1 &2275931606241764485
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5794484607059047565}
   - component: {fileID: 487288079515436668}
+  - component: {fileID: 7192677073658003539}
   m_Layer: 0
   m_Name: BlueWall_5_4
   m_TagString: Untagged
@@ -110,7 +163,7 @@ Transform:
   m_GameObject: {fileID: 2275931606241764485}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: -1, z: 0}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -168,6 +221,66 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &7192677073658003539
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2275931606241764485}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.046875, y: 0.05859375}
+      - {x: 0.16015625, y: 0.17578125}
+      - {x: 0.4296875, y: 0.44140625}
+      - {x: 0.4296875, y: 0.5}
+      - {x: -0.421875, y: 0.5}
+      - {x: -0.4609375, y: 0.35546875}
+      - {x: -0.4609375, y: 0.1796875}
+      - {x: -0.44140625, y: 0.15234375}
+      - {x: -0.4609375, y: -0.14453125}
+      - {x: -0.4609375, y: -0.296875}
+      - {x: -0.421875, y: -0.5}
+      - {x: -0.03515625, y: -0.5}
+      - {x: -0.03125, y: -0.4296875}
+      - {x: -0.02734375, y: -0.10546875}
+      - {x: -0.078125, y: -0.015625}
+  m_UseDelaunayMesh: 0
 --- !u!1 &2411423148483423645
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,6 +291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4717804028174006287}
   - component: {fileID: 1917930334497465201}
+  - component: {fileID: 8249811044421556030}
   m_Layer: 0
   m_Name: BlueWall_5_2
   m_TagString: Untagged
@@ -194,7 +308,7 @@ Transform:
   m_GameObject: {fileID: 2411423148483423645}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -252,6 +366,62 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &8249811044421556030
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2411423148483423645}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.3125, y: 0.45703125}
+      - {x: 0.09765625, y: 0.45703125}
+      - {x: -0.1484375, y: 0.453125}
+      - {x: -0.16796875, y: 0.45703125}
+      - {x: -0.39453125, y: 0.45703125}
+      - {x: -0.5, y: 0.421875}
+      - {x: -0.5, y: -0.4375}
+      - {x: -0.34765625, y: -0.44921875}
+      - {x: 0.3828125, y: -0.44921875}
+      - {x: 0.5, y: -0.4296875}
+      - {x: 0.5, y: 0.421875}
+  m_UseDelaunayMesh: 0
 --- !u!1 &2991740574715074333
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,6 +432,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5580313437740569873}
   - component: {fileID: 8085979543883129257}
+  - component: {fileID: 6307392333093660389}
   m_Layer: 0
   m_Name: BlueWall_5_8
   m_TagString: Untagged
@@ -278,7 +449,7 @@ Transform:
   m_GameObject: {fileID: 2991740574715074333}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: -2, z: 0}
+  m_LocalPosition: {x: 1, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -336,6 +507,59 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &6307392333093660389
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2991740574715074333}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.03515625, y: 0.5}
+      - {x: 0.03515625, y: 0.40625}
+      - {x: -0.5, y: -0.15625}
+      - {x: -0.5, y: -0.421875}
+      - {x: -0.48046875, y: -0.421875}
+      - {x: 0, y: -0.109375}
+      - {x: 0.4296875, y: 0.4296875}
+      - {x: 0.4296875, y: 0.5}
+  m_UseDelaunayMesh: 0
 --- !u!1 &3679378690727153884
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,6 +570,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5889613978641358808}
   - component: {fileID: 5255239734731590784}
+  - component: {fileID: 4550220596082720120}
   m_Layer: 0
   m_Name: BlueWall_5_5
   m_TagString: Untagged
@@ -362,7 +587,7 @@ Transform:
   m_GameObject: {fileID: 3679378690727153884}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: -1, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -420,6 +645,66 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &4550220596082720120
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3679378690727153884}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.4609375, y: 0.21875}
+      - {x: 0.4609375, y: 0.27734375}
+      - {x: 0.421875, y: 0.5}
+      - {x: -0.4296875, y: 0.5}
+      - {x: -0.4296875, y: 0.45703125}
+      - {x: -0.390625, y: 0.40625}
+      - {x: -0.18359375, y: 0.2109375}
+      - {x: -0.0546875, y: 0.03125}
+      - {x: 0.03125, y: -0.09375}
+      - {x: 0.00390625, y: -0.28515625}
+      - {x: 0.02734375, y: -0.5}
+      - {x: 0.421875, y: -0.5}
+      - {x: 0.4609375, y: -0.375}
+      - {x: 0.4609375, y: -0.19921875}
+      - {x: 0.44140625, y: -0.171875}
+  m_UseDelaunayMesh: 0
 --- !u!1 &4618877018390959218
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +769,7 @@ GameObject:
   m_Component:
   - component: {fileID: 192951674577898185}
   - component: {fileID: 8780988330659724464}
+  - component: {fileID: 7718742091958584209}
   m_Layer: 0
   m_Name: BlueWall_5_3
   m_TagString: Untagged
@@ -500,7 +786,7 @@ Transform:
   m_GameObject: {fileID: 5356114635053323044}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -558,6 +844,66 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &7718742091958584209
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5356114635053323044}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.27734375, y: -0.3046875}
+      - {x: 0.15625, y: -0.16015625}
+      - {x: 0.0859375, y: -0.16015625}
+      - {x: -0.15625, y: 0.08203125}
+      - {x: -0.12890625, y: 0.09375}
+      - {x: -0.12109375, y: 0.10546875}
+      - {x: -0.42578125, y: 0.40625}
+      - {x: -0.49609375, y: 0.421875}
+      - {x: -0.5, y: 0.421875}
+      - {x: -0.5, y: -0.4296875}
+      - {x: -0.4296875, y: -0.5}
+      - {x: 0.42578125, y: -0.5}
+      - {x: 0.43359375, y: -0.49609375}
+      - {x: 0.43359375, y: -0.453125}
+      - {x: 0.4296875, y: -0.421875}
+  m_UseDelaunayMesh: 0
 --- !u!1 &5717669680689959275
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,6 +914,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5672864958910533636}
   - component: {fileID: 4049345839004955762}
+  - component: {fileID: 5205809500358604964}
   m_Layer: 0
   m_Name: BlueWall_5_6
   m_TagString: Untagged
@@ -584,7 +931,7 @@ Transform:
   m_GameObject: {fileID: 5717669680689959275}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: -2, z: 0}
+  m_LocalPosition: {x: -1, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -642,6 +989,60 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &5205809500358604964
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5717669680689959275}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.03515625, y: 0.5}
+      - {x: -0.4296875, y: 0.5}
+      - {x: -0.4296875, y: 0.484375}
+      - {x: -0.21484375, y: 0.203125}
+      - {x: 0.43359375, y: -0.39453125}
+      - {x: 0.49609375, y: -0.421875}
+      - {x: 0.5, y: -0.421875}
+      - {x: 0.5, y: -0.15625}
+      - {x: -0.03515625, y: 0.40625}
+  m_UseDelaunayMesh: 0
 --- !u!1 &7979162769953029346
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,6 +1053,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8111779434525119901}
   - component: {fileID: 6397986757243090329}
+  - component: {fileID: 3937394098325228687}
   m_Layer: 0
   m_Name: BlueWall_5_1
   m_TagString: Untagged
@@ -668,7 +1070,7 @@ Transform:
   m_GameObject: {fileID: 7979162769953029346}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -726,3 +1128,61 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &3937394098325228687
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7979162769953029346}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.4765625, y: 0.421875}
+      - {x: 0.33984375, y: 0.3359375}
+      - {x: 0.09765625, y: 0.10546875}
+      - {x: 0.1484375, y: 0.08203125}
+      - {x: -0.1640625, y: -0.1640625}
+      - {x: -0.203125, y: -0.234375}
+      - {x: -0.1875, y: -0.2421875}
+      - {x: -0.37890625, y: -0.37890625}
+      - {x: -0.43359375, y: -0.44921875}
+      - {x: -0.43359375, y: -0.5}
+      - {x: 0.453125, y: -0.5}
+      - {x: 0.5, y: -0.43359375}
+      - {x: 0.5, y: 0.421875}
+  m_UseDelaunayMesh: 0
