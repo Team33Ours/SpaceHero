@@ -1,6 +1,7 @@
 using UnityEngine;
+// This is a temporary game object class used in the UI test scene.
 
-public class TempPlayer : MonoBehaviour
+public class TempGameObject : MonoBehaviour
 {
     public TempStatus Stat;
 
@@ -12,7 +13,7 @@ public class TempPlayer : MonoBehaviour
 
     private void Update()
     {
-        // Å×½ºÆ®
-        Stat.currentHP -= Time.deltaTime;
+        // Test
+        Stat.currentHP -= Time.deltaTime * 3;
     }
 }
