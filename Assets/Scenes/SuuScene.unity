@@ -238,12 +238,6 @@ MonoBehaviour:
   itemBoom: {fileID: 0}
   itemHealthPotion: {fileID: 133746725}
   itemHealthPack: {fileID: 0}
-  gunStat: {fileID: 0}
-  rifleStat: {fileID: 0}
-  scytheStat: {fileID: 0}
-  boomStat: {fileID: 0}
-  healthPotionStat: {fileID: 0}
-  healthPackStat: {fileID: 0}
 --- !u!1 &276241656 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9038237733760153853, guid: d592d327eab255a4c940419ab17e0837, type: 3}
@@ -267,12 +261,6 @@ MonoBehaviour:
   itemBoom: {fileID: 0}
   itemHealthPotion: {fileID: 0}
   itemHealthPack: {fileID: 0}
-  gunStat: {fileID: 0}
-  rifleStat: {fileID: 0}
-  scytheStat: {fileID: 0}
-  boomStat: {fileID: 0}
-  healthPotionStat: {fileID: 0}
-  healthPackStat: {fileID: 0}
 --- !u!1001 &320585574
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9360,12 +9348,6 @@ MonoBehaviour:
   itemBoom: {fileID: 0}
   itemHealthPotion: {fileID: 0}
   itemHealthPack: {fileID: 792758761}
-  gunStat: {fileID: 0}
-  rifleStat: {fileID: 0}
-  scytheStat: {fileID: 0}
-  boomStat: {fileID: 0}
-  healthPotionStat: {fileID: 0}
-  healthPackStat: {fileID: 0}
 --- !u!4 &815878290 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5568178300328500549, guid: c4c96a534dfbdec4496487e33063046e, type: 3}
@@ -9500,12 +9482,6 @@ MonoBehaviour:
   itemBoom: {fileID: 1057911991}
   itemHealthPotion: {fileID: 0}
   itemHealthPack: {fileID: 0}
-  gunStat: {fileID: 0}
-  rifleStat: {fileID: 0}
-  scytheStat: {fileID: 0}
-  boomStat: {fileID: 0}
-  healthPotionStat: {fileID: 0}
-  healthPackStat: {fileID: 0}
 --- !u!1 &1247607794
 GameObject:
   m_ObjectHideFlags: 0
@@ -14590,12 +14566,6 @@ MonoBehaviour:
   itemBoom: {fileID: 0}
   itemHealthPotion: {fileID: 0}
   itemHealthPack: {fileID: 0}
-  gunStat: {fileID: 0}
-  rifleStat: {fileID: 0}
-  scytheStat: {fileID: 0}
-  boomStat: {fileID: 0}
-  healthPotionStat: {fileID: 0}
-  healthPackStat: {fileID: 0}
 --- !u!1 &1918736291
 GameObject:
   m_ObjectHideFlags: 0
