@@ -293,6 +293,7 @@ MonoBehaviour:
   maxHealth: 0
   maxMana: 0
   maxSpeed: 0
+  exp: 0
 --- !u!114 &6554922867767029250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,4 +306,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee68efacc8d8d3439cb8003fb177b9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterRenderer: {fileID: 0}
+  characterRenderer: {fileID: 4512128115662142844}
