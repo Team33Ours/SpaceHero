@@ -5,10 +5,8 @@ using UnityEngine;
 
 /// <summary>
 /// 일반몬스터의 이동,공격 기능
+/// 보스몬스터는 다른 Controller를 통해 이동,공격,스킬 적용한다
 /// 2025.02.24.ImSeonggyun
-/// 
-/// 스킬 추가
-/// 2025.02.26.ImSeonggyun
 /// </summary>
 public class NormalMonsterController : BaseController
 {
@@ -31,10 +29,6 @@ public class NormalMonsterController : BaseController
     {
         // OOP 특강때 지우지 말라고 했던 것이 생각났다
         base.HandleAction();
-
-        /// 몬스터의 phase 판단 후 phase에 맞는 delegate에 공격, 스킬함수 변경
-
-
 
         // 거리,방향 구하기
         float distance = DistanceToTarget();
@@ -80,12 +74,6 @@ public class NormalMonsterController : BaseController
     {
         base.Death();
         // 죽은 건 오브젝트 풀링을 적용하여 List에 집어넣는다
-        monsterManager.RemoveMonsterOnDeath(this);
+        monsterManager.RemoveMonsterOnDeath(gameObject);
     }
-
-    // 공격기능
-
-    // 스킬1
-
-    // 스킬2
 }
