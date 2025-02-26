@@ -34,10 +34,10 @@ public class DataManager : Singleton<DataManager>
         skillManager = SkillManager.Instance;
     }
 
-    public string GetFilePath(string filename)
+    public string GetFilePath(string filename, bool isSaveFile = false)
     {
-        // 저장폴더 설정
-        string directoryPath = Application.dataPath + "/Json/GameDatas/";
+        // 저장폴더 설정(세이브파일인 경우와 아닌 경우 폴더를 구분해 저장한다)
+        string directoryPath = Application.dataPath + (isSaveFile ? "/Json/GameDatas/" : "/Json/GameDatas/");
         // 폴더가 없으면 생성
         if (!Directory.Exists(directoryPath))
             Directory.CreateDirectory(directoryPath);
@@ -47,7 +47,7 @@ public class DataManager : Singleton<DataManager>
     public void SaveAllPlayerSkills()
     {
         playerSkills = skillManager.playerSkills.Cast<BaseSkill>().ToList();
-        string filePath = GetFilePath("AllPlayerSkillDatas.json");
+        string filePath = GetFilePath("AllPlayerSkillDatas.json", false);
         // json 데이터 변환
         string jsonData = JsonConvert.SerializeObject(playerSkills);
         // 파일 저장
@@ -57,7 +57,7 @@ public class DataManager : Singleton<DataManager>
     public void SaveAllMonsterSkills()
     {
         bossMobSkills = skillManager.bossMobSkills.Cast<BaseSkill>().ToList();
-        string filePath = GetFilePath("AllMonsterSkillDatas.json");
+        string filePath = GetFilePath("AllMonsterSkillDatas.json", false);
         string jsonData = JsonConvert.SerializeObject(bossMobSkills);
         File.WriteAllText(filePath, jsonData);
         Debug.Log("몬스터 전체 스킬 데이터 저장 완료"); // debug
@@ -66,7 +66,7 @@ public class DataManager : Singleton<DataManager>
     public void LoadAllPlayerSkills()
     {
         // 불러올 파일의 경로
-        string filePath = GetFilePath("AllPlayerSkillDatas.json");
+        string filePath = GetFilePath("AllPlayerSkillDatas.json", false);
         // 읽은 정보는 playerSkills에 저장
         if (File.Exists(filePath))
         {
@@ -78,7 +78,7 @@ public class DataManager : Singleton<DataManager>
     }
     public void LoadAllMonsterSkills()
     {
-        string filePath = GetFilePath("AllMonsterSkillDatas.json");
+        string filePath = GetFilePath("AllMonsterSkillDatas.json", false);
         // 읽은 정보는 playerSkills에 저장
         if (File.Exists(filePath))
         {
@@ -93,8 +93,17 @@ public class DataManager : Singleton<DataManager>
     public void SavePlayerLearnedSkills()
     {
         // 스킬의 이름만 저장한다
-
-
+        List<string> skillNames = new List<string>();
+        if (playerLearned.Count > 0)
+        {
+            foreach (BaseSkill skill in playerLearned)
+            {
+                skillNames.Add(skill.name);
+            }
+            string filePath = GetFilePath("LearnedSkills", true);
+            string jsonData = JsonConvert.SerializeObject(skillNames);
+            File.WriteAllText(filePath, jsonData);
+        }
         Debug.Log("플레이어가 익힌 스킬 데이터 저장 완료"); // debug
     }
 
@@ -102,7 +111,13 @@ public class DataManager : Singleton<DataManager>
     public void LoadPlayerLearnedSkills()
     {
         // 스킬의 이름만 불러오고, playerSkills에서 검색한다
-
+        string filePath = GetFilePath("LearnedSkills", true);
+        if (File.Exists(filePath))
+        {
+            string jsonData = File.ReadAllText(filePath);
+            /// List<BaseSkill>을 잘 불러오는지 확인해봐야한다
+            playerLearned = JsonConvert.DeserializeObject<List<BaseSkill>>(jsonData);
+        }
         Debug.Log("플레이어가 익힌 스킬 데이터 불러오기 완료"); // debug
     }
 }

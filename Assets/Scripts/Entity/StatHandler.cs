@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 플레이어와 몬스터의 체력,마력,스피드
+/// 플레이어와 몬스터의 체력,마력,스피드,경험치
 /// 2025.02.25.ImSeonggyun
 /// </summary>
 [Serializable]
@@ -13,6 +13,7 @@ public class StatHandler : MonoBehaviour
     [SerializeField] private float maxHealth;   
     [SerializeField] private float maxMana;    
     [SerializeField] private float maxSpeed;      
+    [SerializeField] private float exp;      
     public float MaxHealth
     {
         get => maxHealth;
@@ -27,5 +28,10 @@ public class StatHandler : MonoBehaviour
     {
         get => maxSpeed;
         set => maxSpeed = Mathf.Max(1, value);
+    }
+    public float Exp
+    {
+        get => exp;
+        set => exp = Mathf.Max(1, value);
     }
 }
