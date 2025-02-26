@@ -54,9 +54,9 @@ public class Get_Item : MonoBehaviour
                 // 체력 회복 아이템을 먹었을 때 회복하고 사라짐
                 RecoveryHealth(other.gameObject);
             Destroy(other.gameObject);
-            Debug.Log(itemName);
+            
         }
-
+        Debug.Log("충돌");
     }        
     public void EquipItem(GameObject newItem)
     {
