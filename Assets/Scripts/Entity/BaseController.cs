@@ -140,7 +140,7 @@ public class BaseController : MonoBehaviour
     {
         foreach (SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
         {
-            // a���� �ٲ۴�
+            // a값만 바꾼다
             Color color = renderer.color;
             color.a = 0.3f;
             renderer.color = color;
@@ -149,6 +149,8 @@ public class BaseController : MonoBehaviour
         {
             component.enabled = false;
         }
+        
+        // gameObject.SetActive(false);
         // Destroy�� ������ Controller���� ����
     }
 }

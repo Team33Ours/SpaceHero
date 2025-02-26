@@ -124,6 +124,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   fxOnDestroy: 1
+  effectPrefab: {fileID: 5032575679742590969, guid: ee9feba0ad610e547ac3874710ad6116, type: 3}
 --- !u!1 &3622946316831320884
 GameObject:
   m_ObjectHideFlags: 0

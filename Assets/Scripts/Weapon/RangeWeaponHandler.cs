@@ -37,7 +37,7 @@ public class RangeWeaponHandler : WeaponHandler
     {
         base.Start();
         projectileManager = ProjectileManager.Instance;
-        SetWeaponSpeed(1);
+        SetWeaponSpeed(Delay);
     }
 
     public override void Attack()
@@ -71,5 +71,19 @@ public class RangeWeaponHandler : WeaponHandler
     private static Vector2 RotateVector2(Vector2 v, float degree)
     {
         return Quaternion.Euler(0, 0, degree) * v;
+    }
+    
+    
+    public override void UpgradeBulletSize(float upgrade)
+    {
+        // 투사체 크기
+        bulletSize += upgrade;
+    }
+    public override void UpgradeBulletNumber(int upgrade)
+    {
+        // 투사체 갯수
+        numberofProjectilesPerShot += upgrade;
+        // 투사체 발사 각도 ++점점 넓어짐
+        multipleProjectilesAngel += upgrade / 5f;
     }
 }

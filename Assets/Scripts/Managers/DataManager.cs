@@ -46,7 +46,7 @@ public class DataManager : Singleton<DataManager>
     // playerSkills와 bossMobSkills에 있는 모든 스킬을 각각 json파일에 저장
     public void SaveAllPlayerSkills()
     {
-        playerSkills = skillManager.playerSkills.Cast<BaseSkill>().ToList();
+        playerSkills = skillManager.playerSkills.Values.ToList();
         string filePath = GetFilePath("AllPlayerSkillDatas.json", false);
         // json 데이터 변환
         string jsonData = JsonConvert.SerializeObject(playerSkills);
@@ -56,7 +56,7 @@ public class DataManager : Singleton<DataManager>
     }
     public void SaveAllMonsterSkills()
     {
-        bossMobSkills = skillManager.bossMobSkills.Cast<BaseSkill>().ToList();
+        bossMobSkills = skillManager.bossMobSkills.Values.ToList();
         string filePath = GetFilePath("AllMonsterSkillDatas.json", false);
         string jsonData = JsonConvert.SerializeObject(bossMobSkills);
         File.WriteAllText(filePath, jsonData);
@@ -84,8 +84,17 @@ public class DataManager : Singleton<DataManager>
         {
             string jsonData = File.ReadAllText(filePath);
             /// List<BaseSkill>을 잘 불러오는지 확인해봐야한다
-            bossMobSkills = JsonConvert.DeserializeObject<List<BaseSkill>>(jsonData);
-            Debug.Log("몬스터 전체 스킬 데이터 불러오기 완료"); // debug
+            bossMobSkills = JsonConvert.DeserializeObject<List<BaseSkill>>(jsonData);   // 
+            if (bossMobSkills != null)
+            {
+                skillManager.bossMobSkills.Clear();
+
+                foreach (BaseSkill mobSkill in bossMobSkills)
+                {
+                    skillManager.bossMobSkills[mobSkill.skillName] = mobSkill;
+                }
+            }
+            Debug.Log($"몬스터 전체 스킬 데이터 불러오기 완료. {bossMobSkills.Count}개의 스킬 로드됨."); // debug        }
         }
     }
     // 그다음, 플레이어의 스킬을 저장할때는 string만 저장하고
@@ -98,7 +107,7 @@ public class DataManager : Singleton<DataManager>
         {
             foreach (BaseSkill skill in playerLearned)
             {
-                skillNames.Add(skill.name);
+                skillNames.Add(skill.GetName());
             }
             string filePath = GetFilePath("LearnedSkills", true);
             string jsonData = JsonConvert.SerializeObject(skillNames);
@@ -117,6 +126,8 @@ public class DataManager : Singleton<DataManager>
             string jsonData = File.ReadAllText(filePath);
             /// List<BaseSkill>을 잘 불러오는지 확인해봐야한다
             playerLearned = JsonConvert.DeserializeObject<List<BaseSkill>>(jsonData);
+            // 이걸 하나씩 SkillManager에 대입해야한다
+
         }
         Debug.Log("플레이어가 익힌 스킬 데이터 불러오기 완료"); // debug
     }

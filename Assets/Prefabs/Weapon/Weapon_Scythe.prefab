@@ -130,10 +130,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03eef19adf08883419b823b9564a7547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0.5
+  delay: 1
   weaponSize: 1
   power: 1
-  speed: 5
+  speed: 3
   attackRange: 10
   target:
     serializedVersion: 2
@@ -146,8 +146,8 @@ MonoBehaviour:
   bulletSize: 1
   duration: 5
   spread: 10
-  numberofProjectilesPerShot: 5
-  multipleProjectilesAngel: 3
+  numberofProjectilesPerShot: 1
+  multipleProjectilesAngel: 1
   projectileColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!95 &8840053758750262513
 Animator:

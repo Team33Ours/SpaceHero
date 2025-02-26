@@ -14,15 +14,14 @@ public class Get_Item : MonoBehaviour
      // 체력 회복 아이템
      public GameObject itemHealthPotion;
      public GameObject itemHealthPack;
+
      private GameObject currentItem; // 현재 장착한 아이템
-    
-    public Stat_Item gunStat;    // 기본 무기 능력치
-    public Stat_Item rifleStat;  // 라이플 아이템 능력치
-    public Stat_Item scytheStat; // 낫 아이템 능력치
-    public Stat_Item boomStat;   // 폭탄 아이템 능력치
-    public Stat_Item healthPotionStat; // 체력 포션 능력치
-    public Stat_Item healthPackStat;   // 체력 팩 능력치
-    
+
+
+    public void Awake()
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+    }
     public void Start()
     {
         // 시작할 때 기본 무기는 총
@@ -49,15 +48,15 @@ public class Get_Item : MonoBehaviour
             {
                 EquipItem(itemBoom);
             }
-            else if (itemName == "HealthPotion" || itemName == "HealthPack")
-
-                // 체력 회복 아이템을 먹었을 때 회복하고 사라짐
-                RecoveryHealth(other.gameObject);
-            Destroy(other.gameObject);
-            
+            else if (itemName == "HealthPotion" || itemName == "HealthPack") ;
+            // 체력 회복 아이템을 먹었을 때 회복하고 사라짐
+            RecoveryHealth(other.gameObject);
+           
         }
-        Debug.Log("충돌");
-    }        
+        Destroy(gameObject);
+        
+       
+    }
     public void EquipItem(GameObject newItem)
     {
         // 기존 아이템을 비활성화
@@ -73,6 +72,7 @@ public class Get_Item : MonoBehaviour
     public void RecoveryHealth(GameObject item)
     {
         // 체력 회복 아이템을 먹으면 아이템을 사라지게 함
+        if (item.CompareTag("Item"))
         Destroy(item);
     }
 }
