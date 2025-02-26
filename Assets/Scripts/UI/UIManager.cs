@@ -2,6 +2,7 @@ using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
@@ -14,6 +15,8 @@ public class UIManager : Singleton<UIManager>
 
     private int stageFloor;
     public TextMeshProUGUI StageText;
+
+    public GameObject pauseHUD;
 
     public Button PauseUI;
 
@@ -90,7 +93,19 @@ public class UIManager : Singleton<UIManager>
     public void OnClickPauseButton()
     {
         Time.timeScale = 0;
-        Debug.Log("Pause");
+        pauseHUD.SetActive(true);
+    }
+
+    public void OnClickBackButton()
+    {
+        Time.timeScale = 1;
+        pauseHUD.SetActive(false);
+    }
+
+    public void OnClickExitButton()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("StartScene");
     }
     #endregion
 }

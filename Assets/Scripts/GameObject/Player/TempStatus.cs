@@ -10,4 +10,5 @@ public class TempStatus : ScriptableObject
     public float speed;
     public int attack;
     public int defence;
+    public int EXP;
 }
