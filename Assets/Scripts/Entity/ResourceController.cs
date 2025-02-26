@@ -56,7 +56,7 @@ public class ResourceController : MonoBehaviour
         }
     }
     #region Health
-    public bool ChangeHealth(float change)
+    public virtual bool ChangeHealth(float change)
     {
         // invincible
         if (change == 0 || timeSinceLastChange < healthChangeDelay)
