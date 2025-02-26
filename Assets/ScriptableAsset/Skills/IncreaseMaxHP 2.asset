@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f87b86a5bc7e5b343a624c07e66eff5d, type: 3}
   m_Name: IncreaseMaxHP 2
   m_EditorClassIdentifier: 
-  skillRarity: 2
-  Name: "\uCD5C\uB300 \uCCB4\uB825 \uC99D\uAC00"
-  Description: "\uCD5C\uB300 \uCCB4\uB825\uC774 10% \uC0C1\uC2B9\uD569\uB2C8\uB2E4"
+  skillRarity: 0
+  Name: "\uCD5C\uB300 \uCCB4\uB825 \uC99D\uAC00 (\uC720\uB2C8\uD06C)"
+  Description: "\uCD5C\uB300 \uCCB4\uB825\uC774 30% \uC0C1\uC2B9\uD569\uB2C8\uB2E4"
