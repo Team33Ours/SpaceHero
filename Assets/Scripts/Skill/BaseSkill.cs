@@ -11,7 +11,7 @@ using Newtonsoft.Json;  // 역직렬화할때 반드시필요
 public class BaseSkill
 {
     // 스킬에 들어갈 기본 정보
-    // newtonsoft json은 private set을 사용할 수 없어서 private 제거
+    // newtonsoft json은 역직렬화할때 private set을 사용할 수 없어서 private 제거
     [SerializeField] public string skillName { get; set; }
 
     // 스킬에 필요한 마나
@@ -25,7 +25,7 @@ public class BaseSkill
 
     // 스킬의 효과
     // float로 정한 값(자신의 체력,스피드, 몬스터의 체력)만큼 영향을 준다
-    // newtonsoft json은 private set을 사용할 수 없어서 private 제거
+    // newtonsoft json은 역직렬화할때 private set을 사용할 수 없어서 private 제거
     [SerializeField] public float value1 { get; set; }
     [SerializeField] public float value2 { get; set; }
     [SerializeField] public float value3 { get; set; }
