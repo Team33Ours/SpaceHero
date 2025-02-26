@@ -37,6 +37,7 @@ public class RangeWeaponHandler : WeaponHandler
     {
         base.Start();
         projectileManager = ProjectileManager.Instance;
+        SetWeaponSpeed(1);
     }
 
     public override void Attack()
