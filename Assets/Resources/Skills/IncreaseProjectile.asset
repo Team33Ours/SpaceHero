@@ -15,3 +15,4 @@ MonoBehaviour:
   skillRarity: 0
   Name: "\uD22C\uC0AC\uCCB4 \uC99D\uAC00"
   Description: "\uD22C\uC0AC\uCCB4\uAC00 1\uAC1C \uC99D\uAC00\uD569\uB2C8\uB2E4"
+  Icon: {fileID: 21300000, guid: 54ac3d412c5090b4d9d22bd722b363ab, type: 3}

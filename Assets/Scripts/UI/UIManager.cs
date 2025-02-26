@@ -5,6 +5,8 @@ using UnityEngine.Rendering.VirtualTexturing;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -21,8 +23,8 @@ public class UIManager : Singleton<UIManager>
 
     public Button PauseUI;
 
-    // DOTween
-
+    // Roulette
+    TempSkill[] allOfTempskills; // Resources의 모든 스킬을 읽는다.
 
     // Test
     float testTimer = 0;
@@ -44,24 +46,39 @@ public class UIManager : Singleton<UIManager>
 
     private void Start()
     {
-        // Test
-        InvokeRepeating(nameof(AcendStage), 1f, 1f);
+        RunRoulette();
     }
 
-    private void Update()
+    public void RunRoulette()
     {
-        // Test
-        testTimer += Time.deltaTime;
-        if (testTimer >= 1f)
+        /*
+         * 구조
+         * 1. 레벨업을 하면 패널이 나타나고 룰렛이 돌아간다
+         * 2. 룰렛이 돌아가는 동안 Time.timeScale = 0으로 맞춘다.
+         * 3. 룰렛이 돌아가는 동안 UI 애니메이션이 돌아갈 수 있도록 DOTween을 사용한다.
+         * 
+         * 룰렛 돌리기
+         * 1. TempSkill의 Scriptable Object를 읽어서 배열에 넣는다.
+         * 2. 3개의 랜덤한 스킬을 뽑는다.
+         * 3. 해당 스킬의 Scriptable Object의 Sprite데이터를 읽어서 이미지에 적용한다.
+         * 4. DOTween 기능으로 y축 아래로 움직인다.
+         * 5. 일정 아래로 움직이면 새롭게 Scriptable Object의 데이터를 읽는다.
+         * 6. 5~6초간 반복한다.
+         * 7. 멈추면 3개 중 하나의 스킬을 선택한다.
+         * 8. 선택한 스킬을 적용한다.
+         * 9. Time.timeScale = 1로 맞춘다.
+         */
+        // Resources/Skills 폴더에 있는 모든 TempSkill 타입 에셋을 읽음
+        allOfTempskills = Resources.LoadAll<TempSkill>("Skills");
+
+        if (allOfTempskills != null)
         {
-            PlusCoin(100);
-            testTimer = 0;
+            Debug.Log("tempSkills is not null");
+            foreach (var data in allOfTempskills)
+            {
+                Debug.Log($"Skill Name: {data.Name}");
+            }
         }
-    }
-
-    public void RunRouletee()
-    {
-
     }
 
     #region Coin
