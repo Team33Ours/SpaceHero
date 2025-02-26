@@ -38,20 +38,24 @@ public class SkillManager : Singleton<SkillManager>
     public void Start()
     {
         // 임시
-        SaveDefaultSkills();
+        //SaveDefaultSkills();
 
         // 데이터매니저로부터 스킬을 가져온다
-        //LoadAllSkills();
+        LoadAllSkills();
     }
 
     public void SaveDefaultSkills()
     {
+        // 플레이어의 전체 스킬
+
+
+
+
+        // 몬스터의 전체 스킬
         MonsterSkill s1 = new MonsterSkill("IceBall", 0f, 1f, "1초에 한번씩 날라오는 아이스볼. 맞으면 5초동안 느려진다", 10f, 2f, 5f); // 데미지: 10f, 느려짐: 2f만큼, 지속시간: 5f
         MonsterSkill s2 = new MonsterSkill("Thunder Tackle", 0f, 10f, "10초에 한번씩 온몸에 전기를 두르고 달려든다. 데미지가 매우 세다", 30f);    // 데미지: 30f
-
         bossMobSkills.Add(s1.GetName(), s1);
         bossMobSkills.Add(s2.GetName(), s2);
-
         // 임시 json 파일 만든다
         dataManager.SaveAllMonsterSkills();
     }
@@ -61,7 +65,9 @@ public class SkillManager : Singleton<SkillManager>
     // 데이터매니저에서 가져온다
     public void LoadAllSkills()
     {
+        // json파일로부터 플레이어, 몬스터 스킬을 불러온다
 
+        dataManager.LoadAllMonsterSkills();
     }
 
 

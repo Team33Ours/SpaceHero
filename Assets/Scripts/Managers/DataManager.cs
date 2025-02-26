@@ -84,8 +84,17 @@ public class DataManager : Singleton<DataManager>
         {
             string jsonData = File.ReadAllText(filePath);
             /// List<BaseSkill>을 잘 불러오는지 확인해봐야한다
-            bossMobSkills = JsonConvert.DeserializeObject<List<BaseSkill>>(jsonData);
-            Debug.Log("몬스터 전체 스킬 데이터 불러오기 완료"); // debug
+            bossMobSkills = JsonConvert.DeserializeObject<List<BaseSkill>>(jsonData);   // 
+            if (bossMobSkills != null)
+            {
+                skillManager.bossMobSkills.Clear();
+
+                foreach (BaseSkill mobSkill in bossMobSkills)
+                {
+                    skillManager.bossMobSkills[mobSkill.skillName] = mobSkill;
+                }
+            }
+            Debug.Log($"몬스터 전체 스킬 데이터 불러오기 완료. {bossMobSkills.Count}개의 스킬 로드됨."); // debug        }
         }
     }
     // 그다음, 플레이어의 스킬을 저장할때는 string만 저장하고
