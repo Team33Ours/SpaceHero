@@ -3,25 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ¸ó½ºÅÍÀÇ »ı¼º, »ç¸ÁÃ³¸®
+/// ëª¬ìŠ¤í„°ì˜ ìƒì„±, ì‚¬ë§ì²˜ë¦¬
 /// 2025.02.24.ImSeonggyun
 /// </summary>
 public class MonsterManager : Singleton<MonsterManager>
 {
-    // ¸ó½ºÅÍÀÇ °æ¿ì ¿ÀºêÁ§Æ® Ç®¸µÀ» Àû¿ë
-    public List<GameObject> monsterPool;    // Á×Àº ¸ó½ºÅÍ´Â ºñÈ°¼ºÈ­ ÈÄ Pool¿¡ ÀúÀå, List¿¡¼­ Á¦°Å
-    public List<GameObject> monsterList;    // È°¼ºÈ­µÈ ¸ó½ºÅÍ´Â List¿¡ ÀúÀå, Pool¿¡¼­ Á¦°Å
+    // ëª¬ìŠ¤í„°ì˜ ê²½ìš° ì˜¤ë¸Œì íŠ¸ í’€ë§ì„ ì ìš©
+    public List<GameObject> monsterPool;    // ì£½ì€ ëª¬ìŠ¤í„°ëŠ” ë¹„í™œì„±í™” í›„ Poolì— ì €ì¥, Listì—ì„œ ì œê±°
+    public List<GameObject> monsterList;    // í™œì„±í™”ëœ ëª¬ìŠ¤í„°ëŠ” Listì— ì €ì¥, Poolì—ì„œ ì œê±°
 
-    // Pool¿¡¼­ ¸ó½ºÅÍ°¡ ÀÖ´ÂÁö °Ë»ö
+    // Poolì—ì„œ ëª¬ìŠ¤í„°ê°€ ìˆëŠ”ì§€ ê²€ìƒ‰
     public GameObject FindMonster()
     {
-        // monsterPool¿¡ ÀÖ´Â °Í Áß ¾Æ¹«°Å³ª 1°³ °¡Á®¿Â´Ù
+        // monsterPoolì— ìˆëŠ” ê²ƒ ì¤‘ ì•„ë¬´ê±°ë‚˜ 1ê°œ ê°€ì ¸ì˜¨ë‹¤
         int rand = Random.Range(0, monsterPool.Count - 1);
         GameObject foundObj = monsterPool[rand];
         if (foundObj != null)
         {
-            // ¿©±â¼­´Â monsterPool¿¡¼­ Á¦°Å¸¸ ÇÑ´Ù
-            // monsterList¿¡ Ãß°¡ÇÏ´Â°Ç FindMonster¸¦ È£ÃâÇÏ´Â °÷(CreateMonster)¿¡¼­ ÇÑ´Ù
+            // ì—¬ê¸°ì„œëŠ” monsterPoolì—ì„œ ì œê±°ë§Œ í•œë‹¤
+            // monsterListì— ì¶”ê°€í•˜ëŠ”ê±´ FindMonsterë¥¼ í˜¸ì¶œí•˜ëŠ” ê³³(CreateMonster)ì—ì„œ í•œë‹¤
             foundObj.SetActive(true);
             monsterPool.Remove(foundObj);
             return foundObj;
@@ -29,25 +29,25 @@ public class MonsterManager : Singleton<MonsterManager>
         return null;
     }
 
-    // ÀÏ¹İ¸ó½ºÅÍ°¡ »ı¼ºµÉ ¶§ È£Ãâ
+    // ì¼ë°˜ëª¬ìŠ¤í„°ê°€ ìƒì„±ë  ë•Œ í˜¸ì¶œ
     public void CreateMonster()
     {
-        // ¸ÕÀú poolÀ» Ã£¾Æº¸°í, ÀÖÀ¸¸é pool¿¡ ÀÖ´Â °ÍÀ» ¿ì¼± °¡Á®¿Â´Ù
+        // ë¨¼ì € poolì„ ì°¾ì•„ë³´ê³ , ìˆìœ¼ë©´ poolì— ìˆëŠ” ê²ƒì„ ìš°ì„  ê°€ì ¸ì˜¨ë‹¤
         GameObject enableObj = FindMonster();
         if (enableObj == null)
         {
-            /// pool¿¡ ¾Æ¹«°Íµµ ¾ø´Ù¸é, ÀÏ¹İ¸ó½ºÅÍ Áß¿¡¼­ ¾Æ¹«°Å³ª »õ·Î »ı¼ºÇÑ´Ù
+            /// poolì— ì•„ë¬´ê²ƒë„ ì—†ë‹¤ë©´, ì¼ë°˜ëª¬ìŠ¤í„° ì¤‘ì—ì„œ ì•„ë¬´ê±°ë‚˜ ìƒˆë¡œ ìƒì„±í•œë‹¤
             //enableObj = GameObject.Instantiate();
-            Debug.Log("enableObj°¡ null");
+            Debug.Log("enableObjê°€ null");
         }
         monsterList.Add(enableObj);
 
     }
 
-    // ÀÏ¹İ¸ó½ºÅÍÀÇ »ç¸Á
+    // ì¼ë°˜ëª¬ìŠ¤í„°ì˜ ì‚¬ë§
     public void RemoveMonsterOnDeath(NormalMonsterController monster)
     {
-        // Á×Àº ¸ó½ºÅÍ´Â Pool¿¡ ³Ö°í List¿¡¼­ Á¦°Å 
+        // ì£½ì€ ëª¬ìŠ¤í„°ëŠ” Poolì— ë„£ê³  Listì—ì„œ ì œê±° 
         monster.gameObject.SetActive(false);
         monsterPool.Add(monster.gameObject);
         monsterList.Remove(monster.gameObject);

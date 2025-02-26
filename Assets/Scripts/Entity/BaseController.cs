@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BaseController : MonoBehaviour
@@ -152,5 +153,16 @@ public class BaseController : MonoBehaviour
         
         // gameObject.SetActive(false);
         // Destroy�� ������ Controller���� ����
+    }
+
+    public void ChangeWeapon(WeaponHandler weapon)
+    {
+        Destroy(weaponHandler.gameObject);
+        
+        WeaponPrefab = weapon;
+        if (WeaponPrefab != null)
+            weaponHandler = Instantiate(WeaponPrefab, weaponPivot);
+        else
+            weaponHandler = GetComponentInChildren<WeaponHandler>();
     }
 }

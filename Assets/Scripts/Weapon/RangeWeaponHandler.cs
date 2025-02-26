@@ -84,6 +84,6 @@ public class RangeWeaponHandler : WeaponHandler
         // 투사체 갯수
         numberofProjectilesPerShot += upgrade;
         // 투사체 발사 각도 ++점점 넓어짐
-        multipleProjectilesAngel += upgrade / 5f;
+        multipleProjectilesAngel += upgrade * 2;
     }
 }
