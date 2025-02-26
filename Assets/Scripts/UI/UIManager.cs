@@ -106,6 +106,10 @@ public class UIManager : Singleton<UIManager>
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("StartScene");
+        pauseHUD.SetActive(false);
+        ResetStageFloor();
+        // 코인 저장하려면 따로 추가
+        Destroy(this.gameObject);
     }
     #endregion
 }
