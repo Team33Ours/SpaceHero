@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -63,6 +64,27 @@ public class WeaponHandler : MonoBehaviour
     public void AttackAnimation()
     {
         animator.SetTrigger(IsAttack);
+        WaitForIt();
+    }
+    
+    IEnumerator WaitForIt()
+    {
+        yield return new WaitForSeconds( 1f / delay);
+        animator.ResetTrigger(IsAttack);
+    }
+    
+    public void AttackOutAnimation()
+    {
+        animator.ResetTrigger(IsAttack);
+    }
+
+    public void SetWeaponSpeed(float delay)
+    {
+        animator.speed = delay;
+    }
+    public void SetBulletSpeed(float speed)
+    {
+        animator.speed = delay;
     }
 
     public virtual void Rotate(bool isLeft)

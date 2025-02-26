@@ -14,6 +14,6 @@ public class TempGameObject : MonoBehaviour
     private void Update()
     {
         // Test
-        Stat.currentHP -= Time.deltaTime * 3;
+        //Stat.currentHP -= Time.deltaTime * 3;
     }
 }

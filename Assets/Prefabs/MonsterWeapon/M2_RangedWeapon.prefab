@@ -172,7 +172,7 @@ MonoBehaviour:
   isOnKnockback: 0
   knockbackPower: 0.1
   knockbackTime: 0.5
-  projectileSpawnPosition: {fileID: 0}
+  projectileSpawnPosition: {fileID: 7829656616241907982}
   bulletIndex: 0
   bulletSize: 1
   duration: 0

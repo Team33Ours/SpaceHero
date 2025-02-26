@@ -37,7 +37,7 @@ public class SearchEnemy : MonoBehaviour
       if (colliders.Length == 0)
       {
          isAttacking = false;
-         player.Attack(false, target);
+         player.IsAttack(false, target);
       }
       else
       {
@@ -54,7 +54,7 @@ public class SearchEnemy : MonoBehaviour
             }
          }
          
-         player.Attack(true, target);
+         player.IsAttack(true, target);
       }
    }
 
