@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
-/// ÀÏ¹İ¸ó½ºÅÍÀÇ ÀÌµ¿,°ø°İ ±â´É
+/// ì¼ë°˜ëª¬ìŠ¤í„°ì˜ ì´ë™,ê³µê²© ê¸°ëŠ¥
 /// 2025.02.24.ImSeonggyun
 /// </summary>
 public class NormalMonsterController : BaseController
@@ -12,7 +12,7 @@ public class NormalMonsterController : BaseController
     private MonsterManager monsterManager;
     private Transform target;
 
-    // ¸ó½ºÅÍ Á¾·ù¿¡ µû¶ó ´Ù¸¥ °ªµé
+    // ëª¬ìŠ¤í„° ì¢…ë¥˜ì— ë”°ë¼ ë‹¤ë¥¸ ê°’ë“¤
     [SerializeField] private float followRange;
 
     public void Initialize(MonsterManager _monsterManager, Transform _target, float _followRange)
@@ -20,39 +20,39 @@ public class NormalMonsterController : BaseController
         monsterManager = _monsterManager;
         target = _target;
 
-        // ¸ó½ºÅÍ¸¶´Ù °ªÀÌ ´Ù¸£¹Ç·Î »ı¼º½Ã¿¡ ÁöÁ¤ÇØÁØ´Ù
+        // ëª¬ìŠ¤í„°ë§ˆë‹¤ ê°’ì´ ë‹¤ë¥´ë¯€ë¡œ ìƒì„±ì‹œì— ì§€ì •í•´ì¤€ë‹¤
         followRange = _followRange;
     }
-    // ¸ó½ºÅÍ(ÀÏ¹İ)ÀÇ ÀÌµ¿·ÎÁ÷
+    // ëª¬ìŠ¤í„°(ì¼ë°˜)ì˜ ì´ë™ë¡œì§
     protected override void HandleAction()
     {
-        // OOP Æ¯°­¶§ Áö¿ìÁö ¸»¶ó°í Çß´ø °ÍÀÌ »ı°¢³µ´Ù
+        // OOP íŠ¹ê°•ë•Œ ì§€ìš°ì§€ ë§ë¼ê³  í–ˆë˜ ê²ƒì´ ìƒê°ë‚¬ë‹¤
         base.HandleAction();
 
-        // ¸ó½ºÅÍ°¡ ¹«±â ÀåÂø½Ã Ãß°¡
+        // ëª¬ìŠ¤í„°ê°€ ë¬´ê¸° ì¥ì°©ì‹œ ì¶”ê°€
 
-        // °Å¸®,¹æÇâ ±¸ÇÏ±â
+        // ê±°ë¦¬,ë°©í–¥ êµ¬í•˜ê¸°
         float distance = DistanceToTarget();
         Vector2 direction = DirectionToTarget();
 
-        // °ø°İÇÏ°í ÀÖÁö ¾Ê´Ù
+        // ê³µê²©í•˜ê³  ìˆì§€ ì•Šë‹¤
         isAttacking = false;
 
-        // °Å¸®¿¡ µû¸¥ ÆÇ´Ü
+        // ê±°ë¦¬ì— ë”°ë¥¸ íŒë‹¨
         if (distance <= followRange)
         {
-            // ÀÌµ¿
+            // ì´ë™
             lookDirection = direction;
-            // °ø°İ¹üÀ§¿¡ ÀÖ´Ù¸é 
+            // ê³µê²©ë²”ìœ„ì— ìˆë‹¤ë©´ 
             if (distance <= weaponHandler.AttackRange)
             {
-                // °ø°İ
+                // ê³µê²©
                 int layerMaskTarget = weaponHandler.target;
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, weaponHandler.AttackRange * 1.5f, 
                     (1 << LayerMask.NameToLayer("Level")) | layerMaskTarget);
 
-                // Ãæµ¹Ã¼°¡ ÀÖ´Ù¸é, Ãæµ¹ÇØ¼­ Ã³¸®ÇØ¾ßÇÏ´Â layer°¡ ¸Â´ÂÁö È®ÀÎÇÑ´Ù
-                // layer°¡ "Level"ÀÇ layerÀÌ¸é °ø°İÇÏÁö ¾Ê´Â´Ù
+                // ì¶©ëŒì²´ê°€ ìˆë‹¤ë©´, ì¶©ëŒí•´ì„œ ì²˜ë¦¬í•´ì•¼í•˜ëŠ” layerê°€ ë§ëŠ”ì§€ í™•ì¸í•œë‹¤
+                // layerê°€ "Level"ì˜ layerì´ë©´ ê³µê²©í•˜ì§€ ì•ŠëŠ”ë‹¤
                 if (hit.collider != null && layerMaskTarget == (layerMaskTarget | (1 << hit.collider.gameObject.layer)))
                 {
                     isAttacking = true;
@@ -74,7 +74,7 @@ public class NormalMonsterController : BaseController
     public override void Death()
     {
         base.Death();
-        // Á×Àº °Ç ¿ÀºêÁ§Æ® Ç®¸µÀ» Àû¿ëÇÏ¿© List¿¡ Áı¾î³Ö´Â´Ù
-        monsterManager.RemoveMonsterOnDeath(this);
+        // ì£½ì€ ê±´ ì˜¤ë¸Œì íŠ¸ í’€ë§ì„ ì ìš©í•˜ì—¬ Listì— ì§‘ì–´ë„£ëŠ”ë‹¤
+        monsterManager.RemoveMonsterOnDeath(this.gameObject);
     }
 }

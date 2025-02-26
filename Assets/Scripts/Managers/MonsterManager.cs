@@ -3,53 +3,158 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ¸ó½ºÅÍÀÇ »ı¼º, »ç¸ÁÃ³¸®
+/// ëª¬ìŠ¤í„°ì˜ ìƒì„±, ì‚¬ë§ì²˜ë¦¬
 /// 2025.02.24.ImSeonggyun
 /// </summary>
 public class MonsterManager : Singleton<MonsterManager>
 {
-    // ¸ó½ºÅÍÀÇ °æ¿ì ¿ÀºêÁ§Æ® Ç®¸µÀ» Àû¿ë
-    public List<GameObject> monsterPool;    // Á×Àº ¸ó½ºÅÍ´Â ºñÈ°¼ºÈ­ ÈÄ Pool¿¡ ÀúÀå, List¿¡¼­ Á¦°Å
-    public List<GameObject> monsterList;    // È°¼ºÈ­µÈ ¸ó½ºÅÍ´Â List¿¡ ÀúÀå, Pool¿¡¼­ Á¦°Å
+    public GameObject flyingMonster;
+    public GameObject greenMonster;
+    public GameObject bossMonster;
 
-    // Pool¿¡¼­ ¸ó½ºÅÍ°¡ ÀÖ´ÂÁö °Ë»ö
-    public GameObject FindMonster()
+    public int poolSize;
+    public int bossPoolSize;
+
+    private List<GameObject> flyingMonsterPool;
+    private List<GameObject> greenMonsterPool;
+    private List<GameObject> bossMonsterPool;
+
+    [SerializeField]
+    Transform flyingMonsterParent;
+    [SerializeField]
+    Transform greenMonsterParent;
+    [SerializeField]
+    Transform bossMonsterParent;
+
+    private void Awake()
     {
-        // monsterPool¿¡ ÀÖ´Â °Í Áß ¾Æ¹«°Å³ª 1°³ °¡Á®¿Â´Ù
-        int rand = Random.Range(0, monsterPool.Count - 1);
-        GameObject foundObj = monsterPool[rand];
-        if (foundObj != null)
+        base.Awake();
+
+        flyingMonsterPool = new List<GameObject>();
+        greenMonsterPool = new List<GameObject>();
+        bossMonsterPool = new List<GameObject>();
+
+        for(int i = 0; i < poolSize; i++)
         {
-            // ¿©±â¼­´Â monsterPool¿¡¼­ Á¦°Å¸¸ ÇÑ´Ù
-            // monsterList¿¡ Ãß°¡ÇÏ´Â°Ç FindMonster¸¦ È£ÃâÇÏ´Â °÷(CreateMonster)¿¡¼­ ÇÑ´Ù
-            foundObj.SetActive(true);
-            monsterPool.Remove(foundObj);
-            return foundObj;
+            GameObject flying = Instantiate(flyingMonster, flyingMonsterParent);
+            flying.SetActive(false);
+            flyingMonsterPool.Add(flying);
+            GameObject green = Instantiate(greenMonster, greenMonsterParent);
+            green.SetActive(false);
+            greenMonsterPool.Add(green);
+            GameObject boss = Instantiate(bossMonster, bossMonsterParent);
+            boss.SetActive(false);
+            bossMonsterPool.Add(boss);
         }
-        return null;
     }
 
-    // ÀÏ¹İ¸ó½ºÅÍ°¡ »ı¼ºµÉ ¶§ È£Ãâ
-    public void CreateMonster()
+    public GameObject FlyMonsterFromPool()
     {
-        // ¸ÕÀú poolÀ» Ã£¾Æº¸°í, ÀÖÀ¸¸é pool¿¡ ÀÖ´Â °ÍÀ» ¿ì¼± °¡Á®¿Â´Ù
-        GameObject enableObj = FindMonster();
-        if (enableObj == null)
+        for (int i = 0; i < flyingMonsterPool.Count; i++)
         {
-            /// pool¿¡ ¾Æ¹«°Íµµ ¾ø´Ù¸é, ÀÏ¹İ¸ó½ºÅÍ Áß¿¡¼­ ¾Æ¹«°Å³ª »õ·Î »ı¼ºÇÑ´Ù
-            //enableObj = GameObject.Instantiate();
-            Debug.Log("enableObj°¡ null");
+            if (!flyingMonsterPool[i].activeInHierarchy)
+            {
+                flyingMonsterPool[i].SetActive(true);
+                return flyingMonsterPool[i];
+            }
         }
-        monsterList.Add(enableObj);
 
+        GameObject flying = Instantiate(flyingMonster, flyingMonsterParent);
+        flying.SetActive(true);
+        flyingMonsterPool.Add(flying);
+        return flying;
     }
 
-    // ÀÏ¹İ¸ó½ºÅÍÀÇ »ç¸Á
-    public void RemoveMonsterOnDeath(NormalMonsterController monster)
+    public GameObject GreenMonsterFromPool()
     {
-        // Á×Àº ¸ó½ºÅÍ´Â Pool¿¡ ³Ö°í List¿¡¼­ Á¦°Å 
-        monster.gameObject.SetActive(false);
-        monsterPool.Add(monster.gameObject);
-        monsterList.Remove(monster.gameObject);
+        for (int i = 0; i < greenMonsterPool.Count; i++)
+        {
+            if (!greenMonsterPool[i].activeInHierarchy)
+            {
+                greenMonsterPool[i].SetActive(true);
+                return greenMonsterPool[i];
+            }
+        }
+        GameObject green = Instantiate(greenMonster, greenMonsterParent);
+        green.SetActive(true);
+        greenMonsterPool.Add(green);
+        return green;
     }
+
+    public GameObject BossMonsterFromPool()
+    {
+        for (int i = 0; i < bossMonsterPool.Count; i++)
+        {
+            if (!bossMonsterPool[i].activeInHierarchy)
+            {
+                bossMonsterPool[i].SetActive(true);
+                return bossMonsterPool[i];
+            }
+        }
+        GameObject boss = Instantiate(bossMonster, bossMonsterParent);
+        boss.SetActive(true);
+        bossMonsterPool.Add(boss);
+        return boss;
+    }
+
+    public void RemoveMonsterOnDeath(GameObject monster)
+    {
+        if (monster.CompareTag("FlyingMonster"))
+        {
+            monster.SetActive(false);
+        }
+        else if (monster.CompareTag("GreenMonster"))
+        {
+            monster.SetActive(false);
+        }
+        else if (monster.CompareTag("BossMonster"))
+        {
+            monster.SetActive(false);
+        }
+    }
+
+    //// ëª¬ìŠ¤í„°ì˜ ê²½ìš° ì˜¤ë¸Œì íŠ¸ í’€ë§ì„ ì ìš©
+    //public List<GameObject> monsterPool;    // ì£½ì€ ëª¬ìŠ¤í„°ëŠ” ë¹„í™œì„±í™” í›„ Poolì— ì €ì¥, Listì—ì„œ ì œê±°
+    //public List<GameObject> monsterList;    // í™œì„±í™”ëœ ëª¬ìŠ¤í„°ëŠ” Listì— ì €ì¥, Poolì—ì„œ ì œê±°
+
+    //// Poolì—ì„œ ëª¬ìŠ¤í„°ê°€ ìˆëŠ”ì§€ ê²€ìƒ‰
+    //public GameObject FindMonster()
+    //{
+    //    // monsterPoolì— ìˆëŠ” ê²ƒ ì¤‘ ì•„ë¬´ê±°ë‚˜ 1ê°œ ê°€ì ¸ì˜¨ë‹¤
+    //    int rand = Random.Range(0, monsterPool.Count - 1);
+    //    GameObject foundObj = monsterPool[rand];
+    //    if (foundObj != null)
+    //    {
+    //        // ì—¬ê¸°ì„œëŠ” monsterPoolì—ì„œ ì œê±°ë§Œ í•œë‹¤
+    //        // monsterListì— ì¶”ê°€í•˜ëŠ”ê±´ FindMonsterë¥¼ í˜¸ì¶œí•˜ëŠ” ê³³(CreateMonster)ì—ì„œ í•œë‹¤
+    //        foundObj.SetActive(true);
+    //        monsterPool.Remove(foundObj);
+    //        return foundObj;
+    //    }
+    //    return null;
+    //}
+
+    //// ì¼ë°˜ëª¬ìŠ¤í„°ê°€ ìƒì„±ë  ë•Œ í˜¸ì¶œ
+    //public void CreateMonster()
+    //{
+    //    // ë¨¼ì € poolì„ ì°¾ì•„ë³´ê³ , ìˆìœ¼ë©´ poolì— ìˆëŠ” ê²ƒì„ ìš°ì„  ê°€ì ¸ì˜¨ë‹¤
+    //    GameObject enableObj = FindMonster();
+    //    if (enableObj == null)
+    //    {
+    //        /// poolì— ì•„ë¬´ê²ƒë„ ì—†ë‹¤ë©´, ì¼ë°˜ëª¬ìŠ¤í„° ì¤‘ì—ì„œ ì•„ë¬´ê±°ë‚˜ ìƒˆë¡œ ìƒì„±í•œë‹¤
+    //        //enableObj = GameObject.Instantiate();
+    //        Debug.Log("enableObjê°€ null");
+    //    }
+    //    monsterList.Add(enableObj);
+
+    //}
+
+    //// ì¼ë°˜ëª¬ìŠ¤í„°ì˜ ì‚¬ë§
+    //public void RemoveMonsterOnDeath(GameObject monster)
+    //{
+    //    // ì£½ì€ ëª¬ìŠ¤í„°ëŠ” Poolì— ë„£ê³  Listì—ì„œ ì œê±° 
+    //    monster.gameObject.SetActive(false);
+    //    monsterPool.Add(monster.gameObject);
+    //    monsterList.Remove(monster.gameObject);
+    //}
 }
