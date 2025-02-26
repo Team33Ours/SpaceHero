@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5309973333855719703}
   - component: {fileID: 4512128115662142844}
   - component: {fileID: 2622006178117721544}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5062628721984748706}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WeaponPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 1360368171404044968}
   - component: {fileID: 5811234705101494298}
   - component: {fileID: 6554922867767029250}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FlyingMonster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &847589602302220488
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -276,7 +276,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterRenderer: {fileID: 4512128115662142844}
   weaponPivot: {fileID: 5062628721984748706}
-  WeaponPrefab: {fileID: 4635330654355668698, guid: e5b53a5ae9c6d1d4ebeb1725a3bf76be, type: 3}
+  WeaponPrefab: {fileID: 2389727811059481689, guid: b553f611a7049824097c043207ee9772, type: 3}
+  monsterManager: {fileID: 0}
+  target: {fileID: 0}
   followRange: 0
 --- !u!114 &5811234705101494298
 MonoBehaviour:
@@ -290,10 +292,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb53868ef34b7a478a0ae8c5ba7bb49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  maxHealth: 50
   maxMana: 0
-  maxSpeed: 0
-  exp: 0
+  maxSpeed: 3
+  exp: 50
 --- !u!114 &6554922867767029250
 MonoBehaviour:
   m_ObjectHideFlags: 0

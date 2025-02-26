@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8119233799021284350}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WeaponPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 6877529178617735960}
   - component: {fileID: 2224840236128114575}
   - component: {fileID: 7235857946806482377}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 7505151443515382385}
   - component: {fileID: 8386380510562371075}
   - component: {fileID: 2707991009301727638}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BossMonster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &6068005107368061325
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -287,10 +287,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb53868ef34b7a478a0ae8c5ba7bb49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  maxHealth: 500
   maxMana: 0
-  maxSpeed: 0
-  exp: 0
+  maxSpeed: 3
+  exp: 500
 --- !u!114 &2707991009301727638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,5 +306,8 @@ MonoBehaviour:
   characterRenderer: {fileID: 2224840236128114575}
   weaponPivot: {fileID: 8119233799021284350}
   WeaponPrefab: {fileID: 7669425147887084683, guid: 5c301033348c1a84bad1c883883557a2, type: 3}
+  monsterManager: {fileID: 0}
+  target: {fileID: 0}
+  phase: 0
   RangeWeaponPrefab: {fileID: 2389727811059481689, guid: b553f611a7049824097c043207ee9772, type: 3}
   followRange: 0

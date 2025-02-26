@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Define;
 
 /// <summary>
 /// 플레이어와 몬스터의 스킬을 관리하는 매니저
@@ -15,10 +14,6 @@ public class SkillManager : Singleton<SkillManager>
     public Dictionary<string, BaseSkill> bossMobSkills; // 보스몬스터 스킬
 
     DataManager dataManager;
-
-    // 사용할 스킬을 저장할 delegate 또는 action
-    fDf fdf;
-
 
     private void Awake()
     {

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BaseController : MonoBehaviour
 {
-    
+
     /// <summary>
     /// / 주석 확인 한글 USA 
     /// </summary>
@@ -13,8 +13,8 @@ public class BaseController : MonoBehaviour
     [SerializeField] private Transform weaponPivot;
 
     protected Vector2 movementDirection = Vector2.zero;
-    public Vector2 MovementDirection{get{return movementDirection;}}
-    
+    public Vector2 MovementDirection { get { return movementDirection; } }
+
     protected Vector2 lookDirection = Vector2.zero;
     public Vector2 LookDirection { get { return lookDirection; } }
 
@@ -22,17 +22,17 @@ public class BaseController : MonoBehaviour
     private float knockbackDuration = 0.0f;
 
     protected AnimationHandler animationHandler;
-    
+
     protected StatHandler statHandler;
-    
+
     [SerializeField] public WeaponHandler WeaponPrefab;
-	protected WeaponHandler weaponHandler;
+    protected WeaponHandler weaponHandler;
 
     protected bool isMonster;           // 애니메이션 flip문제로 캐릭터/몬스터 분할
     protected bool isMoving;
-	protected bool isAttacking;
-	private float timeSinceLastAttack = float.MaxValue;
-		
+    protected bool isAttacking;
+    private float timeSinceLastAttack = float.MaxValue;
+
     protected virtual void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -40,9 +40,9 @@ public class BaseController : MonoBehaviour
         statHandler = GetComponent<StatHandler>();
 
         if (WeaponPrefab != null)
-	        weaponHandler = Instantiate(WeaponPrefab, weaponPivot);
+            weaponHandler = Instantiate(WeaponPrefab, weaponPivot);
         else
-	        weaponHandler = GetComponentInChildren<WeaponHandler>();
+            weaponHandler = GetComponentInChildren<WeaponHandler>();
     }
 
     protected virtual void Start()
@@ -73,13 +73,14 @@ public class BaseController : MonoBehaviour
 
     private void Movment(Vector2 direction)
     {
-        direction = direction * statHandler.MaxSpeed;  
-        if(knockbackDuration > 0.0f)
+        /// 혹시 direction이 아래를 가리킨다면, statHandler.MaxSpeed가 0인지 살펴볼 것
+        direction = direction * statHandler.MaxSpeed;   // 몬스터에 MaxSpeed 설정을 안해서 아래로 가고 있었다...
+        if (knockbackDuration > 0.0f)
         {
             direction *= 0.2f;
             direction += knockback;
         }
-        
+
         isMoving = true;
         if (direction.magnitude < .9f)
         {
@@ -95,15 +96,15 @@ public class BaseController : MonoBehaviour
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         bool isLeft = Mathf.Abs(rotZ) > 90f;
 
-        if(isMonster)
-        characterRenderer.flipX = isLeft;
+        if (isMonster)
+            characterRenderer.flipX = isLeft;
 
         if (weaponPivot != null)
         {
             weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ);
         }
-        
-        weaponHandler?.Rotate(isLeft);
+
+        weaponHandler?.Rotate(isLeft); /// 무기 회전
     }
 
     public void ApplyKnockback(Transform other, float power, float duration)
@@ -113,22 +114,22 @@ public class BaseController : MonoBehaviour
     }
     private void HandleAttackDelay()
     {
-	    if (weaponHandler == null)
-		    return;
+        if (weaponHandler == null)
+            return;
 
-	    if (timeSinceLastAttack <= weaponHandler.Delay)
-	    {
+        if (timeSinceLastAttack <= weaponHandler.Delay)
+        {
             animationHandler.Attack(false);
-		    timeSinceLastAttack += Time.deltaTime;
-	    }
+            timeSinceLastAttack += Time.deltaTime;
+        }
 
-	    if (!isMoving &&isAttacking && timeSinceLastAttack > weaponHandler.Delay)
-	    {
-		    timeSinceLastAttack = 0;
+        if (!isMoving && isAttacking && timeSinceLastAttack > weaponHandler.Delay)
+        {
+            timeSinceLastAttack = 0;
             animationHandler.Attack(true);
-		    Attack();
-	    }
-        
+            Attack();
+        }
+
     }
 
     protected virtual void Attack()
@@ -150,7 +151,7 @@ public class BaseController : MonoBehaviour
         {
             component.enabled = false;
         }
-        
+
         // gameObject.SetActive(false);
         // Destroy�� ������ Controller���� ����
     }
@@ -158,7 +159,7 @@ public class BaseController : MonoBehaviour
     public void ChangeWeapon(WeaponHandler weapon)
     {
         Destroy(weaponHandler.gameObject);
-        
+
         WeaponPrefab = weapon;
         if (WeaponPrefab != null)
             weaponHandler = Instantiate(WeaponPrefab, weaponPivot);

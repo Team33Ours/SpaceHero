@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Define;
 
 /// <summary>
 /// 보스의 Phase
@@ -20,8 +20,10 @@ public enum eBossPhase
 /// </summary>
 public class BossMonsterController : BaseController
 {
-    private MonsterManager monsterManager;
-    private Transform target;
+    //private MonsterManager monsterManager;
+    //private Transform target;
+    public MonsterManager monsterManager;
+    public Transform target;
     public eBossPhase phase;
 
     // 보스는 Base의 WeaponPrefab에는 근거리 무기를 할당
@@ -29,6 +31,8 @@ public class BossMonsterController : BaseController
 
     // 몬스터 종류에 따라 다른 값들
     [SerializeField] private float followRange;
+
+    public fDf fdf;
 
     private void Awake()
     {
@@ -61,8 +65,18 @@ public class BossMonsterController : BaseController
         // phase1: 일반몬스터와 유사하게 이동에 따른 근거리 공격
         // phase2: 원거리 공격
         // phase3: 스킬 공격
+        if (phase == eBossPhase.Phase_1)
+        {
 
-        
+        }
+        else if (phase == eBossPhase.Phase_2)
+        {
+
+        }
+        else if (phase == eBossPhase.Phase_3)
+        {
+
+        }        
     }
     protected float DistanceToTarget()
     {
@@ -75,6 +89,6 @@ public class BossMonsterController : BaseController
 
     // 보스의 공격과 스킬
     // Controller는 그걸 가져와서 쓴다
-
+    
 
 }
