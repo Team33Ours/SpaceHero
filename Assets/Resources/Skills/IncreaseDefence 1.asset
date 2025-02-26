@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: IncreaseDefence 1
   m_EditorClassIdentifier: 
   skillRarity: 1
-  Name: "\uBC29\uC5B4\uB825 \uC99D\uAC00"
+  Name: "\uBC29\uC5B4\uB825 \uC99D\uAC00 (\uB808\uC5B4)"
   Description: "\uBC29\uC5B4\uB825\uC774 20% \uC0C1\uC2B9\uD569\uB2C8\uB2E4"
   Icon: {fileID: 21300000, guid: 7ee47324d198684418811e2cee0e2769, type: 3}

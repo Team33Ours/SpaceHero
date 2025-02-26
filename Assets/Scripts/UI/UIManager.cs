@@ -13,85 +13,69 @@ using System.Collections;
 
 public class UIManager : Singleton<UIManager>
 {
+    [Header("Roulette")]
+    public GameObject roletteCanvas;
+    public Image[] rouletteImages = new Image[3];
+    private TempGameObject player;
+    TempSkill[] allOfTempSkills; // Resources의 모든 스킬을 읽는다.
+    TempSkill[] get3RandomSkills = new TempSkill[3];
+    TempSkill Skill1st, Skill2nd, Skill3rd;
+    internal int moveCount;
+    internal System.Random setRefeatTimes;
+
+    [Header("Coin")]
     [SerializeField]
     private TextMeshProUGUI CoinText;
     private int coin;
     private int coinDifferenceCheck;
     bool isThereCoin;
 
+    [Header("Stage")]
     private int stageFloor;
     public TextMeshProUGUI StageText;
 
+    [Header("Pause")]
     public GameObject pauseHUD;
-
     public Button PauseUI;
 
-    // Roulette
-    TempSkill[] allOfTempSkills; // Resources의 모든 스킬을 읽는다.
-    TempSkill[] get3RandomSkills = new TempSkill[3];
-    public Image[] rouletteImages = new Image[3];
-    internal int moveCount;
-    internal System.Random setMoveTimes;
 
     // Test
-    public float duration = 0.8f;
+    public float duration = 1f;
 
     protected override void Awake()
     {
         base.Awake();
 
+        // Roulette
+        player = GameObject.FindWithTag("Player").GetComponent<TempGameObject>();
+        setRefeatTimes = new System.Random();
+
+        // Coin
         coin = 0;
         CoinText = GameObject.FindWithTag("Coin").GetComponent<TextMeshProUGUI>();
         CoinText.text = $"{coin}";
         isThereCoin = (CoinText != null) ? true : false;
 
+        // Stage
         stageFloor = 0;
         StageText.text = $"{stageFloor}";
 
+        // Pause
         PauseUI = GetComponent<Button>();
-
-        //
-        setMoveTimes = new System.Random();
-        moveCount = setMoveTimes.Next(5, 8);
-        Debug.Log($"반복 횟수: {moveCount}회");
     }
 
-    private void Start()
-    {
-        RunRoulette();
-    }
-
+    #region Roulette
     public void RunRoulette()
     {
-        /*
-         * 구조
-         * 1. 레벨업을 하면 패널이 나타나고 룰렛이 돌아간다
-         * 2. 룰렛이 돌아가는 동안 Time.timeScale = 0으로 맞춘다.
-         * 3. 룰렛이 돌아가는 동안 UI 애니메이션이 돌아갈 수 있도록 DOTween을 사용한다.
-         * 
-         * 룰렛 돌리기
-         * 1. TempSkill의 Scriptable Object를 읽어서 배열에 넣는다.
-         * 2. 3개의 랜덤한 스킬을 뽑는다.
-         * 3. 해당 스킬의 Scriptable Object의 Sprite데이터를 읽어서 이미지에 적용한다.
-         * 4. DOTween 기능으로 y축 아래로 움직인다.
-         * 5. 일정 아래로 움직이면 새롭게 Scriptable Object의 데이터를 읽는다.
-         * 6. 5~6초간 반복한다.
-         * 7. 멈추면 3개 중 하나의 스킬을 선택한다.
-         * 8. 선택한 스킬을 적용한다.
-         * 9. Time.timeScale = 1로 맞춘다.
-         */
         Time.timeScale = 0;
+        roletteCanvas.SetActive(true);
+        moveCount = setRefeatTimes.Next(5, 8);
 
         // Resources/Skills 폴더에 있는 모든 TempSkill 타입 에셋을 읽음
         allOfTempSkills = Resources.LoadAll<TempSkill>("Skills");
 
-
+        // 룰렛 애니메이션을 반복 실행하기 위해 2개의 코루틴을 만듦
         StartCoroutine(RunRouletteSequence());
-
-        //for (int j = 0; j < 3; j++)
-        //{
-        //    rouletteImages[j].gameObject.transform.localPosition = new Vector3(rouletteImages[j].gameObject.transform.localPosition.x, 400, rouletteImages[j].gameObject.transform.localPosition.z);
-        //}
     }
 
     private IEnumerator RunRouletteSequence()
@@ -109,20 +93,18 @@ public class UIManager : Singleton<UIManager>
         Debug.Log("룰렛 애니메이션 완료");
 
         ResetImageTransform();
-        get3RandomSkills = Set3RandomSkills();
-        SetRouletteImages();
-
-        var tween1 = rouletteImages[0].transform.DOLocalMoveY(rouletteImages[0].transform.localPosition.y - 400f, duration).SetUpdate(true).SetEase(Ease.OutBounce);
-        var tween2 = rouletteImages[1].transform.DOLocalMoveY(rouletteImages[1].transform.localPosition.y - 400f, duration).SetUpdate(true).SetEase(Ease.OutBounce);
-        var tween3 = rouletteImages[2].transform.DOLocalMoveY(rouletteImages[2].transform.localPosition.y - 400f, duration).SetUpdate(true).SetEase(Ease.OutBounce);
-
-        Time.timeScale = 1; // 타임스케일 복원
-    }
-    private IEnumerator ImagesMoveRefeatCoroutine()
-    {
         // 스킬 3개를 뽑음
         get3RandomSkills = Set3RandomSkills();
         // 뽑은 스킬을 이미지 UI에 적용
+        SetRouletteImages();
+
+        rouletteImages[0].transform.DOLocalMoveY(rouletteImages[0].transform.localPosition.y - 400f, duration).SetUpdate(true).SetEase(Ease.OutBounce);
+        rouletteImages[1].transform.DOLocalMoveY(rouletteImages[1].transform.localPosition.y - 400f, duration).SetUpdate(true).SetEase(Ease.OutBounce);
+        rouletteImages[2].transform.DOLocalMoveY(rouletteImages[2].transform.localPosition.y - 400f, duration).SetUpdate(true).SetEase(Ease.OutBounce);
+    }
+    private IEnumerator ImagesMoveRefeatCoroutine()
+    {
+        get3RandomSkills = Set3RandomSkills();
         SetRouletteImages();
 
         // 모든 애니메이션 동시 시작
@@ -134,28 +116,19 @@ public class UIManager : Singleton<UIManager>
         yield return tween3.WaitForCompletion();
     }
 
-    private void ResetImageTransform()
-    {
-        for (int j = 0; j < 3; j++)
-        {
-            rouletteImages[j].transform.localPosition = new Vector3(
-                rouletteImages[j].transform.localPosition.x,
-                400,
-                rouletteImages[j].transform.localPosition.z
-            );
-        }
-    }
-
-
     private TempSkill[] Set3RandomSkills()
     {
         System.Random rng = new System.Random();
         allOfTempSkills = allOfTempSkills.OrderBy(s => rng.Next()).ToArray(); // OrderBy와 Random을 사용하여 랜덤으로 섞은 배열을 만듦
-        
+
         for (int i = 0; i < 3; i++)
         {
             get3RandomSkills[i] = allOfTempSkills[i];
         }
+
+        Skill1st = get3RandomSkills[0];
+        Skill2nd = get3RandomSkills[1];
+        Skill3rd = get3RandomSkills[2];
 
         return get3RandomSkills;
     }
@@ -171,6 +144,38 @@ public class UIManager : Singleton<UIManager>
         rouletteImages[0].GetComponentInChildren<TextMeshProUGUI>(true).text = get3RandomSkills[0].Name;
         rouletteImages[1].GetComponentInChildren<TextMeshProUGUI>(true).text = get3RandomSkills[1].Name;
         rouletteImages[2].GetComponentInChildren<TextMeshProUGUI>(true).text = get3RandomSkills[2].Name;
+    }
+
+    private void ResetImageTransform()
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            rouletteImages[j].transform.localPosition = new Vector3(
+                rouletteImages[j].transform.localPosition.x, 400, rouletteImages[j].transform.localPosition.z
+            );
+        }
+    }
+    #endregion
+
+    public void OnClickSkill1stSkill()
+    {
+        player.GetSkill(Skill1st);
+        roletteCanvas.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void OnClickSkill2ndSkill()
+    {
+        player.GetSkill(Skill2nd);
+        roletteCanvas.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void OnClickSkill3rdSkill()
+    {
+        player.GetSkill(Skill3rd);
+        roletteCanvas.SetActive(false);
+        Time.timeScale = 1;
     }
 
     #region Coin
