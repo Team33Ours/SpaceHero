@@ -22,7 +22,7 @@ public class BossMonsterController : BaseController
 {
     private MonsterManager monsterManager;
     private Transform target;
-    private eBossPhase phase;
+    public eBossPhase phase;
 
     // 보스는 Base의 WeaponPrefab에는 근거리 무기를 할당
     [SerializeField] public WeaponHandler RangeWeaponPrefab;     // RangeWeaponPrefab에는 원거리 무기를 할당
@@ -62,7 +62,7 @@ public class BossMonsterController : BaseController
         // phase2: 원거리 공격
         // phase3: 스킬 공격
 
-        // 체력 판정을 해야한다
+        
     }
     protected float DistanceToTarget()
     {
@@ -74,8 +74,6 @@ public class BossMonsterController : BaseController
     }
 
     // 보스의 공격과 스킬
-    // 스킬은 BaseSkillHandler가 필요하며
-    // 이를 Player와 보스몬스터가 상속을 받아서 구현한다
     // Controller는 그걸 가져와서 쓴다
 
 
