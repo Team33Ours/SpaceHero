@@ -40,6 +40,7 @@ public class SkillManager : Singleton<SkillManager>
         // 임시
         //SaveDefaultSkills();
 
+
         // 데이터매니저로부터 스킬을 가져온다
         LoadAllSkills();
     }
@@ -60,17 +61,17 @@ public class SkillManager : Singleton<SkillManager>
         dataManager.SaveAllMonsterSkills();
     }
 
-
-
     // 데이터매니저에서 가져온다
     public void LoadAllSkills()
     {
         // json파일로부터 플레이어, 몬스터 스킬을 불러온다
+        // 플레이어
 
+
+
+        // 몬스터
         dataManager.LoadAllMonsterSkills();
     }
 
-
-    // 플레이어, 몬스터가 스킬을 호출할 때 delegate에 추가하고 삭제
-
+    // 플레이어, 몬스터가 스킬을 호출할 때 delegate에 추가하고 삭제하는 것은 여기서 하지 않고, PlayerController와 BossMonsterController에서 한다
 }
