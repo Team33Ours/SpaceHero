@@ -144,4 +144,17 @@ public class ResourceController : MonoBehaviour
         OnChangeMana -= action;
     }
     #endregion
+
+    // 몬스터와의 상호작용에 의한 체력감소,스피드감소 효과
+    public void TakeDamage(float damage)
+    {
+        CurrentHealth -= damage;
+    }
+    public IEnumerator TakeDamageAndDebuff(float damage, float speed, float time)
+    {
+        CurrentHealth -= damage;
+        CurrentSpeed -= speed;  // 스피드 디버프
+        yield return new WaitForSeconds(time);  // 지속시간
+        CurrentSpeed += speed;  // 원래대로
+    }
 }
