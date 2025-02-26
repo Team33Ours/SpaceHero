@@ -24,7 +24,8 @@ public class GameObjectUI : MonoBehaviour
 
     private void Start()
     {
-        ReadObjectStatus();
+        if (ObjectStat != null)
+            ReadObjectStatus();
     }
     private void ReadObjectStatus()
     {
@@ -36,7 +37,7 @@ public class GameObjectUI : MonoBehaviour
     
     private void Update()
     {
-        if (hpDifferenceCheck != ObjectStat.currentHP)
+        if ((hpDifferenceCheck != ObjectStat.currentHP) && ObjectStat != null)
             UpdateHP();
     }
 
