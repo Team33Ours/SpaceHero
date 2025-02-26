@@ -15,7 +15,7 @@ public class GameManager : Singleton<GameManager>
     ObstacleSpawner obstacleSpawner;
 
     public GameObject currentStage;
-
+    public GameObject player;
     protected override void Awake()
     {
         base.Awake();
@@ -25,7 +25,7 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-        currentStage = obstacleSpawner.CreateFloorTiles((stage - 1) / 10, 3, 100);
+        currentStage = obstacleSpawner.CreateFloorTiles((stage - 1) / 10, 3, 0);
     }
     void Update()
     {
@@ -39,26 +39,25 @@ public class GameManager : Singleton<GameManager>
         killCount++;
         if (killCount >= enemyCount)
         {
-            Debug.Log("Stage Clear");
-            UIManager.Instance.AcendStage();
             killCount = 0;
-
-            NextStage();
+            currentStage.GetComponentInChildren<DoorOpener>().UnlockDoor();
+            currentStage.GetComponentInChildren<BoxCollider2D>().enabled = true;
         }
     }
 
     public void NextStage()
     {
         stage++;
+        UIManager.Instance.AcendStage();
         //enemyCount = 0;    
         Destroy(currentStage);
         currentStage = obstacleSpawner.CreateFloorTiles((stage - 1) / 10, 3, 100);
+
+        player.transform.position = new Vector3(0, -5, 0);
     }
 
     public void AddEnemyCount()
     {
         enemyCount++;
     }
-
-
 }
