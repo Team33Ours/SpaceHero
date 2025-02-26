@@ -1,9 +1,12 @@
 using UnityEngine;
+using System.Collections.Generic;
+
 // This is a temporary game object class used in the UI test scene.
 
 public class TempGameObject : MonoBehaviour
 {
     public TempStatus Stat;
+    public List<TempSkill> Skill;
 
     private void Awake()
     {
