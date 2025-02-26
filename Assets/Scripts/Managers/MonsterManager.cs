@@ -5,17 +5,15 @@ using UnityEngine;
 /// <summary>
 /// 몬스터의 생성, 사망처리
 /// 2025.02.24.ImSeonggyun
-/// 
-/// 몬스터의 경우 오브젝트 풀링을 적용
-/// 2025.02.26.한만진
 /// </summary>
 public class MonsterManager : Singleton<MonsterManager>
 {
-    public int poolSize;
-
     public GameObject flyingMonster;
     public GameObject greenMonster;
     public GameObject bossMonster;
+
+    public int poolSize;
+    public int bossPoolSize;
 
     private List<GameObject> flyingMonsterPool;
     private List<GameObject> greenMonsterPool;
@@ -101,8 +99,18 @@ public class MonsterManager : Singleton<MonsterManager>
 
     public void RemoveMonsterOnDeath(GameObject monster)
     {
-        monster.SetActive(false);
-
+        if (monster.CompareTag("FlyingMonster"))
+        {
+            monster.SetActive(false);
+        }
+        else if (monster.CompareTag("GreenMonster"))
+        {
+            monster.SetActive(false);
+        }
+        else if (monster.CompareTag("BossMonster"))
+        {
+            monster.SetActive(false);
+        }
     }
 
     //// 몬스터의 경우 오브젝트 풀링을 적용
