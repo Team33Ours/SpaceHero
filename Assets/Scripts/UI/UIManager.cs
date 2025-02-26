@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -20,6 +21,10 @@ public class UIManager : Singleton<UIManager>
 
     public Button PauseUI;
 
+    // DOTween
+
+
+    // Test
     float testTimer = 0;
 
     protected override void Awake()
@@ -52,6 +57,11 @@ public class UIManager : Singleton<UIManager>
             PlusCoin(100);
             testTimer = 0;
         }
+    }
+
+    public void RunRouletee()
+    {
+
     }
 
     #region Coin

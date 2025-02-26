@@ -15,6 +15,7 @@ public class TempSkill : ScriptableObject
     public SkillRarity skillRarity;
     public string Name;
     public string Description;
+    public Sprite Icon;
 
     // 스킬 구현
     public void ApplySkill()
