@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// 몬스터의 생성, 사망처리
@@ -30,7 +31,11 @@ public class MonsterManager : Singleton<MonsterManager>
     [SerializeField]
     Transform bossMonsterParent;
 
-    private void Awake()
+
+    /// <summary>
+    /// 씬이 로드될 때 OnSceneLoaded 추가
+    /// </summary>
+    protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         base.Awake();
 
@@ -38,30 +43,10 @@ public class MonsterManager : Singleton<MonsterManager>
         greenMonsterPool = new List<GameObject>();
         bossMonsterPool = new List<GameObject>();
 
-
-        //for(int i = 0; i < poolSize; i++)
-        //{
-        //    GameObject flying = Instantiate(flyingMonster, flyingMonsterParent);
-        //    flying.SetActive(false);
-
-
-        //    flyingMonsterPool.Add(flying);
-        //    GameObject green = Instantiate(greenMonster, greenMonsterParent);
-        //    green.SetActive(false);
-
-
-        //    greenMonsterPool.Add(green);
-        //    GameObject boss = Instantiate(bossMonster, bossMonsterParent);
-        //    boss.SetActive(false);
-
-
-        //    bossMonsterPool.Add(boss);
-        //}
-    }
-
-    private void Start()
-    {
-        gameManager = GameManager.Instance;
+        if (gameManager == null)
+        {
+            gameManager = GameManager.Instance;
+        }
 
 
         for (int i = 0; i < poolSize; i++)
@@ -88,7 +73,81 @@ public class MonsterManager : Singleton<MonsterManager>
             bossMonsterPool.Add(boss);
         }
 
+
     }
+    /// <summary>
+    /// 씬이 언로드될때 OnDestroy 추가
+    /// </summary>
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+    }
+
+
+
+    //private void Awake()
+    //{
+    //    base.Awake();
+
+    //    flyingMonsterPool = new List<GameObject>();
+    //    greenMonsterPool = new List<GameObject>();
+    //    bossMonsterPool = new List<GameObject>();
+
+
+    //    //for(int i = 0; i < poolSize; i++)
+    //    //{
+    //    //    GameObject flying = Instantiate(flyingMonster, flyingMonsterParent);
+    //    //    flying.SetActive(false);
+
+
+    //    //    flyingMonsterPool.Add(flying);
+    //    //    GameObject green = Instantiate(greenMonster, greenMonsterParent);
+    //    //    green.SetActive(false);
+
+
+    //    //    greenMonsterPool.Add(green);
+    //    //    GameObject boss = Instantiate(bossMonster, bossMonsterParent);
+    //    //    boss.SetActive(false);
+
+
+    //    //    bossMonsterPool.Add(boss);
+    //    //}
+    //}
+
+
+
+
+
+    //private void Start()
+    //{
+    //    gameManager = GameManager.Instance;
+
+
+    //    for (int i = 0; i < poolSize; i++)
+    //    {
+    //        GameObject flying = Instantiate(flyingMonster, flyingMonsterParent);
+    //        NormalMonsterController normalController1 = flying.GetComponent<NormalMonsterController>();
+    //        if (normalController1 != null)
+    //            normalController1.Initialize(this, gameManager.playerController.transform, 100f);
+    //        flying.SetActive(false);
+    //        flyingMonsterPool.Add(flying);
+
+    //        GameObject green = Instantiate(greenMonster, greenMonsterParent);
+    //        NormalMonsterController normalController2 = green.GetComponent<NormalMonsterController>();
+    //        if (normalController2 != null)
+    //            normalController2.Initialize(this, gameManager.playerController.transform, 100f);
+    //        green.SetActive(false);
+    //        greenMonsterPool.Add(green);
+
+    //        GameObject boss = Instantiate(bossMonster, bossMonsterParent);
+    //        BossMonsterController bossController = boss.GetComponent<BossMonsterController>();
+    //        if (bossController != null)
+    //            bossController.Initialize(this, gameManager.playerController.transform, 200f);
+    //        boss.SetActive(false);
+    //        bossMonsterPool.Add(boss);
+    //    }
+
+    //}
 
     public GameObject FlyMonsterFromPool()
     {

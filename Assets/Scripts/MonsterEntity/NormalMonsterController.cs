@@ -26,26 +26,26 @@ public class NormalMonsterController : BaseController
 
     public void Initialize(MonsterManager _monsterManager, Transform _target, float _followRange)
     {
-        // 그냥 이름으로 구분하는것이 좋아보인다
-        // 이름 뒤에 (Clone)이 붙는데, 떼고 사용한다
-        gameObject.name = gameObject.name.Replace("(Clone)", "");
+        //// 그냥 이름으로 구분하는것이 좋아보인다
+        //// 이름 뒤에 (Clone)이 붙는데, 떼고 사용한다
+        //gameObject.name = gameObject.name.Replace("(Clone)", "");
 
-        if (gameObject.name.Equals("FlyingMonster"))
-        {
-            // 리소스매니저가 있으면 좋겠는데 지금 만들기엔 늦은듯...?
-            GameObject prefab = Resources.Load<GameObject>("/Prefabs/");
-            GameObject createdObj = Instantiate(prefab);
-            // 필요한 것들 하나씩
-        }
-        else if (gameObject.name.Equals("GreenMonster"))
-        {
-            GameObject prefab = Resources.Load<GameObject>("/Prefabs/");
+        //if (gameObject.name.Equals("FlyingMonster"))
+        //{
+        //    // 리소스매니저가 있으면 좋겠는데 지금 만들기엔 늦은듯...?
+        //    GameObject prefab = Resources.Load<GameObject>("/Prefabs/");
+        //    GameObject createdObj = Instantiate(prefab);
+        //    // 필요한 것들 하나씩
+        //}
+        //else if (gameObject.name.Equals("GreenMonster"))
+        //{
+        //    GameObject prefab = Resources.Load<GameObject>("/Prefabs/");
 
-        }
+        //}
 
-        // 아니라면
-        // 
-        Debug.Log("1234");
+        //// 아니라면
+        //// 
+        //Debug.Log("1234");
 
 
         monsterAnimator = GetComponentInChildren<Animator>();   // 몬스터의 animator 연결
