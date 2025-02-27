@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartSceneButton : MonoBehaviour
+public class StartSceneButton : StartSceneDirection
 {
     public void OnClickStartButton()
     {
@@ -12,9 +12,23 @@ public class StartSceneButton : MonoBehaviour
         SceneManager.LoadScene("ScyScene");
     }
 
+    public void OnClickOptionButton()
+    {
+        OptionCanvas.gameObject.SetActive(true);
+    }
+    public void OnClickOptionClose()
+    {
+        OptionCanvas.gameObject.SetActive(false);
+    }
+
     public void OnClickExitButton()
     {
         // 게임 종료
         Application.Quit();
+    }
+
+    public void Update()
+    {
+        ;
     }
 }

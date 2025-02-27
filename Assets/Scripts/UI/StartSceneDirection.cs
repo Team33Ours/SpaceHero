@@ -8,6 +8,7 @@ public class StartSceneDirection : MonoBehaviour
     private CanvasGroup titleTextCanvasGroup;
     public Canvas buttonCanvas;
     private CanvasGroup ButtonCanvasGroup;
+    public Canvas OptionCanvas;
 
     private void Start()
     {
@@ -21,7 +22,7 @@ public class StartSceneDirection : MonoBehaviour
         if (titleTextCanvasGroup.alpha >= 0.6)
             DisplayButtons();
     }
-    private void DisplayTitleText()
+    public virtual void DisplayTitleText()
     {
         if (titleTextCanvasGroup.alpha < 1)
             titleTextCanvasGroup.alpha += Time.deltaTime * 0.3f;
@@ -36,5 +37,4 @@ public class StartSceneDirection : MonoBehaviour
         else
             ButtonCanvasGroup.alpha = 1;
     }
-
 }
