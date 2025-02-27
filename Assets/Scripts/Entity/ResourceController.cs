@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 /// <summary>
@@ -50,6 +51,15 @@ public class ResourceController : MonoBehaviour
         {
             UpStatusFromSkill upStatus = GetComponent<UpStatusFromSkill>();
             upStatus.playerStatus = Status;
+
+            GetEXP getEXP;
+            gameObject.AddComponent<GetEXP>();
+        }
+
+        if (this.gameObject == CompareTag("Monster"))
+        {
+            BossMonsterResourceController boMonReCon = GetComponent<BossMonsterResourceController>();
+            boMonReCon.Status = Status;
         }
     }
 
@@ -62,6 +72,11 @@ public class ResourceController : MonoBehaviour
             {
                 animationHandler.InvincibilityEnd();
             }
+        }
+        
+        if (Status.EXP > 100 && this.gameObject == CompareTag("Player"))
+        {
+            LevelUP();
         }
     }
     #region Health
@@ -89,7 +104,7 @@ public class ResourceController : MonoBehaviour
             if (damageClip != null)
                 SoundManager.PlayClip(damageClip);
         }
-        
+
         if (currentHP <= 0)
         {
             Death();
@@ -100,7 +115,18 @@ public class ResourceController : MonoBehaviour
     {
         // BaseController knows who die
         baseController.Death();
+
+
+        System.Random rand = new();
+        int count = rand.Next(1, 4);
+        Vector3 pos = new (transform.position.x + rand.Next(-1, 2), transform.position.y + rand.Next(-1, 2), transform.position.z + rand.Next(-1, 2));
+
+        for (int i =0; rand.Next(1, 4) < 3; i++)
+        {
+            Instantiate(Resources.Load("Prefabs/EXP"), transform.position, Quaternion.Euler(0, 0, rand.Next(-10, 10) * 10));
+        }
     }
+
     public void AddHealthChangeEvent(Action<float, float> action)
     {
         OnChangeHealth += action;
@@ -110,27 +136,7 @@ public class ResourceController : MonoBehaviour
         OnChangeHealth -= action;
     }
     #endregion
-    //#region Mana
-    //public bool ChangeMana(float change)
-    //{
-    //    // mana는 딜레이같은거 없다
-    //    if (change == 0)
-    //        return false;
 
-    //    CurrentMana += change;
-    //    CurrentMana = CurrentMana > MaxMana ? MaxMana : CurrentMana;
-    //    CurrentMana = CurrentMana < 0 ? 0 : CurrentMana;
-    //    return true;
-    //}
-    //public void AddManaChangeEvent(Action<float, float> action)
-    //{
-    //    OnChangeMana += action;
-    //}
-    //public void RemoveManaChangeEvent(Action<float, float> action)
-    //{
-    //    OnChangeMana -= action;
-    //}
-    //#endregion
     #region Speed
     public bool ChangeSpeed(float change)
     {
@@ -157,7 +163,7 @@ public class ResourceController : MonoBehaviour
     // 몬스터의 스킬에 의한 체력감소,스피드감소 효과
     public void TakeDamage(float damage)
     {
-        currentHP = currentHP > damage ? (currentHP  - damage) : 0;
+        currentHP = currentHP > damage ? (currentHP - damage) : 0;
     }
     public IEnumerator TakeDamageAndDebuff(float damage, float speed, float time)
     {
@@ -174,5 +180,13 @@ public class ResourceController : MonoBehaviour
         Status.currentSpeed -= delta;
         yield return new WaitForSeconds(time);  // 지속시간
         Status.currentSpeed += delta;      // 원래대로
+    }
+
+    public void LevelUP()
+    {
+        Status.EXP -= 100;
+        UIManager.Instance.RunRoulette();
+        if (Status.EXP >= 100)
+            LevelUP();
     }
 }

@@ -11,4 +11,5 @@ public class Status : ScriptableObject
     public int attack;
     public int defence;
     public int EXP;
+    public int gold;
 }
