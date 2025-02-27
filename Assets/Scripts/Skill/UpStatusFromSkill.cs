@@ -54,15 +54,3 @@ public class UpStatusFromSkill : MonoBehaviour
         }
     }
 }
-/*
- * public enum SkillType
-{
-    Attack,
-    AttackSpeed,
-    Denfence,
-    Health,
-    MoveSpeed,
-    ProjectileAmount,
-    projectileSize
-}
-*/
