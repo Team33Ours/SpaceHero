@@ -5,25 +5,34 @@ using UnityEngine;
 
 public class Get_Item : MonoBehaviour
 {
-    // ¶óÀÌÇÃ, »çÀÌµå, ÆøÅº ¿ÀºêÁ§Æ® »ı¼º
-    public GameObject itemGun;
-    public GameObject itemRifle;
-    public GameObject itemScythe;
-    public GameObject itemBoom;
+     // ë¼ì´í”Œ, ì‚¬ì´ë“œ, í­íƒ„ ì˜¤ë¸Œì íŠ¸ ìƒì„±
+     public GameObject itemGun;
+     public GameObject itemRifle;
+     public GameObject itemScythe;
+     public GameObject itemBoom;
 
-    private GameObject currentItem; // ÇöÀç ÀåÂøÇÑ ¾ÆÀÌÅÛ
+     // ì²´ë ¥ íšŒë³µ ì•„ì´í…œ
+     public GameObject itemHealthPotion;
+     public GameObject itemHealthPack;
 
+     private GameObject currentItem; // í˜„ì¬ ì¥ì°©í•œ ì•„ì´í…œ
+
+
+    public void Awake()
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+    }
     public void Start()
     {
-        // ½ÃÀÛÇÒ ¶§ ±âº» ¹«±â´Â ÃÑ
-        currentItem = itemGun;
-        EquipItem(currentItem);
+        // ì‹œì‘í•  ë•Œ ê¸°ë³¸ ë¬´ê¸°ëŠ” ì´
+         //currentItem = itemGun;
+        // EquipItem(currentItem);
     }
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        // ¾ÆÀÌÅÛ ÅÂ±× ¿ÀºêÁ§Æ®¿Í Ãæµ¹ÇÑ´Ù¸é
-        if(other.CompareTag("Item"))
+        // ì•„ì´í…œ íƒœê·¸ ì˜¤ë¸Œì íŠ¸ì™€ ì¶©ëŒí•œë‹¤ë©´
+        if (other.CompareTag("Item"))
         {
             string itemName = other.gameObject.name;
 
@@ -39,20 +48,32 @@ public class Get_Item : MonoBehaviour
             {
                 EquipItem(itemBoom);
             }
-            Destroy(other.gameObject);
+            else if (itemName == "HealthPotion" || itemName == "HealthPack") ;
+            // ì²´ë ¥ íšŒë³µ ì•„ì´í…œì„ ë¨¹ì—ˆì„ ë•Œ íšŒë³µí•˜ê³  ì‚¬ë¼ì§
+            RecoveryHealth(other.gameObject);
+           
         }
+        Destroy(gameObject);
+        
+       
     }
     public void EquipItem(GameObject newItem)
     {
-        // ±âÁ¸ ¾ÆÀÌÅÛÀ» ºñÈ°¼ºÈ­
+        // ê¸°ì¡´ ì•„ì´í…œì„ ë¹„í™œì„±í™”
         if (currentItem != null)
         {
             currentItem.SetActive(false);
         }
         
-        // »õ ¾ÆÀÌÅÛÀ» È°¼ºÈ­
+        // ìƒˆ ì•„ì´í…œì„ í™œì„±í™”
         currentItem = newItem;
         currentItem.SetActive(true);
     }
-
+    public void RecoveryHealth(GameObject item)
+    {
+        // ì²´ë ¥ íšŒë³µ ì•„ì´í…œì„ ë¨¹ìœ¼ë©´ ì•„ì´í…œì„ ì‚¬ë¼ì§€ê²Œ í•¨
+        if (item.CompareTag("Item"))
+        Destroy(item);
+    }
 }
+

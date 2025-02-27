@@ -3,53 +3,103 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ¸ó½ºÅÍÀÇ »ı¼º, »ç¸ÁÃ³¸®
+/// ëª¬ìŠ¤í„°ì˜ ìƒì„±, ì‚¬ë§ì²˜ë¦¬
 /// 2025.02.24.ImSeonggyun
+/// 
+/// ëª¬ìŠ¤í„°ì˜ ê²½ìš° ì˜¤ë¸Œì íŠ¸ í’€ë§ì„ ì ìš©
+/// 2025.02.26.í•œë§Œì§„
 /// </summary>
 public class MonsterManager : Singleton<MonsterManager>
 {
-    // ¸ó½ºÅÍÀÇ °æ¿ì ¿ÀºêÁ§Æ® Ç®¸µÀ» Àû¿ë
-    public List<GameObject> monsterPool;    // Á×Àº ¸ó½ºÅÍ´Â ºñÈ°¼ºÈ­ ÈÄ Pool¿¡ ÀúÀå, List¿¡¼­ Á¦°Å
-    public List<GameObject> monsterList;    // È°¼ºÈ­µÈ ¸ó½ºÅÍ´Â List¿¡ ÀúÀå, Pool¿¡¼­ Á¦°Å
+    public int poolSize;
 
-    // Pool¿¡¼­ ¸ó½ºÅÍ°¡ ÀÖ´ÂÁö °Ë»ö
-    public GameObject FindMonster()
+    public GameObject flyingMonster;
+    public GameObject greenMonster;
+    public GameObject bossMonster;
+
+    private List<GameObject> flyingMonsterPool;
+    private List<GameObject> greenMonsterPool;
+    private List<GameObject> bossMonsterPool;
+
+    [SerializeField]
+    Transform flyingMonsterParent;
+    [SerializeField]
+    Transform greenMonsterParent;
+    [SerializeField]
+    Transform bossMonsterParent;
+
+    private void Awake()
     {
-        // monsterPool¿¡ ÀÖ´Â °Í Áß ¾Æ¹«°Å³ª 1°³ °¡Á®¿Â´Ù
-        int rand = Random.Range(0, monsterPool.Count - 1);
-        GameObject foundObj = monsterPool[rand];
-        if (foundObj != null)
+        base.Awake();
+
+        flyingMonsterPool = new List<GameObject>();
+        greenMonsterPool = new List<GameObject>();
+        bossMonsterPool = new List<GameObject>();
+
+        for(int i = 0; i < poolSize; i++)
         {
-            // ¿©±â¼­´Â monsterPool¿¡¼­ Á¦°Å¸¸ ÇÑ´Ù
-            // monsterList¿¡ Ãß°¡ÇÏ´Â°Ç FindMonster¸¦ È£ÃâÇÏ´Â °÷(CreateMonster)¿¡¼­ ÇÑ´Ù
-            foundObj.SetActive(true);
-            monsterPool.Remove(foundObj);
-            return foundObj;
+            GameObject flying = Instantiate(flyingMonster, flyingMonsterParent);
+            flying.SetActive(false);
+            flyingMonsterPool.Add(flying);
+            GameObject green = Instantiate(greenMonster, greenMonsterParent);
+            green.SetActive(false);
+            greenMonsterPool.Add(green);
+            GameObject boss = Instantiate(bossMonster, bossMonsterParent);
+            boss.SetActive(false);
+            bossMonsterPool.Add(boss);
         }
-        return null;
     }
 
-    // ÀÏ¹İ¸ó½ºÅÍ°¡ »ı¼ºµÉ ¶§ È£Ãâ
-    public void CreateMonster()
+    public GameObject FlyMonsterFromPool()
     {
-        // ¸ÕÀú poolÀ» Ã£¾Æº¸°í, ÀÖÀ¸¸é pool¿¡ ÀÖ´Â °ÍÀ» ¿ì¼± °¡Á®¿Â´Ù
-        GameObject enableObj = FindMonster();
-        if (enableObj == null)
+        for (int i = 0; i < flyingMonsterPool.Count; i++)
         {
-            /// pool¿¡ ¾Æ¹«°Íµµ ¾ø´Ù¸é, ÀÏ¹İ¸ó½ºÅÍ Áß¿¡¼­ ¾Æ¹«°Å³ª »õ·Î »ı¼ºÇÑ´Ù
-            //enableObj = GameObject.Instantiate();
-            Debug.Log("enableObj°¡ null");
+            if (!flyingMonsterPool[i].activeInHierarchy)
+            {
+                flyingMonsterPool[i].SetActive(true);
+                return flyingMonsterPool[i];
+            }
         }
-        monsterList.Add(enableObj);
 
+        GameObject flying = Instantiate(flyingMonster, flyingMonsterParent);
+        flying.SetActive(true);
+        flyingMonsterPool.Add(flying);
+        return flying;
     }
 
-    // ÀÏ¹İ¸ó½ºÅÍÀÇ »ç¸Á
-    public void RemoveMonsterOnDeath(NormalMonsterController monster)
+    public GameObject GreenMonsterFromPool()
     {
-        // Á×Àº ¸ó½ºÅÍ´Â Pool¿¡ ³Ö°í List¿¡¼­ Á¦°Å 
-        monster.gameObject.SetActive(false);
-        monsterPool.Add(monster.gameObject);
-        monsterList.Remove(monster.gameObject);
+        for (int i = 0; i < greenMonsterPool.Count; i++)
+        {
+            if (!greenMonsterPool[i].activeInHierarchy)
+            {
+                greenMonsterPool[i].SetActive(true);
+                return greenMonsterPool[i];
+            }
+        }
+        GameObject green = Instantiate(greenMonster, greenMonsterParent);
+        green.SetActive(true);
+        greenMonsterPool.Add(green);
+        return green;
+    }
+
+    public GameObject BossMonsterFromPool()
+    {
+        for (int i = 0; i < bossMonsterPool.Count; i++)
+        {
+            if (!bossMonsterPool[i].activeInHierarchy)
+            {
+                bossMonsterPool[i].SetActive(true);
+                return bossMonsterPool[i];
+            }
+        }
+        GameObject boss = Instantiate(bossMonster, bossMonsterParent);
+        boss.SetActive(true);
+        bossMonsterPool.Add(boss);
+        return boss;
+    }
+    public void RemoveMonsterOnDeath(GameObject monster)
+    {
+        monster.SetActive(false);
     }
 }

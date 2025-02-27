@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -34,6 +35,7 @@ public class WeaponHandler : MonoBehaviour
     public float KnockbackTime { get => knockbackTime; set => knockbackTime = value; }
     
     private static readonly int IsAttack = Animator.StringToHash("IsAttack");
+    private static readonly int aniSpeed = Animator.StringToHash("Speed");
     
     public BaseController Controller { get; private set; }
     
@@ -63,6 +65,24 @@ public class WeaponHandler : MonoBehaviour
     public void AttackAnimation()
     {
         animator.SetTrigger(IsAttack);
+        WaitForIt();
+    }
+    
+    IEnumerator WaitForIt()
+    {
+        yield return new WaitForSeconds( 1f / delay);
+        animator.ResetTrigger(IsAttack);
+    }
+    
+    public void AttackOutAnimation()
+    {
+        animator.ResetTrigger(IsAttack);
+    }
+
+    public void SetWeaponSpeed(float delay)
+    {
+        animator.speed = 1f / delay;
+        animator.SetFloat(aniSpeed, 1f / delay);
     }
 
     public virtual void Rotate(bool isLeft)
@@ -70,5 +90,30 @@ public class WeaponHandler : MonoBehaviour
         weaponRenderer.flipY = isLeft;
     }
     
+    public void UpgradeDamage(float upgrade)
+    {
+       power += upgrade;
+    }
     
+    public void UpgradeDelay(float upgrade)
+    {
+        // 공격속도 반복주기 감소
+        Delay -= upgrade;
+        if (Delay < 0)
+            Delay = 0.2f;
+        SetWeaponSpeed(Delay);
+    }
+    public void UpgradeBulletSpeed(float upgrade)
+    {
+        // 투사체 속도
+        Speed += upgrade;
+    }
+    public virtual void UpgradeBulletSize(float upgrade)
+    {
+       
+    }
+    public virtual void UpgradeBulletNumber(int upgrade)
+    {
+        
+    }
 }

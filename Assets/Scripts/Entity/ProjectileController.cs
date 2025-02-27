@@ -16,8 +16,10 @@ public class ProjectileController : MonoBehaviour
     
     private Rigidbody2D _rigidbody;
     private SpriteRenderer spriteRenderer;
-
+    
     public bool fxOnDestroy = true;
+    
+    public GameObject effectPrefab;
     
     private void Awake()
     {
@@ -51,6 +53,20 @@ public class ProjectileController : MonoBehaviour
         }
         else if(rangeWeaponHandler.target.value == (rangeWeaponHandler.target.value | (1 << collision.gameObject.layer)))
         {
+            ResourceController resourceController = collision.GetComponent<ResourceController>();
+            if(resourceController != null)
+            {
+                resourceController.ChangeHealth(-rangeWeaponHandler.Power);
+                if(rangeWeaponHandler.IsOnKnockback)
+                {
+                    BaseController controller = collision.GetComponent<BaseController>();
+                    if(controller != null)
+                    {
+                        controller.ApplyKnockback(transform, rangeWeaponHandler.KnockbackPower, rangeWeaponHandler.KnockbackTime);
+                    }
+                }
+            }
+            
             DestroyProjectile(collision.ClosestPoint(transform.position), fxOnDestroy);
         }
     }
@@ -77,6 +93,12 @@ public class ProjectileController : MonoBehaviour
     
     private void DestroyProjectile(Vector3 position, bool createFx)
     {
+        if (effectPrefab != null)
+        {
+            effectPrefab.transform.localScale = transform.localScale;
+            Instantiate(effectPrefab, position, Quaternion.identity);
+        }
+
         Destroy(this.gameObject);
     }
 }

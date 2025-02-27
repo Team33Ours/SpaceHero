@@ -3,42 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ±Ù°Å¸® ¹«±âÀÇ Handler
+/// ê·¼ê±°ë¦¬ ë¬´ê¸°ì˜ Handler
 /// 2025.02.24.ImSeonggyun
 /// </summary>
 public class MeleeWeaponHandler : WeaponHandler
 {
     [Header("Melee Attack Info")]
-    public Vector2 collideBoxSize = Vector2.one;    // ±Ù°Å¸® ¹«±â Ãæµ¹ °Å¸®
+    public Vector2 collideBoxSize = Vector2.one;    // ê·¼ê±°ë¦¬ ë¬´ê¸° ì¶©ëŒ ê±°ë¦¬
 
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        collideBoxSize = collideBoxSize * WeaponSize;   // collider »çÀÌÁî Á¶Á¤
+        collideBoxSize = collideBoxSize * WeaponSize;   // collider ì‚¬ì´ì¦ˆ ì¡°ì •
     }
     public override void Attack()
     {
         base.Attack();
 
-        /// ÇüÃ¼¸¦ °®°í ÀÖ´Â raycast
-        // origin¿¡´Â ÇöÀçÀ§Ä¡¿¡¼­ ¹Ù¶óº» ¹æÇâÀ¸·Î ÀÌµ¿ÇÑ ÁÂÇ¥
-        // ±× ÀÚ¸®¿¡¼­¸¸ ½ò °ÍÀÌ¹Ç·Î distance´Â 0
+        /// í˜•ì²´ë¥¼ ê°–ê³  ìˆëŠ” raycast
+        // originì—ëŠ” í˜„ì¬ìœ„ì¹˜ì—ì„œ ë°”ë¼ë³¸ ë°©í–¥ìœ¼ë¡œ ì´ë™í•œ ì¢Œí‘œ
+        // ê·¸ ìë¦¬ì—ì„œë§Œ ì  ê²ƒì´ë¯€ë¡œ distanceëŠ” 0
         RaycastHit2D hit = Physics2D.BoxCast(transform.position + (Vector3)Controller.LookDirection * collideBoxSize.x,
             collideBoxSize, 0, Vector2.zero, 0, target);
 
         if (hit.collider != null)
         {
-            // Ã¼·Â°ü¸®´Â ResourceController¿¡¼­ 
+            // ì²´ë ¥ê´€ë¦¬ëŠ” ResourceControllerì—ì„œ 
             ResourceController resourceController = hit.collider.GetComponent<ResourceController>();
             if (resourceController != null)
             {
                 resourceController.ChangeHealth(-Power);
-                // ³Ë¹éÀÌ ÄÑÁ®ÀÖ´Ù¸é
+                // ë„‰ë°±ì´ ì¼œì ¸ìˆë‹¤ë©´
                 if (IsOnKnockback)
                 {
-                    // BaseController·Î Á¶Àı
+                    // BaseControllerë¡œ ì¡°ì ˆ
                     BaseController controller = hit.collider.GetComponent<BaseController>();
                     if (controller != null)
                     {
@@ -48,10 +48,10 @@ public class MeleeWeaponHandler : WeaponHandler
             }
         }
     }
-    // ±Ù°Å¸® ¹«±âÀÇ rotate´Â ¿ø°Å¸® ¹«±âÀÇ rotate¿Í ´Ù¸£´Ù
+    // ê·¼ê±°ë¦¬ ë¬´ê¸°ì˜ rotateëŠ” ì›ê±°ë¦¬ ë¬´ê¸°ì˜ rotateì™€ ë‹¤ë¥´ë‹¤
     public override void Rotate(bool isLeft)
     {
-        // ±Ù°Å¸® ¹«±â´Â yÃàÀ¸·Î È¸ÀüÇØ¾ß rotate°¡ Àß Àû¿ëµÈ´Ù
+        // ê·¼ê±°ë¦¬ ë¬´ê¸°ëŠ” yì¶•ìœ¼ë¡œ íšŒì „í•´ì•¼ rotateê°€ ì˜ ì ìš©ëœë‹¤
         if (isLeft)
             transform.eulerAngles = new Vector3(0, 180, 0);
         else

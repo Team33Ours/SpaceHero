@@ -148,10 +148,9 @@ GameObject:
   - component: {fileID: 8433373316467536575}
   - component: {fileID: 8704191396868886751}
   - component: {fileID: 6068005107368061325}
-  - component: {fileID: 8429067599424946554}
+  - component: {fileID: 105181312310086335}
   - component: {fileID: 7505151443515382385}
   - component: {fileID: 8386380510562371075}
-  - component: {fileID: 7394122784887328975}
   - component: {fileID: 2707991009301727638}
   m_Layer: 0
   m_Name: BossMonster
@@ -249,7 +248,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.5847878, y: 2.8137012}
   m_EdgeRadius: 0
---- !u!114 &8429067599424946554
+--- !u!114 &105181312310086335
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -258,7 +257,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5127828454102927722}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d7ef533e35e43049838954b82d73297, type: 3}
+  m_Script: {fileID: 11500000, guid: 1107202a8ad7bb04c956b11998419f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   healthChangeDelay: 0.5
@@ -275,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee68efacc8d8d3439cb8003fb177b9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterRenderer: {fileID: 0}
+  characterRenderer: {fileID: 2224840236128114575}
 --- !u!114 &8386380510562371075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,20 +290,7 @@ MonoBehaviour:
   maxHealth: 0
   maxMana: 0
   maxSpeed: 0
---- !u!114 &7394122784887328975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5127828454102927722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d7ef533e35e43049838954b82d73297, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthChangeDelay: 0.5
-  damageClip: {fileID: 0}
+  exp: 0
 --- !u!114 &2707991009301727638
 MonoBehaviour:
   m_ObjectHideFlags: 0

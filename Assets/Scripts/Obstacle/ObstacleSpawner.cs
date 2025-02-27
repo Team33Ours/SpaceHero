@@ -33,20 +33,13 @@ public class ObstacleSpawner : MonoBehaviour
 
     private List<Bounds> wallBoundsList = new List<Bounds>(); // 벽의 Bounds 리스트
     private List<Bounds> itemObstacleBoundsList = new List<Bounds>(); // 아이템 장애물의 Bounds 리스트
+    private List<Bounds> enemyBoundsList = new List<Bounds>(); // 적의 Bounds 리스트
 
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         InitTileDictionary();
-        CreateFloorTiles(5, 3, 100);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
     void InitTileDictionary()
     {
@@ -65,10 +58,10 @@ public class ObstacleSpawner : MonoBehaviour
     }
 
     // 주어진 stage에 맞는 바닥 타일을 생성하고, 해당 타일에 벽 타일과 아이템 장애물을 배치
-    void CreateFloorTiles(int stage, int wallTileCount, int ItemObstacleCount)
+    public GameObject CreateFloorTiles(int stage, int wallTileCount, int ItemObstacleCount, int enemyCount)
     {
         // 특정 바닥 타일을 선택해서 생성. ElementAt: 인덱스에 해당하는 요소를 반환
-        GameObject selectedFloorTile = tileToWalls.Keys.ElementAt(stage - 1); // 선택된 바닥 타일을 가져옴 (stage에 맞춰 타일을 선택)
+        GameObject selectedFloorTile = tileToWalls.Keys.ElementAt(stage); // 선택된 바닥 타일을 가져옴 (stage에 맞춰 타일을 선택)
         List<GameObject> wallTiles = tileToWalls[selectedFloorTile]; // 해당 바닥 타일에 맞는 벽 타일 목록
         List<GameObject> itemObstacles = tileToItemObstacle[selectedFloorTile]; // 해당 바닥 타일에 맞는 아이템 장애물 목록
 
@@ -76,6 +69,7 @@ public class ObstacleSpawner : MonoBehaviour
         GameObject instantiatedFloorTile = Instantiate(selectedFloorTile, transform.position, Quaternion.identity);
         wallBoundsList.Clear(); // 벽 Bounds 리스트 초기화
         itemObstacleBoundsList.Clear(); // 아이템 장애물 Bounds 리스트 초기화
+        enemyBoundsList.Clear(); // 적 Bounds 리스트 초기화
 
 
         // 벽 타일을 랜덤하게 생성
@@ -146,10 +140,60 @@ public class ObstacleSpawner : MonoBehaviour
 
                 // 생성된 아이템 장애물의 Bounds를 추가
                 itemObstacleBoundsList.Add(new Bounds(spawnPos, itemBounds.size));
+            }     
+        }
+        
+
+        for(int i = 0; i < enemyCount; i ++)
+        {
+            int randomMonster = Random.Range(0, 2);
+            GameObject monster = null;
+
+            if (randomMonster == 0)
+            {
+                GameObject flyEnemy = MonsterManager.Instance.FlyMonsterFromPool();
+                monster = flyEnemy;
+            }
+            else
+            {
+                GameObject greenEnemy = MonsterManager.Instance.GreenMonsterFromPool();
+                monster = greenEnemy;
+            }
+
+            Renderer monsterRenderer = monster.GetComponentInChildren<Renderer>();
+
+            Bounds monsterBounds = monsterRenderer.bounds;
+            Vector3 spawnPos;
+            int maxAttempts = 10; // 최대 시도 횟수
+            int attempt = 0;
+            bool isOverlapping;
+
+            do
+            {
+                float monsterXPos = Random.Range(-5f, 5f);
+                float monsterYPos = Random.Range(-9f, 24f);
+
+                spawnPos = new Vector3(monsterXPos, monsterYPos, 0);
+                Bounds newMonsterBounds = new Bounds(spawnPos, monsterBounds.size);
+
+                isOverlapping = wallBoundsList.Any(wallBounds => wallBounds.Intersects(newMonsterBounds));
+
+                attempt++;
+                if (attempt >= maxAttempts) break; // 시도 횟수 초과 시 중단
+
+            } while (isOverlapping);
+
+            // 겹치지 않으면 아이템 장애물 생성
+            if (!isOverlapping)
+            {
+                monster.transform.position = spawnPos;
+                // 생성된 아이템 장애물의 Bounds를 추가
+                enemyBoundsList.Add(new Bounds(spawnPos, monsterBounds.size));
             }
         }
+
+        return instantiatedFloorTile;
     }  
 }
-
 
 

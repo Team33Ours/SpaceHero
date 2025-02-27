@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BaseController : MonoBehaviour
@@ -27,6 +28,7 @@ public class BaseController : MonoBehaviour
     [SerializeField] public WeaponHandler WeaponPrefab;
 	protected WeaponHandler weaponHandler;
 
+    protected bool isMonster;           // 애니메이션 flip문제로 캐릭터/몬스터 분할
     protected bool isMoving;
 	protected bool isAttacking;
 	private float timeSinceLastAttack = float.MaxValue;
@@ -93,6 +95,7 @@ public class BaseController : MonoBehaviour
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         bool isLeft = Mathf.Abs(rotZ) > 90f;
 
+        if(isMonster)
         characterRenderer.flipX = isLeft;
 
         if (weaponPivot != null)
@@ -125,6 +128,7 @@ public class BaseController : MonoBehaviour
             animationHandler.Attack(true);
 		    Attack();
 	    }
+        
     }
 
     protected virtual void Attack()
@@ -137,7 +141,7 @@ public class BaseController : MonoBehaviour
     {
         foreach (SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
         {
-            // a���� �ٲ۴�
+            // a값만 바꾼다
             Color color = renderer.color;
             color.a = 0.3f;
             renderer.color = color;
@@ -146,6 +150,19 @@ public class BaseController : MonoBehaviour
         {
             component.enabled = false;
         }
+        
+        // gameObject.SetActive(false);
         // Destroy�� ������ Controller���� ����
+    }
+
+    public void ChangeWeapon(WeaponHandler weapon)
+    {
+        Destroy(weaponHandler.gameObject);
+        
+        WeaponPrefab = weapon;
+        if (WeaponPrefab != null)
+            weaponHandler = Instantiate(WeaponPrefab, weaponPivot);
+        else
+            weaponHandler = GetComponentInChildren<WeaponHandler>();
     }
 }

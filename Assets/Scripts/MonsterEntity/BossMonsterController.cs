@@ -4,59 +4,65 @@ using UnityEngine;
 
 
 /// <summary>
-/// º¸½ºÀÇ Phase
+/// ë³´ìŠ¤ì˜ Phase
 /// </summary>
 public enum eBossPhase
 {
-    None,   // »ç¸Á
+    None,   // ì‚¬ë§
     Phase_1,
-    Phase_2, // Ã¼·ÂÀÇ 70%: ¿ø°Å¸® °ø°İ
-    Phase_3  // Ã¼·ÂÀÇ 30%: ½ºÅ³ °ø°İ
+    Phase_2, // ì²´ë ¥ì˜ 70%: ì›ê±°ë¦¬ ê³µê²©
+    Phase_3  // ì²´ë ¥ì˜ 30%: ìŠ¤í‚¬ ê³µê²©
 }
 
 /// <summary>
-/// º¸½º¸ó½ºÅÍÀÇ ÀÌµ¿,°ø°İ ±â´É
+/// ë³´ìŠ¤ëª¬ìŠ¤í„°ì˜ ì´ë™,ê³µê²© ê¸°ëŠ¥
 /// 2025.02.24.ImSeonggyun
 /// </summary>
 public class BossMonsterController : BaseController
 {
     private MonsterManager monsterManager;
     private Transform target;
-    private eBossPhase phase;
+    public eBossPhase phase;
 
-    // º¸½º´Â BaseÀÇ WeaponPrefab¿¡´Â ±Ù°Å¸® ¹«±â¸¦ ÇÒ´ç
-    [SerializeField] public WeaponHandler RangeWeaponPrefab;     // RangeWeaponPrefab¿¡´Â ¿ø°Å¸® ¹«±â¸¦ ÇÒ´ç
+    // ë³´ìŠ¤ëŠ” Baseì˜ WeaponPrefabì—ëŠ” ê·¼ê±°ë¦¬ ë¬´ê¸°ë¥¼ í• ë‹¹
+    [SerializeField] public WeaponHandler RangeWeaponPrefab;     // RangeWeaponPrefabì—ëŠ” ì›ê±°ë¦¬ ë¬´ê¸°ë¥¼ í• ë‹¹
 
-    // ¸ó½ºÅÍ Á¾·ù¿¡ µû¶ó ´Ù¸¥ °ªµé
+    // ëª¬ìŠ¤í„° ì¢…ë¥˜ì— ë”°ë¼ ë‹¤ë¥¸ ê°’ë“¤
     [SerializeField] private float followRange;
+
+    private void Awake()
+    {
+        // ì”¬ì´ ë°”ë€ŒëŠ”ê±¸ ëŒ€ë¹„í•´ì„œ í”„ë¦¬íŒ¹ ì°¾ì•„ì„œ ì—°ê²°í•´ì•¼í•œë‹¤
+
+    }
 
     public void Initialize(MonsterManager _monsterManager, Transform _target, float _followRange)
     {
         monsterManager = _monsterManager;
         target = _target;
 
-        // ¸ó½ºÅÍ¸¶´Ù °ªÀÌ ´Ù¸£¹Ç·Î »ı¼º½Ã¿¡ ÁöÁ¤ÇØÁØ´Ù
+        // ëª¬ìŠ¤í„°ë§ˆë‹¤ ê°’ì´ ë‹¤ë¥´ë¯€ë¡œ ìƒì„±ì‹œì— ì§€ì •í•´ì¤€ë‹¤
         followRange = _followRange;
         phase = eBossPhase.Phase_1;
     }
-    // º¸½º¸ó½ºÅÍÀÇ ÀÌµ¿·ÎÁ÷
+    // ë³´ìŠ¤ëª¬ìŠ¤í„°ì˜ ì´ë™ë¡œì§
     protected override void HandleAction()
     {
-        // OOP Æ¯°­¶§ Áö¿ìÁö ¸»¶ó°í Çß´ø °ÍÀÌ »ı°¢³µ´Ù
+        // OOP íŠ¹ê°•ë•Œ ì§€ìš°ì§€ ë§ë¼ê³  í–ˆë˜ ê²ƒì´ ìƒê°ë‚¬ë‹¤
         base.HandleAction();
 
-        // ¸ó½ºÅÍ°¡ ¹«±â ÀåÂø½Ã Ãß°¡
+        // ëª¬ìŠ¤í„°ê°€ ë¬´ê¸° ì¥ì°©ì‹œ ì¶”ê°€
 
-        // °Å¸®,¹æÇâ ±¸ÇÏ±â
+        // ê±°ë¦¬,ë°©í–¥ êµ¬í•˜ê¸°
         float distance = DistanceToTarget();
         Vector2 direction = DirectionToTarget();
 
-        // Phase¿¡ µû¸¥ ÀÌµ¿, °ø°İ ±¸ºĞ
-        // phase1: ÀÏ¹İ¸ó½ºÅÍ¿Í À¯»çÇÏ°Ô ÀÌµ¿¿¡ µû¸¥ ±Ù°Å¸® °ø°İ
-        // phase2: ¿ø°Å¸® °ø°İ
-        // phase3: ½ºÅ³ °ø°İ
+        // Phaseì— ë”°ë¥¸ ì´ë™, ê³µê²© êµ¬ë¶„
+        // phase1: ì¼ë°˜ëª¬ìŠ¤í„°ì™€ ìœ ì‚¬í•˜ê²Œ ì´ë™ì— ë”°ë¥¸ ê·¼ê±°ë¦¬ ê³µê²©
+        // phase2: ì›ê±°ë¦¬ ê³µê²©
+        // phase3: ìŠ¤í‚¬ ê³µê²©
 
-        // Ã¼·Â ÆÇÁ¤À» ÇØ¾ßÇÑ´Ù
+        
     }
     protected float DistanceToTarget()
     {
@@ -67,10 +73,8 @@ public class BossMonsterController : BaseController
         return (target.position - transform.position).normalized;
     }
 
-    // º¸½ºÀÇ °ø°İ°ú ½ºÅ³
-    // ½ºÅ³Àº BaseSkillHandler°¡ ÇÊ¿äÇÏ¸ç
-    // ÀÌ¸¦ Player¿Í º¸½º¸ó½ºÅÍ°¡ »ó¼ÓÀ» ¹Ş¾Æ¼­ ±¸ÇöÇÑ´Ù
-    // Controller´Â ±×°É °¡Á®¿Í¼­ ¾´´Ù
+    // ë³´ìŠ¤ì˜ ê³µê²©ê³¼ ìŠ¤í‚¬
+    // ControllerëŠ” ê·¸ê±¸ ê°€ì ¸ì™€ì„œ ì“´ë‹¤
 
 
 }
