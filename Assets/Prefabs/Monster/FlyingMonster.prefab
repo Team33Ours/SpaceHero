@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 6343280086570024964}
   m_Layer: 7
   m_Name: FlyingMonster
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -284,6 +284,7 @@ MonoBehaviour:
   weaponHandler: {fileID: 0}
   monsterManager: {fileID: 0}
   target: {fileID: 0}
+  monsterAnimator: {fileID: 0}
   followRange: 5
 --- !u!114 &5811234705101494298
 MonoBehaviour:

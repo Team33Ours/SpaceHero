@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360dd8d501a65a1478654effe7b4c569, type: 3}
   m_Name: BossMonsterStatus
   m_EditorClassIdentifier: 
-  currentHealth: 500
-  maxHealth: 500
+  maxHealth: 20
   speed: 7
   currentSpeed: 7
   attack: 15

@@ -16,39 +16,13 @@ public class SkillManager : Singleton<SkillManager>
 
     DataManager dataManager;
 
-    /// <summary>
-    /// 씬이 로드될 때 OnSceneLoaded 추가
-    /// </summary>
-    protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        base.OnSceneLoaded(scene, mode);  // 부모 클래스 로그 출력 유지
-
-        // 멤버의 초기화는 Awake
-        if (playerSkills == null)
-            playerSkills = new Dictionary<string, BaseSkill>();
-        if (playerLearned == null)
-            playerLearned = new Dictionary<string, BaseSkill>();
-        if (bossMobSkills == null)
-            bossMobSkills = new Dictionary<string, BaseSkill>();
-
-        dataManager = DataManager.Instance;
-
-        // 임시
-        //SaveDefaultSkills();
-
-        // 데이터매니저로부터 스킬을 가져온다
-        LoadAllSkills();
-    }
-    /// <summary>
-    /// 씬이 언로드될때 OnDestroy 추가
-    /// </summary>
-    protected override void OnDestroy()
-    {
-        base.OnDestroy();
-    }
-
-    //private void Awake()
+    ///// <summary>
+    ///// 씬이 로드될 때 OnSceneLoaded 추가
+    ///// </summary>
+    //protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     //{
+    //    base.OnSceneLoaded(scene, mode);  // 부모 클래스 로그 출력 유지
+
     //    // 멤버의 초기화는 Awake
     //    if (playerSkills == null)
     //        playerSkills = new Dictionary<string, BaseSkill>();
@@ -59,16 +33,42 @@ public class SkillManager : Singleton<SkillManager>
 
     //    dataManager = DataManager.Instance;
 
-    //}
-    //public void Start()
-    //{
     //    // 임시
     //    //SaveDefaultSkills();
-
 
     //    // 데이터매니저로부터 스킬을 가져온다
     //    LoadAllSkills();
     //}
+    ///// <summary>
+    ///// 씬이 언로드될때 OnDestroy 추가
+    ///// </summary>
+    //protected override void OnDestroy()
+    //{
+    //    base.OnDestroy();
+    //}
+
+    private void Awake()
+    {
+        // 멤버의 초기화는 Awake
+        if (playerSkills == null)
+            playerSkills = new Dictionary<string, BaseSkill>();
+        if (playerLearned == null)
+            playerLearned = new Dictionary<string, BaseSkill>();
+        if (bossMobSkills == null)
+            bossMobSkills = new Dictionary<string, BaseSkill>();
+
+        dataManager = DataManager.Instance;
+
+    }
+    public void Start()
+    {
+        // 임시
+        //SaveDefaultSkills();
+
+
+        // 데이터매니저로부터 스킬을 가져온다
+        LoadAllSkills();
+    }
 
     public void SaveDefaultSkills()
     {

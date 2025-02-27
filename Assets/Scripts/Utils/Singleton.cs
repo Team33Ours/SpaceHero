@@ -45,7 +45,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             }
 
             DontDestroyOnLoad(gameObject);   // 씬 변경 시에도 유지
-            SceneManager.sceneLoaded += OnSceneLoaded;  // 씬 변경 감지 추가
+            //SceneManager.sceneLoaded += OnSceneLoaded;  // 씬 변경 감지 추가
         }
         // 이미 싱글턴 인스턴스가 존재하면, 현재 객체를 삭제
         else if (instance != this)
@@ -54,17 +54,17 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 씬이 로드될 때 실행되는 메서드 (각 매니저에서 오버라이드)
-    /// </summary>
-    /// <param name="scene"></param>
-    /// <param name="mode"></param>
-    protected virtual void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // 각각 클래스에서 정의해서 사용한다
-    }
-    protected virtual void OnDestroy()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
+    ///// <summary>
+    ///// 씬이 로드될 때 실행되는 메서드 (각 매니저에서 오버라이드)
+    ///// </summary>
+    ///// <param name="scene"></param>
+    ///// <param name="mode"></param>
+    //protected virtual void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    //{
+    //    // 각각 클래스에서 정의해서 사용한다
+    //}
+    //protected virtual void OnDestroy()
+    //{
+    //    SceneManager.sceneLoaded -= OnSceneLoaded;
+    //}
 }

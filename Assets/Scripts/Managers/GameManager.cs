@@ -22,33 +22,10 @@ public class GameManager : Singleton<GameManager>
     private AchievementManager achievementManager;
     //public GameObject player;
 
-    /// <summary>
-    /// 씬이 로드될 때 OnSceneLoaded 추가
-    /// </summary>
-    protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        base.Awake();
-        obstacleSpawner = FindObjectOfType<ObstacleSpawner>();
-
-        /// 디버그용으로 하이러키에 올려놓은 Player와 연결한다
-        playerController = FindObjectOfType<PlayerController>();    // 실패. 프리팹이 연결된다
-        //GameObject playerObj = GameObject.Find("Player"); // 하이러키에서 'Player'라는 이름을 가진 오브젝트 찾기
-        //if (playerObj != null)
-        //{
-        //    playerController = playerObj.GetComponent<PlayerController>();
-        //}sd
-
-    }
-    /// <summary>
-    /// 씬이 언로드될때 OnDestroy 추가
-    /// </summary>
-    protected override void OnDestroy()
-    {
-        base.OnDestroy();
-    }
-
-
-    //protected override void Awake()
+    ///// <summary>
+    ///// 씬이 로드될 때 OnSceneLoaded 추가
+    ///// </summary>
+    //protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     //{
     //    base.Awake();
     //    obstacleSpawner = FindObjectOfType<ObstacleSpawner>();
@@ -60,28 +37,51 @@ public class GameManager : Singleton<GameManager>
     //    //{
     //    //    playerController = playerObj.GetComponent<PlayerController>();
     //    //}sd
-    //}
 
-    //void Start()
+    //}
+    ///// <summary>
+    ///// 씬이 언로드될때 OnDestroy 추가
+    ///// </summary>
+    //protected override void OnDestroy()
     //{
-    //    //// 현재씬이 게임씬인지 확인하기
-    //    //if (EditorSceneManager.GetActiveScene().name != "MainScene")
-    //    //{
-    //    //    return;
-    //    //}
-    //    //currentStage = obstacleSpawner.CreateFloorTiles((stage - 1) / 10, 3, 5, 5);
-
-    //    //// 업적 매니저 가져오기
-    //    //achievementManager = AchievementManager.Instance;
-
-    //    //// 업적 저장
-    //    //achievementManager.SaveAchievements();
-
+    //    base.OnDestroy();
     //}
-    //void Update()
-    //{
 
-    //}
+
+    protected override void Awake()
+    {
+        base.Awake();
+        obstacleSpawner = FindObjectOfType<ObstacleSpawner>();
+
+        /// 디버그용으로 하이러키에 올려놓은 Player와 연결한다
+        playerController = FindObjectOfType<PlayerController>();    // 실패. 프리팹이 연결된다
+        //GameObject playerObj = GameObject.Find("Player"); // 하이러키에서 'Player'라는 이름을 가진 오브젝트 찾기
+        //if (playerObj != null)
+        //{
+        //    playerController = playerObj.GetComponent<PlayerController>();
+        //}sd
+    }
+
+    void Start()
+    {
+        //// 현재씬이 게임씬인지 확인하기
+        //if (EditorSceneManager.GetActiveScene().name != "MainScene")
+        //{
+        //    return;
+        //}
+        //currentStage = obstacleSpawner.CreateFloorTiles((stage - 1) / 10, 3, 5, 5);
+
+        //// 업적 매니저 가져오기
+        //achievementManager = AchievementManager.Instance;
+
+        //// 업적 저장
+        //achievementManager.SaveAchievements();
+
+    }
+    void Update()
+    {
+
+    }
     public void AddKillCount()
     {
         killCount++;

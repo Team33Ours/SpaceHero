@@ -122,6 +122,7 @@ public class BossMonsterController : BaseController
             //skillAction = () => StartCoroutine(UseSkill1()); // 방법1.람다
             skillAction = StartSkill1;  /// 방법2.void를 반환하는 메서드 안에서 코루틴을 호출한다
             movementDirection = Vector2.zero;  // 이동 안 함
+            Debug.Log("스킬1: 아이스볼");
         }
         else if (phase == eBossPhase.Phase_3)
         {
@@ -139,6 +140,7 @@ public class BossMonsterController : BaseController
             {
                 lookDirection = direction;
                 movementDirection = direction;
+                Debug.Log("스킬1: 썬더태클");
             }
         }
     }
@@ -156,8 +158,11 @@ public class BossMonsterController : BaseController
         {
             HandleAction();
         }
-        else
+        else // 1,3
         {
+            // phase1: 근접공격
+            // phase3: 스킬로 근접공격
+            // 단순 근접공격과 스킬 근접공격은 다르다
 
         }
     }

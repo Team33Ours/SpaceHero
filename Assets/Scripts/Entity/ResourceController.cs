@@ -44,6 +44,13 @@ public class ResourceController : MonoBehaviour
 
         // BaseController에 정보 주입
         baseController.Status = Status;
+
+
+        if (this.gameObject == CompareTag("Enemy"))
+        {
+            BossMonsterResourceController boMonReCon = GetComponent<BossMonsterResourceController>();
+            boMonReCon.Status = Status;
+        }
     }
 
     private void Update()
@@ -82,7 +89,7 @@ public class ResourceController : MonoBehaviour
             if (damageClip != null)
                 SoundManager.PlayClip(damageClip);
         }
-        
+
         if (currentHP <= 0)
         {
             Death();
@@ -150,7 +157,7 @@ public class ResourceController : MonoBehaviour
     // 몬스터의 스킬에 의한 체력감소,스피드감소 효과
     public void TakeDamage(float damage)
     {
-        currentHP = currentHP > damage ? (currentHP  - damage) : 0;
+        currentHP = currentHP > damage ? (currentHP - damage) : 0;
     }
     public IEnumerator TakeDamageAndDebuff(float damage, float speed, float time)
     {
