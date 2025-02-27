@@ -93,6 +93,10 @@ public class ResourceController : MonoBehaviour
         if (currentHP <= 0)
         {
             Death();
+            if (this.gameObject != CompareTag("Player"))
+            {
+                // 보석 프리팹 동적 생성 1~2개
+            }
         }
         return true;
     }
