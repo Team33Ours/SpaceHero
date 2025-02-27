@@ -41,6 +41,9 @@ public class ResourceController : MonoBehaviour
         // UI에 스탯 정보 주입
         GameObjectUI uiNeedStat = GetComponent<GameObjectUI>();
         uiNeedStat.ObjectStat = Status;
+
+        // BaseController에 정보 주입
+        baseController.Status = Status;
     }
 
     private void Update()
