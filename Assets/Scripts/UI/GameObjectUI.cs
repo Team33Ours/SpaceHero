@@ -7,7 +7,7 @@ using System;
 
 public class GameObjectUI : MonoBehaviour
 {
-    // Status should be injected from the game object class.
+    // 스테이터스는 오브젝트로부터 주입받아야함
     internal TempStatus ObjectStat = null;
     private bool isHealthPointDifferent;
     private float hpDifferenceCheck;
