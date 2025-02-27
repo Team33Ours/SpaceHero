@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2654065009687506330}
   - component: {fileID: 3895617669004876711}
   - component: {fileID: 4651433011532401499}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 335263872203844523}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WeaponPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 5872209401566696317}
   - component: {fileID: 6798476047753247751}
   - component: {fileID: 3725265983294745820}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GreenMonster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -202,7 +202,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &3955007863317941569
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthChangeDelay: 0.5
-  damageClip: {fileID: 0}
+  damageClip: {fileID: 8300000, guid: 2226345105624b545b4b4cd29094be49, type: 3}
 --- !u!114 &5872209401566696317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,7 +277,10 @@ MonoBehaviour:
   characterRenderer: {fileID: 3895617669004876711}
   weaponPivot: {fileID: 335263872203844523}
   WeaponPrefab: {fileID: 8210371699655508452, guid: da190afd3be044f45800284a4690f3f8, type: 3}
-  followRange: 0
+  weaponHandler: {fileID: 0}
+  monsterManager: {fileID: 0}
+  target: {fileID: 0}
+  followRange: 1
 --- !u!114 &6798476047753247751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,10 +293,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb53868ef34b7a478a0ae8c5ba7bb49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  maxHealth: 30
   maxMana: 0
-  maxSpeed: 0
-  exp: 0
+  maxSpeed: 1
+  exp: 30
 --- !u!114 &3725265983294745820
 MonoBehaviour:
   m_ObjectHideFlags: 0

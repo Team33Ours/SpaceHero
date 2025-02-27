@@ -37,6 +37,9 @@ public class WeaponHandler : MonoBehaviour
     private static readonly int IsAttack = Animator.StringToHash("IsAttack");
     private static readonly int aniSpeed = Animator.StringToHash("Speed");
     
+    public AudioClip attackSoundClip;
+
+    
     public BaseController Controller { get; private set; }
     
     private Animator animator;
@@ -60,6 +63,8 @@ public class WeaponHandler : MonoBehaviour
     public virtual void Attack()
     {
         AttackAnimation();
+        if (attackSoundClip != null)
+            SoundManager.PlayClip(attackSoundClip);
     }
 
     public void AttackAnimation()
@@ -87,7 +92,8 @@ public class WeaponHandler : MonoBehaviour
 
     public virtual void Rotate(bool isLeft)
     {
-        weaponRenderer.flipY = isLeft;
+        // weapon y플립으로 위치 안맞는 현상으로 일단은 주석처리
+        // weaponRenderer.flipY = isLeft;
     }
     
     public void UpgradeDamage(float upgrade)

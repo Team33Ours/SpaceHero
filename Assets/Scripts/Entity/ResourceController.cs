@@ -77,10 +77,10 @@ public class ResourceController : MonoBehaviour
         {
             animationHandler.Damage();
 
-            //if (damageClip != null)
-            //    SoundManager.PlayClip(damageClip);
-
+            if (damageClip != null)
+                SoundManager.PlayClip(damageClip);
         }
+        
         if (CurrentHealth <= 0)
         {
             Death();
@@ -144,4 +144,29 @@ public class ResourceController : MonoBehaviour
         OnChangeMana -= action;
     }
     #endregion
+
+    // 몬스터의 스킬에 의한 체력감소,스피드감소 효과
+    public void TakeDamage(float damage)
+    {
+        CurrentHealth = CurrentHealth > damage ? (CurrentHealth - damage) : 0;
+    }
+    public IEnumerator TakeDamageAndDebuff(float damage, float speed, float time)
+    {
+        CurrentHealth -= damage;
+        bool isCurrentSpeedFaster;
+        float delta;
+        if (CurrentSpeed > speed)
+        {
+            isCurrentSpeedFaster = true;
+            delta = speed;
+        }
+        else
+        {
+            isCurrentSpeedFaster = false;
+            delta = CurrentSpeed;
+        }
+        CurrentSpeed -= delta;
+        yield return new WaitForSeconds(time);  // 지속시간
+        CurrentSpeed += delta;      // 원래대로
+    }
 }

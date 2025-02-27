@@ -50,21 +50,22 @@ MonoBehaviour:
   weaponSize: 1
   power: 1
   speed: 1
-  attackRange: 10
+  attackRange: 5
   target:
     serializedVersion: 2
     m_Bits: 64
   isOnKnockback: 0
   knockbackPower: 0.1
   knockbackTime: 0.5
+  attackSoundClip: {fileID: 8300000, guid: f7b7004d259dbcd47a47810e6bf91a56, type: 3}
   projectileSpawnPosition: {fileID: 8291490316482544404}
-  bulletIndex: 0
+  bulletIndex: 2
   bulletSize: 1
-  duration: 0
-  spread: 0
-  numberofProjectilesPerShot: 0
-  multipleProjectilesAngel: 0
-  projectileColor: {r: 0, g: 0, b: 0, a: 0}
+  duration: 1
+  spread: 3
+  numberofProjectilesPerShot: 1
+  multipleProjectilesAngel: 3
+  projectileColor: {r: 0, g: 1, b: 1, a: 1}
 --- !u!1 &7117940340824323628
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,6 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3826438990265648057}
   - component: {fileID: 8791102418492928484}
+  - component: {fileID: 4387484443024847982}
   m_Layer: 0
   m_Name: WeaponSprite
   m_TagString: Untagged
@@ -169,8 +171,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 69f50060fe8045cdbbae6abf4d6acf07, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 6002dd520da44d0a8a26c7ae17694789, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -180,3 +182,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4387484443024847982
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8647017680694845032}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 961193ecad411b34589b18a7ca8b79b8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Define;
 
 /// <summary>
 /// 플레이어와 몬스터의 스킬을 관리하는 매니저
@@ -15,10 +14,6 @@ public class SkillManager : Singleton<SkillManager>
     public Dictionary<string, BaseSkill> bossMobSkills; // 보스몬스터 스킬
 
     DataManager dataManager;
-
-    // 사용할 스킬을 저장할 delegate 또는 action
-    fDf fdf;
-
 
     private void Awake()
     {
@@ -54,7 +49,7 @@ public class SkillManager : Singleton<SkillManager>
 
         // 몬스터의 전체 스킬
         MonsterSkill s1 = new MonsterSkill("IceBall", 0f, 1f, "1초에 한번씩 날라오는 아이스볼. 맞으면 5초동안 느려진다", 10f, 2f, 5f); // 데미지: 10f, 느려짐: 2f만큼, 지속시간: 5f
-        MonsterSkill s2 = new MonsterSkill("Thunder Tackle", 0f, 10f, "10초에 한번씩 온몸에 전기를 두르고 달려든다. 데미지가 매우 세다", 30f);    // 데미지: 30f
+        MonsterSkill s2 = new MonsterSkill("ThunderTackle", 0f, 10f, "5초에 한번씩 온몸에 전기를 두르고 달려든다. 데미지가 매우 세다", 30f);    // 데미지: 30f
         bossMobSkills.Add(s1.GetName(), s1);
         bossMobSkills.Add(s2.GetName(), s2);
         // 임시 json 파일 만든다

@@ -130,7 +130,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.4}
+  m_Offset: {x: 0, y: -0.35}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -141,7 +141,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.8}
+  m_Size: {x: 1, y: 1.6}
   m_EdgeRadius: 0
 --- !u!114 &5404968539883658654
 MonoBehaviour:
@@ -158,6 +158,7 @@ MonoBehaviour:
   characterRenderer: {fileID: 955889267384814738}
   weaponPivot: {fileID: 1164088475228124874}
   WeaponPrefab: {fileID: 6948556320698675280, guid: 1a59eee49d713a5419a5fe4a665164f1, type: 3}
+  weaponHandler: {fileID: 0}
 --- !u!114 &6337195248035802918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthChangeDelay: 0.5
-  damageClip: {fileID: 0}
+  damageClip: {fileID: 8300000, guid: e25ff94f767658b4fb27c352fe34db91, type: 3}
 --- !u!1 &8729735719669750370
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +213,7 @@ GameObject:
   - component: {fileID: 2602168935273926643}
   - component: {fileID: 6008217316317007508}
   - component: {fileID: 4225846941414938967}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: EnemySearch
   m_TagString: Untagged
   m_Icon: {fileID: 0}

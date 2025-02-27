@@ -10,11 +10,14 @@ using UnityEngine;
 /// </summary>
 public class NormalMonsterController : BaseController
 {
-    private MonsterManager monsterManager;
-    private Transform target;
+    //private MonsterManager monsterManager;
+    public MonsterManager monsterManager;
+    //private Transform target;
+    public Transform target;
 
     // 몬스터 종류에 따라 다른 값들
-    [SerializeField] private float followRange;
+    //[SerializeField] private float followRange;
+    [SerializeField] public float followRange;
 
     public void Initialize(MonsterManager _monsterManager, Transform _target, float _followRange)
     {
@@ -30,9 +33,16 @@ public class NormalMonsterController : BaseController
         // OOP 특강때 지우지 말라고 했던 것이 생각났다
         base.HandleAction();
 
+        if (weaponHandler == null || target == null)
+        {
+            if (!movementDirection.Equals(Vector2.zero)) movementDirection = Vector2.zero;
+            return;
+        }
+
+
         // 거리,방향 구하기
         float distance = DistanceToTarget();
-        Vector2 direction = DirectionToTarget();
+        Vector2 direction = DirectionToTarget();   
 
         // 공격하고 있지 않다
         isAttacking = false;
@@ -56,6 +66,7 @@ public class NormalMonsterController : BaseController
                 {
                     isAttacking = true;
                 }
+                /// 이건 0으로 바꿀 필요가 있을까?
                 movementDirection = Vector2.zero;
                 return;
             }
@@ -66,6 +77,12 @@ public class NormalMonsterController : BaseController
     {
         return Vector3.Distance(transform.position, target.position);
     }
+
+    /// <summary>
+    /// 몬스터의 경우 pivot의 방향을 가리킨다
+    /// 몬스터의 방향이 바뀌지 않는다
+    /// </summary>
+    /// <returns></returns>
     protected Vector2 DirectionToTarget()
     {
         return (target.position - transform.position).normalized;
