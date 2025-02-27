@@ -27,6 +27,9 @@ public class BossMonsterController : BaseController
     public Transform target;
     public eBossPhase phase;
 
+    public Animator monsterAnimator;    // 몬스터 컨트롤러가 붙은 gameObject의 child에 있는 Animator
+
+
     /// <summary>
     /// 이렇게 하니까 WeaponHandler가 null이다
     /// 그냥 Base에 원거리 무기 주고, 근거리는 취소
@@ -52,6 +55,9 @@ public class BossMonsterController : BaseController
 
     public void Initialize(MonsterManager _monsterManager, Transform _target, float _followRange)
     {
+        monsterAnimator = GetComponentInChildren<Animator>();   // 몬스터의 animator 연결
+
+
         monsterManager = _monsterManager;
         target = _target;
 
