@@ -36,7 +36,7 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-        currentStage = obstacleSpawner.CreateFloorTiles((stage - 1) / 10, 3, 5, 5);
+        //currentStage = obstacleSpawner.CreateFloorTiles((stage - 1) / 10, 3, 5, 5);
 
         //// 업적 매니저 가져오기
         //achievementManager = AchievementManager.Instance;

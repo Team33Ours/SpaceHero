@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Define;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// 보스의 Phase
@@ -135,6 +136,27 @@ public class BossMonsterController : BaseController
             }
         }
     }
+
+    /// <summary>
+    /// BaseController의 Update를 사용하면 
+    /// phase1,3일때에도 HandleAttackDelay를 들어가 원거리 공격을 하게 된다
+    /// </summary>
+    protected override void Update()
+    {
+        HandleAction();         // 자신의 HandleAction
+        Rotate(LookDirection);       //
+
+        if (phase == eBossPhase.Phase_2)
+        {
+            HandleAction();
+        }
+        else
+        {
+
+        }
+    }
+
+
     protected float DistanceToTarget()
     {
         return Vector3.Distance(transform.position, target.position);

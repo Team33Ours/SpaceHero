@@ -34,6 +34,7 @@ public class MeleeWeaponHandler : WeaponHandler
             ResourceController resourceController = hit.collider.GetComponent<ResourceController>();
             if (resourceController != null)
             {
+                Debug.Log("플레이어를 근접공격");
                 resourceController.ChangeHealth(-Power);
                 // 넉백이 켜져있다면
                 if (IsOnKnockback)

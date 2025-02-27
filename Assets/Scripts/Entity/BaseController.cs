@@ -92,7 +92,7 @@ public class BaseController : MonoBehaviour
         animationHandler.Move(direction);
     }
 
-    private void Rotate(Vector2 direction)
+    protected virtual void Rotate(Vector2 direction)
     {
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         bool isLeft = Mathf.Abs(rotZ) > 90f;
@@ -128,6 +128,7 @@ public class BaseController : MonoBehaviour
         {
             timeSinceLastAttack = 0;
             animationHandler.Attack(true);
+            Debug.Log("공격애니메이션 재생");
             Attack();
         }
 

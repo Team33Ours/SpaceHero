@@ -276,7 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterRenderer: {fileID: 3895617669004876711}
   weaponPivot: {fileID: 335263872203844523}
-  WeaponPrefab: {fileID: 8210371699655508452, guid: da190afd3be044f45800284a4690f3f8, type: 3}
+  WeaponPrefab: {fileID: 7669425147887084683, guid: 5c301033348c1a84bad1c883883557a2, type: 3}
   weaponHandler: {fileID: 0}
   monsterManager: {fileID: 0}
   target: {fileID: 0}
