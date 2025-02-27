@@ -23,7 +23,7 @@ public class GameManager : Singleton<GameManager>
     protected override void Awake()
     {
         base.Awake();
-        obstacleSpawner = GetComponent<ObstacleSpawner>();
+        obstacleSpawner = FindObjectOfType<ObstacleSpawner>();
 
         /// 디버그용으로 하이러키에 올려놓은 Player와 연결한다
         playerController = FindObjectOfType<PlayerController>();    // 실패. 프리팹이 연결된다
@@ -36,12 +36,12 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-        // 현재씬이 게임씬인지 확인하기
-        if (EditorSceneManager.GetActiveScene().name != "MainScene")
-        {
-            return;
-        }
-        currentStage = obstacleSpawner.CreateFloorTiles((stage - 1) / 10, 3, 5, 5);
+        //// 현재씬이 게임씬인지 확인하기
+        //if (EditorSceneManager.GetActiveScene().name != "MainScene")
+        //{
+        //    return;
+        //}
+        //currentStage = obstacleSpawner.CreateFloorTiles((stage - 1) / 10, 3, 5, 5);
 
         //// 업적 매니저 가져오기
         //achievementManager = AchievementManager.Instance;

@@ -550,7 +550,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1129922803}
-  - component: {fileID: 1129922802}
   - component: {fileID: 1129922801}
   - component: {fileID: 1129922804}
   m_Layer: 0
@@ -577,94 +576,6 @@ MonoBehaviour:
   stage: 1
   playerController: {fileID: 0}
   currentStage: {fileID: 0}
---- !u!114 &1129922802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1129922800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f233bb7729a473c418ce49030ce78b20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tileGroups:
-  - floorTile: {fileID: 5816086099506593582, guid: 6c9fc4fab41e9984988fb501408966e5, type: 3}
-    wallTiles:
-    - {fileID: 8787536715795731028, guid: 5fc03742c42c0f7499be306220f0e7ed, type: 3}
-    - {fileID: 6612655448281582112, guid: a88c9a4da74991843a472e5c2b8f4ac3, type: 3}
-    - {fileID: 3479536357727931341, guid: bafc4c35089f57e489e26c009ce1ccc9, type: 3}
-    - {fileID: 6407347731655046421, guid: 5d429a8970aa0414ea99191cc0985834, type: 3}
-    - {fileID: 4618877018390959218, guid: 7a4670c95429b574a9a341aba87e78bb, type: 3}
-    - {fileID: 467839667778665279, guid: 203a033074054f34592588322643066e, type: 3}
-    - {fileID: 2840040902110815467, guid: 6b2a3c1c29bab2941b560224b747229f, type: 3}
-    - {fileID: 4475755177892178472, guid: 04e0c6905d6717a439cad81a47de750e, type: 3}
-    itemObstacle:
-    - {fileID: 3497053085759671725, guid: 98fe2119c3f7fd34ca845a129d8a78b4, type: 3}
-    - {fileID: 5864004393206324055, guid: 617bfc3d76c1ed94788a52a60922f775, type: 3}
-    - {fileID: 6369397025313234262, guid: b4ec97f6cc17eaa4d9df708cf30358d9, type: 3}
-    - {fileID: 3249824802382669400, guid: d40e936a1d86b9249a855e98fdc3a066, type: 3}
-  - floorTile: {fileID: 5816086099506593582, guid: 76b720ba770df8d4691802c584b8ff7b, type: 3}
-    wallTiles:
-    - {fileID: 2215063494354709278, guid: 4d45eba3a8a05df46917316a17a5ec3d, type: 3}
-    - {fileID: 7939918568935259982, guid: e3ba79ba708a00f45885bf580192dbc3, type: 3}
-    - {fileID: 4481463737863896536, guid: c224801a60d26584cbafae3de86dcd15, type: 3}
-    - {fileID: 8197568965790198161, guid: ece2370c0b2a26144a8051b2fa3f1e97, type: 3}
-    - {fileID: 4941590129557718077, guid: 320f7015092f86b4187b367ddb53e16b, type: 3}
-    - {fileID: 6563486402371331269, guid: e4a69d431d03cac4aaa2c3dd2aac597f, type: 3}
-    - {fileID: 887594191790285397, guid: 92e4873759273a14bb932a97ef59f52e, type: 3}
-    - {fileID: 7375452091315425434, guid: 31c7119e5cd454043a39a48823508ff9, type: 3}
-    itemObstacle:
-    - {fileID: 7892659214209776655, guid: f836738526dedfe479bcbfa764a501dd, type: 3}
-    - {fileID: 4670713731761223549, guid: 84f509bab089df248ad0524ba1e2f446, type: 3}
-    - {fileID: 5713069667331352213, guid: f3a64d05c2415db46bbc45f6bd3e1488, type: 3}
-    - {fileID: 8838371934412279349, guid: f04ba7c98b02f684fa1c06115bacee52, type: 3}
-  - floorTile: {fileID: 5816086099506593582, guid: 6efc1d1d2acca95418e60ad9b7f38720, type: 3}
-    wallTiles:
-    - {fileID: 3721258819361897896, guid: c2c72bef5badece47b5045cd00429f32, type: 3}
-    - {fileID: 4552507295148848010, guid: 966963c9cdd0dd643b481e1ace6f31b0, type: 3}
-    - {fileID: 7703589232425462900, guid: d8f6016dd9abd6c45b9f04bf3b5a223b, type: 3}
-    - {fileID: 633719556131714374, guid: bc29f7153cc22fd4ca92a44910a0f0e5, type: 3}
-    - {fileID: 5100663807988104694, guid: 9a68f3e58d3efe349bc61ca5db964812, type: 3}
-    - {fileID: 7745513645981898308, guid: d0adcc1d0a48d4d43b0ed94d0dec3f0e, type: 3}
-    - {fileID: 4726350713608337225, guid: f95bf87f8b1cdaa4183304d866441d19, type: 3}
-    - {fileID: 5922495109184478268, guid: ee318c1d3ae4c0149be2f3d3a218b7e8, type: 3}
-    itemObstacle:
-    - {fileID: 7874715155216030326, guid: 42dc2b4787b8e0840901934858710492, type: 3}
-    - {fileID: 8102290645421956659, guid: 3714c54ec7d2bed43a32076349507a88, type: 3}
-    - {fileID: 7686067238389600396, guid: 397cd8f4af820524dbcfd0e188e123af, type: 3}
-    - {fileID: 3778931741147277066, guid: 89c4ed4713ea87f4ea7de15925c883f0, type: 3}
-  - floorTile: {fileID: 5816086099506593582, guid: b627e0ba5ef5ada45a128e7352850ce4, type: 3}
-    wallTiles:
-    - {fileID: 5371485450085298362, guid: 6ee65c5ad3ff0304792059567765137c, type: 3}
-    - {fileID: 7040839329094209985, guid: 90fa432862e19c343967546dc79ddce3, type: 3}
-    - {fileID: 2093166701464567214, guid: 7da4ccf5c1c0cd843a3f5d716c08f961, type: 3}
-    - {fileID: 7582134897635360377, guid: 10382009cf8c43c47b8bf8f9f36b79d1, type: 3}
-    - {fileID: 1506500414815053132, guid: f715df350a6eb8345b030b98ff0a235b, type: 3}
-    - {fileID: 1948924419749552711, guid: 5a354705ad2ebdf449e6f7d3ec62c411, type: 3}
-    - {fileID: 2080778783099271644, guid: 3256a9b3d762de946a6ae7deb91798af, type: 3}
-    - {fileID: 4297820670096937905, guid: 12d20ea03a522014fbf27e1701d084a3, type: 3}
-    itemObstacle:
-    - {fileID: 6188255009031865755, guid: b779b84d753152b46b8ea52f7d04bb0f, type: 3}
-    - {fileID: 2604250491825157353, guid: bb6d3ec70460532419ab56dfdbaebc10, type: 3}
-    - {fileID: 2107996563701109411, guid: 76264214053ac0b47acba54b20a82b42, type: 3}
-    - {fileID: 5591439401550199590, guid: 09802a7cc0e8ffe42bd97e53434573f6, type: 3}
-  - floorTile: {fileID: 5816086099506593582, guid: c67113b22c118974e83aa7db776bb3ac, type: 3}
-    wallTiles:
-    - {fileID: 6702508250168462968, guid: a7bd5568a7ecea24982ba0a174f51017, type: 3}
-    - {fileID: 5307657466693105162, guid: 8b504d8a4861e9947aa634d3480f61e2, type: 3}
-    - {fileID: 4933630521174689099, guid: 6480c4916f8fd1b4b88d999ec07e9ac1, type: 3}
-    - {fileID: 5561202311281222890, guid: 5e401341e4bd0514eb3753782cac9ed0, type: 3}
-    - {fileID: 1551497827314053125, guid: cc21ddc1d1a838342afeeb821a6f03ad, type: 3}
-    - {fileID: 505223225315715849, guid: 74d0b72bf8ffd8744b4b4e3ddbb00bdd, type: 3}
-    - {fileID: 7117620667591607161, guid: af5fd7b8e2def104c97d852abb6a3c56, type: 3}
-    - {fileID: 1747730467561224356, guid: b9bc3e252ae28504f9cd432ffb76f80c, type: 3}
-    itemObstacle:
-    - {fileID: 467646152428809947, guid: bc028e3d3e2a0ce4185fa3c178ff297e, type: 3}
-    - {fileID: 5406045955415403098, guid: b721c1251a5180f44ab2b20c5b9de6ab, type: 3}
-    - {fileID: 218085509022255192, guid: 64d8f1324d628a54692924114d30dfc0, type: 3}
-    - {fileID: 4567983550796571426, guid: d57601e0b9a3d164ca73d73999f6390b, type: 3}
 --- !u!4 &1129922803
 Transform:
   m_ObjectHideFlags: 0
@@ -1009,6 +920,126 @@ MonoBehaviour:
   - {fileID: 3775579976433407859, guid: 88c9c6376a81e1b46a8dbbe9a5fbe6fa, type: 3}
   - {fileID: 6599247085500083619, guid: 9fd8c3a79fdaa3147bcc8b03e655394a, type: 3}
   - {fileID: 7619094795827662613, guid: 83415b1062fc4154499384197d176984, type: 3}
+--- !u!1 &1521298804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1521298806}
+  - component: {fileID: 1521298805}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1521298805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521298804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f233bb7729a473c418ce49030ce78b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileGroups:
+  - floorTile: {fileID: 5816086099506593582, guid: 6c9fc4fab41e9984988fb501408966e5, type: 3}
+    wallTiles:
+    - {fileID: 8787536715795731028, guid: 5fc03742c42c0f7499be306220f0e7ed, type: 3}
+    - {fileID: 6612655448281582112, guid: a88c9a4da74991843a472e5c2b8f4ac3, type: 3}
+    - {fileID: 3479536357727931341, guid: bafc4c35089f57e489e26c009ce1ccc9, type: 3}
+    - {fileID: 6407347731655046421, guid: 5d429a8970aa0414ea99191cc0985834, type: 3}
+    - {fileID: 4618877018390959218, guid: 7a4670c95429b574a9a341aba87e78bb, type: 3}
+    - {fileID: 467839667778665279, guid: 203a033074054f34592588322643066e, type: 3}
+    - {fileID: 2840040902110815467, guid: 6b2a3c1c29bab2941b560224b747229f, type: 3}
+    - {fileID: 4475755177892178472, guid: 04e0c6905d6717a439cad81a47de750e, type: 3}
+    itemObstacle:
+    - {fileID: 3497053085759671725, guid: 98fe2119c3f7fd34ca845a129d8a78b4, type: 3}
+    - {fileID: 5864004393206324055, guid: 617bfc3d76c1ed94788a52a60922f775, type: 3}
+    - {fileID: 6369397025313234262, guid: b4ec97f6cc17eaa4d9df708cf30358d9, type: 3}
+    - {fileID: 3249824802382669400, guid: d40e936a1d86b9249a855e98fdc3a066, type: 3}
+  - floorTile: {fileID: 5816086099506593582, guid: 76b720ba770df8d4691802c584b8ff7b, type: 3}
+    wallTiles:
+    - {fileID: 2215063494354709278, guid: 4d45eba3a8a05df46917316a17a5ec3d, type: 3}
+    - {fileID: 7939918568935259982, guid: e3ba79ba708a00f45885bf580192dbc3, type: 3}
+    - {fileID: 4481463737863896536, guid: c224801a60d26584cbafae3de86dcd15, type: 3}
+    - {fileID: 8197568965790198161, guid: ece2370c0b2a26144a8051b2fa3f1e97, type: 3}
+    - {fileID: 4941590129557718077, guid: 320f7015092f86b4187b367ddb53e16b, type: 3}
+    - {fileID: 6563486402371331269, guid: e4a69d431d03cac4aaa2c3dd2aac597f, type: 3}
+    - {fileID: 887594191790285397, guid: 92e4873759273a14bb932a97ef59f52e, type: 3}
+    - {fileID: 7375452091315425434, guid: 31c7119e5cd454043a39a48823508ff9, type: 3}
+    itemObstacle:
+    - {fileID: 7892659214209776655, guid: f836738526dedfe479bcbfa764a501dd, type: 3}
+    - {fileID: 4670713731761223549, guid: 84f509bab089df248ad0524ba1e2f446, type: 3}
+    - {fileID: 5713069667331352213, guid: f3a64d05c2415db46bbc45f6bd3e1488, type: 3}
+    - {fileID: 8838371934412279349, guid: f04ba7c98b02f684fa1c06115bacee52, type: 3}
+  - floorTile: {fileID: 5816086099506593582, guid: 6efc1d1d2acca95418e60ad9b7f38720, type: 3}
+    wallTiles:
+    - {fileID: 3721258819361897896, guid: c2c72bef5badece47b5045cd00429f32, type: 3}
+    - {fileID: 4552507295148848010, guid: 966963c9cdd0dd643b481e1ace6f31b0, type: 3}
+    - {fileID: 7703589232425462900, guid: d8f6016dd9abd6c45b9f04bf3b5a223b, type: 3}
+    - {fileID: 633719556131714374, guid: bc29f7153cc22fd4ca92a44910a0f0e5, type: 3}
+    - {fileID: 5100663807988104694, guid: 9a68f3e58d3efe349bc61ca5db964812, type: 3}
+    - {fileID: 7745513645981898308, guid: d0adcc1d0a48d4d43b0ed94d0dec3f0e, type: 3}
+    - {fileID: 4726350713608337225, guid: f95bf87f8b1cdaa4183304d866441d19, type: 3}
+    - {fileID: 5922495109184478268, guid: ee318c1d3ae4c0149be2f3d3a218b7e8, type: 3}
+    itemObstacle:
+    - {fileID: 7874715155216030326, guid: 42dc2b4787b8e0840901934858710492, type: 3}
+    - {fileID: 8102290645421956659, guid: 3714c54ec7d2bed43a32076349507a88, type: 3}
+    - {fileID: 7686067238389600396, guid: 397cd8f4af820524dbcfd0e188e123af, type: 3}
+    - {fileID: 3778931741147277066, guid: 89c4ed4713ea87f4ea7de15925c883f0, type: 3}
+  - floorTile: {fileID: 5816086099506593582, guid: b627e0ba5ef5ada45a128e7352850ce4, type: 3}
+    wallTiles:
+    - {fileID: 5371485450085298362, guid: 6ee65c5ad3ff0304792059567765137c, type: 3}
+    - {fileID: 7040839329094209985, guid: 90fa432862e19c343967546dc79ddce3, type: 3}
+    - {fileID: 2093166701464567214, guid: 7da4ccf5c1c0cd843a3f5d716c08f961, type: 3}
+    - {fileID: 7582134897635360377, guid: 10382009cf8c43c47b8bf8f9f36b79d1, type: 3}
+    - {fileID: 1506500414815053132, guid: f715df350a6eb8345b030b98ff0a235b, type: 3}
+    - {fileID: 1948924419749552711, guid: 5a354705ad2ebdf449e6f7d3ec62c411, type: 3}
+    - {fileID: 2080778783099271644, guid: 3256a9b3d762de946a6ae7deb91798af, type: 3}
+    - {fileID: 4297820670096937905, guid: 12d20ea03a522014fbf27e1701d084a3, type: 3}
+    itemObstacle:
+    - {fileID: 6188255009031865755, guid: b779b84d753152b46b8ea52f7d04bb0f, type: 3}
+    - {fileID: 2604250491825157353, guid: bb6d3ec70460532419ab56dfdbaebc10, type: 3}
+    - {fileID: 2107996563701109411, guid: 76264214053ac0b47acba54b20a82b42, type: 3}
+    - {fileID: 5591439401550199590, guid: 09802a7cc0e8ffe42bd97e53434573f6, type: 3}
+  - floorTile: {fileID: 5816086099506593582, guid: c67113b22c118974e83aa7db776bb3ac, type: 3}
+    wallTiles:
+    - {fileID: 6702508250168462968, guid: a7bd5568a7ecea24982ba0a174f51017, type: 3}
+    - {fileID: 5307657466693105162, guid: 8b504d8a4861e9947aa634d3480f61e2, type: 3}
+    - {fileID: 4933630521174689099, guid: 6480c4916f8fd1b4b88d999ec07e9ac1, type: 3}
+    - {fileID: 5561202311281222890, guid: 5e401341e4bd0514eb3753782cac9ed0, type: 3}
+    - {fileID: 1551497827314053125, guid: cc21ddc1d1a838342afeeb821a6f03ad, type: 3}
+    - {fileID: 505223225315715849, guid: 74d0b72bf8ffd8744b4b4e3ddbb00bdd, type: 3}
+    - {fileID: 7117620667591607161, guid: af5fd7b8e2def104c97d852abb6a3c56, type: 3}
+    - {fileID: 1747730467561224356, guid: b9bc3e252ae28504f9cd432ffb76f80c, type: 3}
+    itemObstacle:
+    - {fileID: 467646152428809947, guid: bc028e3d3e2a0ce4185fa3c178ff297e, type: 3}
+    - {fileID: 5406045955415403098, guid: b721c1251a5180f44ab2b20c5b9de6ab, type: 3}
+    - {fileID: 218085509022255192, guid: 64d8f1324d628a54692924114d30dfc0, type: 3}
+    - {fileID: 4567983550796571426, guid: d57601e0b9a3d164ca73d73999f6390b, type: 3}
+--- !u!4 &1521298806
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521298804}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1545319447
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1819,3 +1850,4 @@ SceneRoots:
   - {fileID: 1545319447}
   - {fileID: 1550588690}
   - {fileID: 10001147}
+  - {fileID: 1521298806}
