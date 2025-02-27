@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// 체력에 따른 phase를 변경
@@ -8,6 +9,7 @@ using UnityEngine;
 /// </summary>
 public class BossMonsterResourceController : ResourceController
 {
+    Status status;
     SkillManager skillManager;
     BossMonsterController bossController;
 
@@ -30,12 +32,12 @@ public class BossMonsterResourceController : ResourceController
     {
         // Hp 변화 확인 후 
         // phase변화를 확인한다
-        if (CurrentHealth >= 0.7 * MaxHealth)
+        if (currentHP >= 0.7 * status.maxHealth)
         {
             // phase1
             bossController.phase = eBossPhase.Phase_1;
         }
-        else if (CurrentHealth >= 0.4 * MaxHealth)
+        else if (currentHP >= 0.4 * status.maxHealth)
         {
             // phase2
             bossController.phase = eBossPhase.Phase_2;

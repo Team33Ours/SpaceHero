@@ -12,19 +12,18 @@ public class ResourceController : MonoBehaviour
     [SerializeField] private float healthChangeDelay = .5f; // 일정주기동안 무적상태
 
     private BaseController baseController;
-    private StatHandler statHandler;
     private AnimationHandler animationHandler;
+
+    public Status Status;
+    private Status instanceStat;
+    internal float currentHP;
 
     private float timeSinceLastChange = float.MaxValue; // 변화를 가진 시간 저장하여, 일정시간후에 다시 변화를 받는다
 
-    public float MaxHealth => statHandler.MaxHealth;    // 캐릭터, 몬스터의 기본 체력
-    public float CurrentHealth { get; private set; }    // 의존관계를 줄이기 위해 실시간 체력은 ResourceController에서 선언,관리
+    //public float MaxMana => statHandler.MaxMana;    // 캐릭터, 몬스터의 기본 마나
+    //public float CurrentMana { get; private set; }
 
-    public float MaxMana => statHandler.MaxMana;    // 캐릭터, 몬스터의 기본 마나
-    public float CurrentMana { get; private set; }
-
-    public float MaxSpeed => statHandler.MaxSpeed;  // 캐릭터, 몬스터의 기본 스피드
-    public float CurrentSpeed { get; private set; }    // 속도 향상 마법 또는 아이템을 먹으면 일시적으로 빨라지는 추가속도
+    public List<PlayerSkill> hasSkills;
 
     public AudioClip damageClip;   // 피격 사운드 
 
@@ -34,16 +33,16 @@ public class ResourceController : MonoBehaviour
 
     private void Awake()
     {
-        statHandler = GetComponent<StatHandler>();
         animationHandler = GetComponent<AnimationHandler>();
         baseController = GetComponent<BaseController>();
+        instanceStat = Instantiate(Status);
+        currentHP = Status.maxHealth;
+
+        // UI에 스탯 정보 주입
+        GameObjectUI uiNeedStat = GetComponent<GameObjectUI>();
+        uiNeedStat.ObjectStat = Status;
     }
-    private void Start()
-    {
-        CurrentHealth = MaxHealth;
-        CurrentMana = MaxMana;
-        CurrentSpeed = MaxSpeed;
-    }
+
     private void Update()
     {
         if (timeSinceLastChange < healthChangeDelay)
@@ -65,13 +64,13 @@ public class ResourceController : MonoBehaviour
         }
 
         timeSinceLastChange = 0f;   // 데미지 받았으면 시간을 0으로 바꾸어 잠시 무적상태
-        CurrentHealth += change;    // +: 회복, -: 데미지
-        CurrentHealth = CurrentHealth > MaxHealth ? MaxHealth : CurrentHealth;  // 체력 Max
-        CurrentHealth = CurrentHealth < 0 ? 0 : CurrentHealth;  // 체력 Min
+        currentHP += change;    // +: 회복, -: 데미지
+        currentHP = currentHP > Status.maxHealth ? Status.maxHealth : currentHP;  // 체력 Max
+        currentHP = currentHP < 0 ? 0 : currentHP;  // 체력 Min
 
         // HP 변화량이 생겼을 때 호출
         /// OnChangeHealth delegate에 연결된 메서드가 있다면, CurrentHealth와 MaxHealth 메서드를 매개변수로 전달해서 호출한다
-        OnChangeHealth?.Invoke(CurrentHealth, MaxHealth);
+        OnChangeHealth?.Invoke(currentHP, Status.maxHealth);
 
         if (change < 0)
         {
@@ -81,7 +80,7 @@ public class ResourceController : MonoBehaviour
                 SoundManager.PlayClip(damageClip);
         }
         
-        if (CurrentHealth <= 0)
+        if (currentHP <= 0)
         {
             Death();
         }
@@ -101,33 +100,33 @@ public class ResourceController : MonoBehaviour
         OnChangeHealth -= action;
     }
     #endregion
-    #region Mana
-    public bool ChangeMana(float change)
-    {
-        // mana는 딜레이같은거 없다
-        if (change == 0)
-            return false;
+    //#region Mana
+    //public bool ChangeMana(float change)
+    //{
+    //    // mana는 딜레이같은거 없다
+    //    if (change == 0)
+    //        return false;
 
-        CurrentMana += change;
-        CurrentMana = CurrentMana > MaxMana ? MaxMana : CurrentMana;
-        CurrentMana = CurrentMana < 0 ? 0 : CurrentMana;
-        return true;
-    }
-    public void AddManaChangeEvent(Action<float, float> action)
-    {
-        OnChangeMana += action;
-    }
-    public void RemoveManaChangeEvent(Action<float, float> action)
-    {
-        OnChangeMana -= action;
-    }
-    #endregion
+    //    CurrentMana += change;
+    //    CurrentMana = CurrentMana > MaxMana ? MaxMana : CurrentMana;
+    //    CurrentMana = CurrentMana < 0 ? 0 : CurrentMana;
+    //    return true;
+    //}
+    //public void AddManaChangeEvent(Action<float, float> action)
+    //{
+    //    OnChangeMana += action;
+    //}
+    //public void RemoveManaChangeEvent(Action<float, float> action)
+    //{
+    //    OnChangeMana -= action;
+    //}
+    //#endregion
     #region Speed
     public bool ChangeSpeed(float change)
     {
         if (change == 0)
             return false;
-        CurrentSpeed += change;
+        Status.currentSpeed += change;
 
         // 아이템,마법에 의한 속도향상은 일시적이므로 특정 시간이 지나면 속도가 다시 느려져야한다
         // 따로 메서드를 호출하든가, 여기에 다시 작성한다
@@ -148,25 +147,27 @@ public class ResourceController : MonoBehaviour
     // 몬스터의 스킬에 의한 체력감소,스피드감소 효과
     public void TakeDamage(float damage)
     {
-        CurrentHealth = CurrentHealth > damage ? (CurrentHealth - damage) : 0;
+        currentHP = currentHP > damage ? (currentHP  - damage) : 0;
     }
     public IEnumerator TakeDamageAndDebuff(float damage, float speed, float time)
     {
-        CurrentHealth -= damage;
-        bool isCurrentSpeedFaster;
+        currentHP -= damage;
         float delta;
-        if (CurrentSpeed > speed)
+        if (Status.currentSpeed > speed)
         {
-            isCurrentSpeedFaster = true;
             delta = speed;
         }
         else
         {
-            isCurrentSpeedFaster = false;
-            delta = CurrentSpeed;
+            delta = Status.currentSpeed;
         }
-        CurrentSpeed -= delta;
+        Status.currentSpeed -= delta;
         yield return new WaitForSeconds(time);  // 지속시간
-        CurrentSpeed += delta;      // 원래대로
+        Status.currentSpeed += delta;      // 원래대로
+    }
+
+    public void GetSkill(PlayerSkill newSkill)
+    {
+        hasSkills.Add(newSkill);
     }
 }

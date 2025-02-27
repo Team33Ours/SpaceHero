@@ -23,7 +23,7 @@ public class BaseController : MonoBehaviour
 
     protected AnimationHandler animationHandler;
 
-    protected StatHandler statHandler;
+    protected StatHandlerrr statHandler;
 
     [SerializeField] public WeaponHandler WeaponPrefab;
     //protected WeaponHandler weaponHandler;
@@ -38,7 +38,7 @@ public class BaseController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         animationHandler = GetComponent<AnimationHandler>();
-        statHandler = GetComponent<StatHandler>();
+        statHandler = GetComponent<StatHandlerrr>();
 
         if (WeaponPrefab != null)
             weaponHandler = Instantiate(WeaponPrefab, weaponPivot);

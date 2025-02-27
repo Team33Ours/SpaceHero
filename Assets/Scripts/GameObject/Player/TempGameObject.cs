@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 public class TempGameObject : MonoBehaviour
 {
-    public TempStatus Stat;
-    public List<TempSkill> hasSkills;
+    public Status Stat;
+    public List<PlayerSkill> hasSkills;
 
     private void Awake()
     {
@@ -15,7 +15,7 @@ public class TempGameObject : MonoBehaviour
         uiNeedStat.ObjectStat = Stat;
     }
 
-    public void GetSkill(TempSkill newSkill)
+    public void GetSkill(PlayerSkill newSkill)
     {
         hasSkills.Add(newSkill);
     }

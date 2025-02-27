@@ -1,28 +1,22 @@
-using System.Threading;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering.VirtualTexturing;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using DG.Tweening;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using System.Linq;
-using System;
 using System.Collections;
-using UnityEngine.PlayerLoop;
 using Coffee.UIExtensions;
 
 public class UIManager : Singleton<UIManager>
 {
     [Header("Roulette")]
     public GameObject roletteCanvas;
-    TempSkill[] allOfTempSkills; // Resources의 모든 스킬을 읽는다.
-    TempSkill[] get3RandomSkills = new TempSkill[3];
-    TempSkill Skill1st, Skill2nd, Skill3rd;
+    PlayerSkill[] allOfTempSkills; // Resources의 모든 스킬을 읽는다.
+    PlayerSkill[] get3RandomSkills = new PlayerSkill[3];
+    PlayerSkill Skill1st, Skill2nd, Skill3rd;
     public UIParticle[] UIParticles = new UIParticle[3]; // Rairty에 따라 다른 파티클을 적용
     public Image[] rouletteImages = new Image[3];
-    private TempGameObject player;
+    private ResourceController player;
     public float duration = 1f;
     internal System.Random setRefeatTimes;
     internal int moveCount;
@@ -47,7 +41,7 @@ public class UIManager : Singleton<UIManager>
         base.Awake();
 
         // Roulette
-        player = GameObject.FindWithTag("Player").GetComponent<TempGameObject>();
+        player = GameObject.FindWithTag("Player").GetComponent<ResourceController>();
         setRefeatTimes = new System.Random();
 
         // Coin
@@ -72,7 +66,7 @@ public class UIManager : Singleton<UIManager>
         moveCount = setRefeatTimes.Next(2, 4);
 
         // Resources/Skills 폴더에 있는 모든 TempSkill 타입 에셋을 읽음
-        allOfTempSkills = Resources.LoadAll<TempSkill>("Skills");
+        allOfTempSkills = Resources.LoadAll<PlayerSkill>("Skills");
 
         // 룰렛 애니메이션을 반복 실행하기 위해 2개의 코루틴을 만듦
         StartCoroutine(RunRouletteSequence());
@@ -118,7 +112,7 @@ public class UIManager : Singleton<UIManager>
         yield return tween3.WaitForCompletion();
     }
 
-    private TempSkill[] Set3RandomSkills()
+    private PlayerSkill[] Set3RandomSkills()
     {
         System.Random rng = new System.Random();
         allOfTempSkills = allOfTempSkills.OrderBy(s => rng.Next()).ToArray(); // OrderBy와 Random을 사용하여 랜덤으로 섞은 배열을 만듦
