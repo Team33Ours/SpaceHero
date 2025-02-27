@@ -43,6 +43,7 @@ public class BossMonsterController : BaseController
     // 스킬의 사용
     public GameManager gameManager; // 플레이어를 알고 있다
     public SkillManager skillManager;
+    public bool isSkill1OnCooldown;  // 스킬 1이 쿨타임 중
     public bool isSkill2OnCooldown;  // 스킬 2가 쿨타임 중
 
     public vDv skillAction; // 스킬을 저장할 delegate
@@ -65,7 +66,20 @@ public class BossMonsterController : BaseController
         followRange = _followRange;
         phase = eBossPhase.Phase_1;
     }
-    // 보스몬스터의 이동로직
+
+    /// <summary>
+    /// BaseController의 Update를 사용하면 
+    /// phase1,3일때에도 HandleAttackDelay를 들어가 원거리 공격을 하게 된다
+    /// </summary>
+    protected override void Update()
+    {
+        HandleAction();
+        Rotate(lookDirection);  // 회전은 BaseController의 로직을 그대로 따른다
+        HandleAttackDelay();    // 일반 공격 or 스킬 실행
+    }
+
+    #region 기존의 HandleAction(너무 무겁다)
+    // 보스몬스터의 이동, 공격로직
     protected override void HandleAction()
     {
         // OOP 특강때 지우지 말라고 했던 것이 생각났다
@@ -82,15 +96,14 @@ public class BossMonsterController : BaseController
         Vector2 direction = DirectionToTarget();
 
         // Phase에 따른 이동, 공격 구분
-        // phase1: 일반몬스터와 유사하게 이동에 따른 근거리 공격
+        // phase1: 일반몬스터와 유사하게 일반공격(원거리)
         // phase2: 원거리 스킬 공격
         // phase3: 근거리 스킬 공격
         if (phase == eBossPhase.Phase_1)
         {
-            skillAction = null; // 근접공격이라 별도의 스킬 없음
+            skillAction = null;
+            isAttacking = false;  // 공격하고 있지 않다
 
-            // 공격하고 있지 않다
-            isAttacking = false;
             // 거리에 따른 판단
             if (distance <= followRange)
             {
@@ -110,7 +123,6 @@ public class BossMonsterController : BaseController
                     {
                         isAttacking = true;
                     }
-                    /// 이건 0으로 바꿀 필요가 있을까?
                     movementDirection = Vector2.zero;
                     return;
                 }
@@ -119,10 +131,26 @@ public class BossMonsterController : BaseController
         }
         else if (phase == eBossPhase.Phase_2)
         {
-            //skillAction = () => StartCoroutine(UseSkill1()); // 방법1.람다
-            skillAction = StartSkill1;  /// 방법2.void를 반환하는 메서드 안에서 코루틴을 호출한다
-            movementDirection = Vector2.zero;  // 이동 안 함
-            Debug.Log("스킬1: 아이스볼");
+            // 거리에 따른 판단
+            if (distance <= followRange)
+            {
+                // 이동
+                lookDirection = direction;
+                // 공격범위에 있다면 
+
+                //skillAction = () => StartCoroutine(UseSkill1()); // 방법1.람다
+                skillAction = StartSkill1;  /// 방법2.void를 반환하는 메서드 안에서 코루틴을 호출한다
+                movementDirection = Vector2.zero;  // 이동 안 함
+                lookDirection = direction;
+                //if (distance <= 10f)
+                //{
+                //    if (skillAction != null && !isSkill1OnCooldown)
+                //    {
+                //        skillAction(); // 스킬 실행
+                //        Debug.Log("스킬1: 아이스볼");
+                //    }
+                //}
+            }
         }
         else if (phase == eBossPhase.Phase_3)
         {
@@ -135,36 +163,68 @@ public class BossMonsterController : BaseController
                 movementDirection = Vector2.zero;  // 쿨타임 중 이동하지 않음
                 return;
             }
-            // 근거리 스킬을 사용할 때는 플레이어를 추격함
-            if (distance <= followRange)
+            else
             {
-                lookDirection = direction;
-                movementDirection = direction;
-                Debug.Log("스킬1: 썬더태클");
+                // 근거리 스킬을 사용할 때는 플레이어를 추격함
+                if (distance <= 100f)
+                {
+                    lookDirection = direction;
+                    movementDirection = direction;
+                    //if (distance < 1f)
+                    //{
+                    //    skillAction();
+                    //    Debug.Log("스킬1: 썬더태클");
+                    //}
+                }
             }
         }
     }
-
-    /// <summary>
-    /// BaseController의 Update를 사용하면 
-    /// phase1,3일때에도 HandleAttackDelay를 들어가 원거리 공격을 하게 된다
-    /// </summary>
-    protected override void Update()
+    #endregion
+    protected override void HandleAttackDelay()
     {
-        HandleAction();         // 자신의 HandleAction
-        Rotate(LookDirection);       //
+        if (weaponHandler == null)
+            return;
 
-        if (phase == eBossPhase.Phase_2)
+        // Phase에 따라 다른 공격 메서드 호출
+        if (phase == eBossPhase.Phase_1)
         {
-            HandleAction();
+            base.HandleAttackDelay();   // 일반공격
         }
-        else // 1,3
+        else if (phase == eBossPhase.Phase_2)
         {
-            // phase1: 근접공격
-            // phase3: 스킬로 근접공격
-            // 단순 근접공격과 스킬 근접공격은 다르다
+            // 원거리 스킬 공격
+            float distance = DistanceToTarget();  // 목표까지의 거리
 
+            if (distance <= 10f) // 일정 거리 이내에서만 스킬 실행
+            {
+                if (skillAction != null && !isSkill1OnCooldown)
+                    Attack();
+            }
+            else
+            {
+                // 건너뛰면 다음프레임에 이동한다
+                Debug.Log("대상이 너무 멀어서 스킬1을 실행하지 않습니다.");
+            }
         }
+        else if (phase == eBossPhase.Phase_3)
+        {
+            // 근거리 스킬 공격
+            float distance = DistanceToTarget();  // 목표까지의 거리
+            if (distance <= 1f) // 특정 거리 이내에서만 스킬 실행
+            {
+                if (skillAction != null && !isSkill2OnCooldown)
+                    Attack();
+            }
+            else
+            {
+                // 건너뛰면 다음프레임에 이동한다
+                Debug.Log("대상이 너무 멀어서 스킬2를 실행하지 않습니다.");
+            }
+        }
+    }
+    protected override void Attack()
+    {
+        skillAction();
     }
 
 
@@ -177,13 +237,6 @@ public class BossMonsterController : BaseController
         return (target.position - transform.position).normalized;
     }
 
-    protected override void Attack()
-    {
-        base.Attack();
-
-        if (skillAction != null)
-            skillAction(); // 이제 코루틴이 실행됨
-    }
 
     /// <summary>
     /// 람다를 대신하는 방법
@@ -201,17 +254,19 @@ public class BossMonsterController : BaseController
     // Controller는 그걸 가져와서 쓴다
     public IEnumerator UseSkill1()
     {
-        if (currentSkill == null)
+        // 저장한 스킬이 없거나, 현재 쿨타임이 끝나지 않았다면
+        if (currentSkill == null || isSkill1OnCooldown)
             yield break;
-        // skillManager의 bossMobSkills["IceBall"]
-        if (phase == eBossPhase.Phase_2)
+        if (phase == eBossPhase.Phase_2)  // skillManager의 bossMobSkills["IceBall"]
             currentSkill = skillManager.bossMobSkills["IceBall"]; // 스킬 이름을 통해 해당 스킬을 할당
 
-        // 쿨타임 후 시작: 1초
-        yield return new WaitForSeconds(1);
+        monsterAnimator.SetBool("isUsingSkill1", true);      // 애니메이터 스킬 사용 트리거
 
-        // 플레이어에 직접 접근해서 효과를 주는걸로...
-        // 여러개를 리턴하는방법이 익숙하지 않은데 현재 남은 시간상 불가능하다
+        isSkill1OnCooldown = true;  /// 스킬1 쿨타임 시작
+
+        yield return new WaitForSeconds(1);         // 쿨타임 후 시작: 1초
+        isSkill1OnCooldown = false; /// 쿨타임 끝
+
         ResourceController playerResourceController = gameManager.playerController.gameObject.GetComponent<ResourceController>();
         // 스킬 효과 적용: 체력 감소 + 이동 속도 감소 + 일정 시간 후 복구
         StartCoroutine(playerResourceController.TakeDamageAndDebuff(
@@ -228,26 +283,23 @@ public class BossMonsterController : BaseController
 
     public IEnumerator UseSkill2()
     {
-        if (currentSkill == null)
+        if (currentSkill == null || isSkill2OnCooldown)
             yield break;
-        // skillManager의 bossMobSkills["ThunderTackle"]
-        if (phase == eBossPhase.Phase_3)
+        if (phase == eBossPhase.Phase_3)    // skillManager의 bossMobSkills["ThunderTackle"]
             currentSkill = skillManager.bossMobSkills["ThunderTackle"]; // 스킬 이름을 통해 해당 스킬을 할당
 
-        // 쿨타임 중이라면 이동을 멈추고 기다린다
-        isSkill2OnCooldown = true;
-        // 쿨타임 후 시작: 5초
-        yield return new WaitForSeconds(5);
+        monsterAnimator.SetBool("isUsingSkill2", true);  // 애니메이터 스킬 사용 트리거
 
+        isSkill2OnCooldown = true;   // 스킬2 쿨타임 시작
 
-        // 쿨타임 끝난 후
-        isSkill2OnCooldown = false;
+        yield return new WaitForSeconds(5);         // 쿨타임 후 시작: 5초
+        isSkill2OnCooldown = false; /// 쿨타임 끝
+
         // 플레이어의 ResourceController 가져오기
         ResourceController playerResourceController = gameManager.playerController.GetComponent<ResourceController>();
         // 체력 감소만 적용
         playerResourceController.TakeDamage(currentSkill.value1);
 
         Debug.Log($"사용한 스킬: {currentSkill.skillName}, 데미지: {currentSkill.value1}");
-
     }
 }
