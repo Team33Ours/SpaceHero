@@ -46,8 +46,11 @@ public class ResourceController : MonoBehaviour
         baseController.Status = Status;
 
         // UpStatusFromSkill에 정보 주입
-        UpStatusFromSkill upStatus = GetComponent<UpStatusFromSkill>();
-        upStatus.playerStatus = Status;
+        if (this.gameObject == CompareTag("Player"))
+        {
+            UpStatusFromSkill upStatus = GetComponent<UpStatusFromSkill>();
+            upStatus.playerStatus = Status;
+        }
     }
 
     private void Update()
