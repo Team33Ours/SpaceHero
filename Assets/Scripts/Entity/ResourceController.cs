@@ -45,11 +45,11 @@ public class ResourceController : MonoBehaviour
         // BaseController에 정보 주입
         baseController.Status = Status;
 
-
-        if (this.gameObject == CompareTag("Enemy"))
+        // UpStatusFromSkill에 정보 주입
+        if (this.gameObject == CompareTag("Player"))
         {
-            BossMonsterResourceController boMonReCon = GetComponent<BossMonsterResourceController>();
-            boMonReCon.Status = Status;
+            UpStatusFromSkill upStatus = GetComponent<UpStatusFromSkill>();
+            upStatus.playerStatus = Status;
         }
     }
 
@@ -93,6 +93,10 @@ public class ResourceController : MonoBehaviour
         if (currentHP <= 0)
         {
             Death();
+            if (this.gameObject != CompareTag("Player"))
+            {
+                // 보석 프리팹 동적 생성 1~2개
+            }
         }
         return true;
     }
@@ -174,10 +178,5 @@ public class ResourceController : MonoBehaviour
         Status.currentSpeed -= delta;
         yield return new WaitForSeconds(time);  // 지속시간
         Status.currentSpeed += delta;      // 원래대로
-    }
-
-    public void GetSkill(PlayerSkill newSkill)
-    {
-        hasSkills.Add(newSkill);
     }
 }

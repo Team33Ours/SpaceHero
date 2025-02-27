@@ -388,6 +388,72 @@ Transform:
   - {fileID: 1752459421}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &557211273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 557211275}
+  - component: {fileID: 557211274}
+  - component: {fileID: 557211276}
+  m_Layer: 0
+  m_Name: MonsterManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &557211274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557211273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7df262a1bab204e84e2a1ec147b39e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolSize: 3
+  flyingMonster: {fileID: 7809555946174801416, guid: b5ad1e985008f4045b22b83c0b9458ba, type: 3}
+  greenMonster: {fileID: 6814635434794170254, guid: e23b5e1f6c6f6d8469eee67f273de941, type: 3}
+  bossMonster: {fileID: 5127828454102927722, guid: d0598dc7048f05247a6d86d1bd6bba49, type: 3}
+  flyingMonsterPool: []
+  flyingMonsterParent: {fileID: 1642486808}
+  greenMonsterParent: {fileID: 1568503182}
+  bossMonsterParent: {fileID: 1752459421}
+  normalMonsterController: {fileID: 0}
+--- !u!4 &557211275
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557211273}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &557211276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557211273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0f50d297a7ac70428bf46826e8cc368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &656349903 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5580978277168495610, guid: 997b3d646afd9a4489170d8f27e49707, type: 3}
@@ -551,7 +617,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1129922803}
   - component: {fileID: 1129922801}
-  - component: {fileID: 1129922804}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -572,10 +637,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   killCount: 0
-  enemyCount: 10
+  enemyCount: 5
   stage: 1
+  obstacleSpawner: {fileID: 0}
   playerController: {fileID: 0}
   currentStage: {fileID: 0}
+  player: {fileID: 0}
 --- !u!4 &1129922803
 Transform:
   m_ObjectHideFlags: 0
@@ -594,25 +661,6 @@ Transform:
   - {fileID: 1662181557}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1129922804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1129922800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff7df262a1bab204e84e2a1ec147b39e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  poolSize: 3
-  flyingMonster: {fileID: 7809555946174801416, guid: b5ad1e985008f4045b22b83c0b9458ba, type: 3}
-  greenMonster: {fileID: 6814635434794170254, guid: e23b5e1f6c6f6d8469eee67f273de941, type: 3}
-  bossMonster: {fileID: 5127828454102927722, guid: d0598dc7048f05247a6d86d1bd6bba49, type: 3}
-  flyingMonsterParent: {fileID: 1642486808}
-  greenMonsterParent: {fileID: 1568503182}
-  bossMonsterParent: {fileID: 1752459421}
 --- !u!1001 &1142526635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1025,6 +1073,7 @@ MonoBehaviour:
     - {fileID: 5406045955415403098, guid: b721c1251a5180f44ab2b20c5b9de6ab, type: 3}
     - {fileID: 218085509022255192, guid: 64d8f1324d628a54692924114d30dfc0, type: 3}
     - {fileID: 4567983550796571426, guid: d57601e0b9a3d164ca73d73999f6390b, type: 3}
+  monsterManager: {fileID: 557211274}
 --- !u!4 &1521298806
 Transform:
   m_ObjectHideFlags: 0
@@ -1693,6 +1742,7 @@ GameObject:
   - component: {fileID: 6337195249226201802}
   - component: {fileID: 7745065628827687197}
   - component: {fileID: 8337619646979666479}
+  - component: {fileID: 8337619646979666480}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1787,6 +1837,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4ed3a0fb3686d4b9db48d32ee60883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8337619646979666480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6135192893382971783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f47f52d81b73b8418073eaea2c6d74b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8729735720860143502
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,3 +1913,4 @@ SceneRoots:
   - {fileID: 1550588690}
   - {fileID: 10001147}
   - {fileID: 1521298806}
+  - {fileID: 557211275}

@@ -132,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 1
   weaponSize: 1
-  power: 1
+  power: 15
   speed: 3
   attackRange: 10
   target:
@@ -145,10 +145,10 @@ MonoBehaviour:
   projectileSpawnPosition: {fileID: 8800509501568269946}
   bulletIndex: 1
   bulletSize: 1
-  duration: 5
+  duration: 10
   spread: 10
-  numberofProjectilesPerShot: 1
-  multipleProjectilesAngel: 1
+  numberofProjectilesPerShot: 3
+  multipleProjectilesAngel: 10
   projectileColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!95 &8840053758750262513
 Animator:

@@ -36,9 +36,12 @@ public class ObstacleSpawner : MonoBehaviour
     private List<Bounds> itemObstacleBoundsList = new List<Bounds>(); // 아이템 장애물의 Bounds 리스트
     private List<Bounds> enemyBoundsList = new List<Bounds>(); // 적의 Bounds 리스트
 
-
+    [SerializeField]
+    private MonsterManager monsterManager;
     private void Awake()
     {
+        if(GameManager.Instance.obstacleSpawner == null)
+            GameManager.Instance.obstacleSpawner = this;
         InitTileDictionary();
     }
 
@@ -63,7 +66,7 @@ public class ObstacleSpawner : MonoBehaviour
         }
     }
 
-    // 주어진 stage에 맞는 바닥 타일을 생성하고, 해당 타일에 벽 타일과 아이템 장애물을 배치
+    // 주어진 stage에 맞는 바닥 타일을 생성하고, 해당 타일에 벽 타일과 을 배치
     public GameObject CreateFloorTiles(int stage, int wallTileCount, int ItemObstacleCount, int enemyCount)
     {
         // 특정 바닥 타일을 선택해서 생성. ElementAt: 인덱스에 해당하는 요소를 반환
@@ -88,7 +91,7 @@ public class ObstacleSpawner : MonoBehaviour
 
             // 벽 타일을 생성하고 부모 오브젝트에 추가
             GameObject instantiatedWallTile = 
-                Instantiate(selectedWallTile, transform.position + new Vector3(wallXPos, wallYPos, 0), Quaternion.identity);
+                Instantiate(selectedWallTile, transform.position + new Vector3(wallXPos, wallYPos, 0), selectedWallTile.transform.rotation);
             instantiatedWallTile.transform.SetParent(instantiatedFloorTile.transform.Find("Wall")); // Wall 오브젝트의 자식으로 설정
 
             // 생성된 벽의 Bounds를 구해서 wallBoundsList에 추가
@@ -106,30 +109,30 @@ public class ObstacleSpawner : MonoBehaviour
         }
 
 
-        // 아이템 장애물을 랜덤하게 생성
+        // 부품을 랜덤하게 생성
         for (int i = 0; i < ItemObstacleCount; i++)
         {
-            // 아이템 장애물을 랜덤하게 선택
+            // 부품을 랜덤하게 선택
             GameObject selectedItemObstacle = itemObstacles[Random.Range(0, itemObstacles.Count)];
             Renderer itemRenderer = selectedItemObstacle.GetComponent<Renderer>();
 
-            Bounds itemBounds = itemRenderer.bounds; // 아이템 장애물의 Bounds를 구함
+            Bounds itemBounds = itemRenderer.bounds; // 부품의 Bounds를 구함
             Vector3 spawnPos;
             int maxAttempts = 10; // 최대 시도 횟수
             int attempt = 0;
             bool isOverlapping;
 
-            // 아이템 장애물이 벽이나 다른 아이템 장애물과 겹치지 않도록 위치를 찾음
+            // 부품이 벽이나 다른 아이템 장애물과 겹치지 않도록 위치를 찾음
             do
             {
                 float itemXPos = Random.Range(-5f, 5f); 
-                float itemYPos = Random.Range(-9f, 24f);
+                float itemYPos = Random.Range(-9f, 20f);
                 spawnPos = transform.position + new Vector3(itemXPos, itemYPos, 0);
 
-                // 아이템 장애물의 새로운 Bounds를 생성
+                // 부품의 새로운 Bounds를 생성
                 Bounds newItemBounds = new Bounds(spawnPos, itemBounds.size);
 
-                // 새로운 위치가 벽이나 다른 아이템 장애물과 겹치는지 체크
+                // 새로운 위치가 벽이나 다른 부품과 겹치는지 체크
                 isOverlapping = wallBoundsList.Any(wallBounds => wallBounds.Intersects(newItemBounds)) || // Any: 조건에 맞는 요소가 하나라도 있는지 확인
                                  itemObstacleBoundsList.Any(itemBounds => itemBounds.Intersects(newItemBounds)); // Intersects: 두 Bounds가 겹치는지 확인
 
@@ -157,12 +160,12 @@ public class ObstacleSpawner : MonoBehaviour
 
             if (randomMonster == 0)
             {
-                GameObject flyEnemy = MonsterManager.Instance.FlyMonsterFromPool();
+                GameObject flyEnemy = monsterManager.FlyMonsterFromPool();
                 monster = flyEnemy;
             }
             else
             {
-                GameObject greenEnemy = MonsterManager.Instance.GreenMonsterFromPool();
+                GameObject greenEnemy = monsterManager.GreenMonsterFromPool();
                 monster = greenEnemy;
             }
 
@@ -177,7 +180,7 @@ public class ObstacleSpawner : MonoBehaviour
             do
             {
                 float monsterXPos = Random.Range(-5f, 5f);
-                float monsterYPos = Random.Range(-9f, 24f);
+                float monsterYPos = Random.Range(-9f, 20f);
 
                 spawnPos = new Vector3(monsterXPos, monsterYPos, 0);
                 Bounds newMonsterBounds = new Bounds(spawnPos, monsterBounds.size);

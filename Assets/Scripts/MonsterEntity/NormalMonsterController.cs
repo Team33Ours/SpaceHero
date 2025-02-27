@@ -24,37 +24,27 @@ public class NormalMonsterController : BaseController
     //[SerializeField] private float followRange;
     [SerializeField] public float followRange;
 
-    public void Initialize(MonsterManager _monsterManager, Transform _target, float _followRange)
+    private void Start()
     {
-        //// 그냥 이름으로 구분하는것이 좋아보인다
-        //// 이름 뒤에 (Clone)이 붙는데, 떼고 사용한다
-        //gameObject.name = gameObject.name.Replace("(Clone)", "");
 
-        //if (gameObject.name.Equals("FlyingMonster"))
-        //{
-        //    // 리소스매니저가 있으면 좋겠는데 지금 만들기엔 늦은듯...?
-        //    GameObject prefab = Resources.Load<GameObject>("/Prefabs/");
-        //    GameObject createdObj = Instantiate(prefab);
-        //    // 필요한 것들 하나씩
-        //}
-        //else if (gameObject.name.Equals("GreenMonster"))
-        //{
-        //    GameObject prefab = Resources.Load<GameObject>("/Prefabs/");
+        monsterManager = FindObjectOfType<MonsterManager>();
+        monsterAnimator = GetComponentInChildren<Animator>();
 
-        //}
+        target = GameObject.FindWithTag("Player").transform;
+        followRange = 100.0f;
 
-        //// 아니라면
-        //// 
-        //Debug.Log("1234");
-
-
-        monsterAnimator = GetComponentInChildren<Animator>();   // 몬스터의 animator 연결
-        monsterManager = _monsterManager;
-        target = _target;
-
-        // 몬스터마다 값이 다르므로 생성시에 지정해준다
-        followRange = _followRange;
     }
+    //public void Initializea(Transform _target, float _followRange)
+    //{
+    //    Debug.Log("2");
+    //       // 몬스터의 animator 연결
+    //    Debug.Log("4");
+    //    target = _target;
+    //    Debug.Log("5");
+    //    // 몬스터마다 값이 다르므로 생성시에 지정해준다
+    //    followRange = _followRange;
+    //    Debug.Log("6");
+    //}
     // 몬스터(일반)의 이동로직
     protected override void HandleAction()
     {
@@ -125,9 +115,10 @@ public class NormalMonsterController : BaseController
     }
     public override void Death()
     {
-        base.Death();
+        //base.Death();
         // 죽은 건 오브젝트 풀링을 적용하여 List에 집어넣는다
-        // monsterManager.RemoveMonsterOnDeath(gameObject);
+        monsterManager.RemoveMonsterOnDeath(gameObject);
         GameManager.Instance.AddKillCount();
+        AchievementManager.Instance.CheckAchievementProgress("10001", 1);
     }
 }

@@ -13,49 +13,22 @@ public class GameManager : Singleton<GameManager>
     public int killCount = 0;
     public int enemyCount = 0;
     public int stage = 1;
-    ObstacleSpawner obstacleSpawner;
+    public ObstacleSpawner obstacleSpawner;
 
     public PlayerController playerController; // 몬스터 생성시 타겟에 넣어야 한다
 
     public GameObject currentStage;
 
     private AchievementManager achievementManager;
-    //public GameObject player;
-
-    ///// <summary>
-    ///// 씬이 로드될 때 OnSceneLoaded 추가
-    ///// </summary>
-    //protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    //{
-    //    base.Awake();
-    //    obstacleSpawner = FindObjectOfType<ObstacleSpawner>();
-
-    //    /// 디버그용으로 하이러키에 올려놓은 Player와 연결한다
-    //    playerController = FindObjectOfType<PlayerController>();    // 실패. 프리팹이 연결된다
-    //    //GameObject playerObj = GameObject.Find("Player"); // 하이러키에서 'Player'라는 이름을 가진 오브젝트 찾기
-    //    //if (playerObj != null)
-    //    //{
-    //    //    playerController = playerObj.GetComponent<PlayerController>();
-    //    //}sd
-
-    //}
-    ///// <summary>
-    ///// 씬이 언로드될때 OnDestroy 추가
-    ///// </summary>
-    //protected override void OnDestroy()
-    //{
-    //    base.OnDestroy();
-    //}
-
-
+    public GameObject player;
     protected override void Awake()
     {
         base.Awake();
-        obstacleSpawner = FindObjectOfType<ObstacleSpawner>();
+      
 
         /// 디버그용으로 하이러키에 올려놓은 Player와 연결한다
         playerController = FindObjectOfType<PlayerController>();    // 실패. 프리팹이 연결된다
-        //GameObject playerObj = GameObject.Find("Player"); // 하이러키에서 'Player'라는 이름을 가진 오브젝트 찾기
+        player = GameObject.Find("Player"); // 하이러키에서 'Player'라는 이름을 가진 오브젝트 찾기
         //if (playerObj != null)
         //{
         //    playerController = playerObj.GetComponent<PlayerController>();
@@ -102,7 +75,12 @@ public class GameManager : Singleton<GameManager>
         Destroy(currentStage);
         currentStage = obstacleSpawner.CreateFloorTiles((stage - 1) / 10, 3, 5, 5);
 
-        //player.transform.position = new Vector3(0, -5, 0);
+        player.transform.position = new Vector3(0, -5, 0);
+
+        if (stage == 3)
+            SoundManager.Instance.ChangeBackGroundMusic(SoundManager.Instance.backgroundMusic[2]);
+        else if(stage == 6)
+            SoundManager.Instance.ChangeBackGroundMusic(SoundManager.Instance.backgroundMusic[3]);
     }
 
     public void AddEnemyCount()

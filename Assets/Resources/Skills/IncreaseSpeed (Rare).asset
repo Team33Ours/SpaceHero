@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: IncreaseSpeed (Rare)
   m_EditorClassIdentifier: 
   skillRarity: 1
+  skillType: 4
   Name: "\uC2A4\uD53C\uB4DC \uC99D\uAC00 (\uB808\uC5B4)"
   Description: "\uC2A4\uD53C\uB4DC\uAC00 20%\uB9CC\uD07C \uC99D\uAC00\uD569\uB2C8\uB2E4"
   Icon: {fileID: 21300000, guid: ea7029c5c743d6f42b79721fa682728c, type: 3}
