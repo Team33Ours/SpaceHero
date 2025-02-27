@@ -75,6 +75,11 @@ public class GameManager : Singleton<GameManager>
         currentStage = obstacleSpawner.CreateFloorTiles((stage - 1) / 10, 3, 5, 5);
 
         //player.transform.position = new Vector3(0, -5, 0);
+        
+        if(stage == 3)
+            SoundManager.Instance.ChangeBackGroundMusic(SoundManager.Instance.backgroundMusic[2]);
+        else if(stage == 6)
+            SoundManager.Instance.ChangeBackGroundMusic(SoundManager.Instance.backgroundMusic[3]);
     }
 
     public void AddEnemyCount()
