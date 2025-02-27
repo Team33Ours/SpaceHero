@@ -11,6 +11,8 @@ public class PlayerController : BaseController
     {
         base.Start();
         camera = Camera.main;
+        if(GameManager.Instance.playerController == null)
+            GameManager.Instance.playerController = this;
     }
 
     protected override void HandleAction()

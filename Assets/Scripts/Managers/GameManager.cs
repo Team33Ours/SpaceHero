@@ -12,7 +12,7 @@ public class GameManager : Singleton<GameManager>
     public int killCount = 0;
     public int enemyCount = 0;
     public int stage = 1;
-    ObstacleSpawner obstacleSpawner;
+    public ObstacleSpawner obstacleSpawner;
 
     public PlayerController playerController; // 몬스터 생성시 타겟에 넣어야 한다
 
@@ -23,7 +23,7 @@ public class GameManager : Singleton<GameManager>
     protected override void Awake()
     {
         base.Awake();
-        obstacleSpawner = FindObjectOfType<ObstacleSpawner>();
+      
 
         /// 디버그용으로 하이러키에 올려놓은 Player와 연결한다
         playerController = FindObjectOfType<PlayerController>();    // 실패. 프리팹이 연결된다
