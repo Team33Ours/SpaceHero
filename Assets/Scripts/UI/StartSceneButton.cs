@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class StartSceneButton : MonoBehaviour
 {
     public Canvas OptionCanvas;
+    public Canvas AchievementCanvas;
 
     public void OnClickStartButton()
     {
@@ -27,5 +28,13 @@ public class StartSceneButton : MonoBehaviour
     {
         // 게임 종료
         Application.Quit();
+    }
+    public void OnClickAchButton()
+    {
+        AchievementCanvas.gameObject.SetActive(true);
+    }
+    public void OnClickAchClose()
+    {
+        AchievementCanvas.gameObject.SetActive(false);
     }
 }

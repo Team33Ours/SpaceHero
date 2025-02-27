@@ -49,10 +49,29 @@ public class AchievementUI : MonoBehaviour
 
             // 진행도 바 업데이트
             float progress = (float)achievement.currentValue / achievement.goalValue;
-            newItem.transform.Find("AchProgressBar").GetComponent<Image>().fillAmount = progress;
+            newItem.transform.Find("AchProgressBar").GetComponent<Image>().fillAmount = 1 - progress;
+
+            // 진행도가 0이 되면 AchProgressBar 비활성화
+            if (progress >= 1)
+            {
+                newItem.transform.Find("AchProgressBar").gameObject.SetActive(false);
+            }
 
             // 완료 여부 표시
             newItem.transform.Find("AchCompletedText").GetComponent<TextMeshProUGUI>().text = achievement.isCompleted ? "완료!" : "진행 중";
+
+            // 보상 버튼 설정
+            Button claimButton = newItem.transform.Find("AchRewardBtn").GetComponent<Button>();
+            claimButton.interactable = achievement.isCompleted && !achievement.isRewarded;
+
+            // 클릭 시 업적 ID를 전달하도록 람다 함수 사용
+            string achievementId = achievement.id; // 지역 변수로 ID 저장
+            claimButton.onClick.RemoveAllListeners(); // 기존 리스너 제거 (중복 방지)
+            claimButton.onClick.AddListener(() =>
+            {
+                AchievementManager.Instance.ClaimReward(achievementId);  // 보상 지급
+                UpdateUI();  // 보상 지급 후 UI 갱신
+            });
         }
     }
 }
