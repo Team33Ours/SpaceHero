@@ -10,6 +10,8 @@ public class SoundManager : Singleton<SoundManager>
 
     private AudioSource musicAudioSource;
     public AudioClip musicClip;
+    
+    public AudioClip[] backgroundMusic;
 
     public SoundSource soundSourcePrefab;
     private void Awake()

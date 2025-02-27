@@ -7,10 +7,12 @@ using System;
 
 public class GameObjectUI : MonoBehaviour
 {
-    // Status should be injected from the game object class.
-    internal TempStatus ObjectStat = null;
-    private bool isHealthPointDifferent;
+    // 스테이터스는 오브젝트로부터 주입받아야함
+    internal Status ObjectStat = null;
     private float hpDifferenceCheck;
+
+    // 현재 HP 참조용
+    ResourceController getCurrentHp;
 
     private Slider HPSlider;
     private TextMeshProUGUI HPText;
@@ -20,6 +22,7 @@ public class GameObjectUI : MonoBehaviour
     {
         HPSlider = GetComponentInChildren<Slider>();
         HPText = GetComponentInChildren<TextMeshProUGUI>(true);
+        getCurrentHp = GetComponent<ResourceController>();
     }
 
     private void Start()
@@ -29,22 +32,22 @@ public class GameObjectUI : MonoBehaviour
     }
     private void ReadObjectStatus()
     {
-        HPSlider.maxValue = ObjectStat.maxHP;
-        HPSlider.value = ObjectStat.currentHP;
-        hpDifferenceCheck = ObjectStat.currentHP;
+        HPSlider.maxValue = ObjectStat.maxHealth;
+        HPSlider.value = getCurrentHp.currentHP;
+        hpDifferenceCheck = getCurrentHp.currentHP;
         HPText.text = $"{HPSlider.value:F0}";
     }
     
     private void Update()
     {
-        if ((hpDifferenceCheck != ObjectStat.currentHP) && ObjectStat != null)
+        if ((hpDifferenceCheck != getCurrentHp.currentHP) && ObjectStat != null)
             UpdateHP();
     }
 
     private void UpdateHP()
     {
-        hpDifferenceCheck = ObjectStat.currentHP;
-        HPSlider.value = ObjectStat.currentHP;
+        hpDifferenceCheck = getCurrentHp.currentHP;
+        HPSlider.value = getCurrentHp.currentHP;
         HPText.text = $"{HPSlider.value:F0}";
     }
 }

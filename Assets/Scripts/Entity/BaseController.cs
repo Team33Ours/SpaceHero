@@ -23,7 +23,7 @@ public class BaseController : MonoBehaviour
 
     protected AnimationHandler animationHandler;
 
-    protected StatHandler statHandler;
+    internal Status Status;
 
     [SerializeField] public WeaponHandler WeaponPrefab;
     //protected WeaponHandler weaponHandler;
@@ -38,7 +38,6 @@ public class BaseController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         animationHandler = GetComponent<AnimationHandler>();
-        statHandler = GetComponent<StatHandler>();
 
         if (WeaponPrefab != null)
             weaponHandler = Instantiate(WeaponPrefab, weaponPivot);
@@ -75,7 +74,7 @@ public class BaseController : MonoBehaviour
     private void Movment(Vector2 direction)
     {
         /// 혹시 direction이 아래를 가리킨다면, statHandler.MaxSpeed가 0인지 살펴볼 것
-        direction = direction * statHandler.MaxSpeed;   // 몬스터에 MaxSpeed 설정을 안해서 아래로 가고 있었다...
+        direction = direction * Status.speed;   // 몬스터에 MaxSpeed 설정을 안해서 아래로 가고 있었다...
         if (knockbackDuration > 0.0f)
         {
             direction *= 0.2f;
