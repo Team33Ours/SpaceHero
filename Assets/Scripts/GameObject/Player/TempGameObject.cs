@@ -1,9 +1,12 @@
 using UnityEngine;
+using System.Collections.Generic;
+
 // This is a temporary game object class used in the UI test scene.
 
 public class TempGameObject : MonoBehaviour
 {
     public TempStatus Stat;
+    public List<TempSkill> hasSkills;
 
     private void Awake()
     {
@@ -15,5 +18,10 @@ public class TempGameObject : MonoBehaviour
     {
         // Test
         //Stat.currentHP -= Time.deltaTime * 3;
+    }
+
+    public void GetSkill(TempSkill newSkill)
+    {
+        hasSkills.Add(newSkill);
     }
 }

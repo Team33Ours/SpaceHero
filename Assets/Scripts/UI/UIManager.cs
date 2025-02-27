@@ -2,53 +2,180 @@ using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using DG.Tweening;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using System.Linq;
+using System;
+using System.Collections;
 
 public class UIManager : Singleton<UIManager>
 {
+    [Header("Roulette")]
+    public GameObject roletteCanvas;
+    public Image[] rouletteImages = new Image[3];
+    private TempGameObject player;
+    TempSkill[] allOfTempSkills; // Resources의 모든 스킬을 읽는다.
+    TempSkill[] get3RandomSkills = new TempSkill[3];
+    TempSkill Skill1st, Skill2nd, Skill3rd;
+    internal int moveCount;
+    internal System.Random setRefeatTimes;
+
+    [Header("Coin")]
     [SerializeField]
     private TextMeshProUGUI CoinText;
     private int coin;
     private int coinDifferenceCheck;
     bool isThereCoin;
 
+    [Header("Stage")]
     private int stageFloor;
     public TextMeshProUGUI StageText;
 
+    [Header("Pause")]
+    public GameObject pauseHUD;
     public Button PauseUI;
 
-    float testTimer = 0;
+
+    // Test
+    public float duration = 1f;
 
     protected override void Awake()
     {
         base.Awake();
 
+        // Roulette
+        player = GameObject.FindWithTag("Player").GetComponent<TempGameObject>();
+        setRefeatTimes = new System.Random();
+
+        // Coin
         coin = 0;
         CoinText = GameObject.FindWithTag("Coin").GetComponent<TextMeshProUGUI>();
         CoinText.text = $"{coin}";
         isThereCoin = (CoinText != null) ? true : false;
 
+        // Stage
         stageFloor = 0;
         StageText.text = $"{stageFloor}";
 
+        // Pause
         PauseUI = GetComponent<Button>();
     }
 
-    private void Start()
+    #region Roulette
+    public void RunRoulette()
     {
-        // Test
-        InvokeRepeating(nameof(AcendStage), 1f, 1f);
+        Time.timeScale = 0;
+        roletteCanvas.SetActive(true);
+        moveCount = setRefeatTimes.Next(5, 8);
+
+        // Resources/Skills 폴더에 있는 모든 TempSkill 타입 에셋을 읽음
+        allOfTempSkills = Resources.LoadAll<TempSkill>("Skills");
+
+        // 룰렛 애니메이션을 반복 실행하기 위해 2개의 코루틴을 만듦
+        StartCoroutine(RunRouletteSequence());
     }
 
-    private void Update()
+    private IEnumerator RunRouletteSequence()
     {
-        // Test
-        testTimer += Time.deltaTime;
-        if (testTimer >= 1f)
+        for (int i = 0; i < moveCount; i++)
         {
-            PlusCoin(100);
-            testTimer = 0;
+            // 1회 애니메이션 실행 및 완료 대기
+            yield return StartCoroutine(ImagesMoveRefeatCoroutine());
+
+            // 이미지 위치 초기화
+            ResetImageTransform();
+
+            Debug.Log($"OnComplete: {i + 1}회 완료");
         }
+        Debug.Log("룰렛 애니메이션 완료");
+
+        ResetImageTransform();
+        // 스킬 3개를 뽑음
+        get3RandomSkills = Set3RandomSkills();
+        // 뽑은 스킬을 이미지 UI에 적용
+        SetRouletteImages();
+
+        rouletteImages[0].transform.DOLocalMoveY(rouletteImages[0].transform.localPosition.y - 400f, duration).SetUpdate(true).SetEase(Ease.OutBounce);
+        rouletteImages[1].transform.DOLocalMoveY(rouletteImages[1].transform.localPosition.y - 400f, duration).SetUpdate(true).SetEase(Ease.OutBounce);
+        rouletteImages[2].transform.DOLocalMoveY(rouletteImages[2].transform.localPosition.y - 400f, duration).SetUpdate(true).SetEase(Ease.OutBounce);
+    }
+    private IEnumerator ImagesMoveRefeatCoroutine()
+    {
+        get3RandomSkills = Set3RandomSkills();
+        SetRouletteImages();
+
+        // 모든 애니메이션 동시 시작
+        var tween1 = rouletteImages[0].transform.DOLocalMoveY(rouletteImages[0].transform.localPosition.y - 800f, duration).SetUpdate(true).SetEase(Ease.OutCubic);
+        var tween2 = rouletteImages[1].transform.DOLocalMoveY(rouletteImages[1].transform.localPosition.y - 800f, duration).SetUpdate(true).SetEase(Ease.OutCubic);
+        var tween3 = rouletteImages[2].transform.DOLocalMoveY(rouletteImages[2].transform.localPosition.y - 800f, duration).SetUpdate(true).SetEase(Ease.OutCubic);
+
+        // 마지막 애니메이션 완료 대기
+        yield return tween3.WaitForCompletion();
+    }
+
+    private TempSkill[] Set3RandomSkills()
+    {
+        System.Random rng = new System.Random();
+        allOfTempSkills = allOfTempSkills.OrderBy(s => rng.Next()).ToArray(); // OrderBy와 Random을 사용하여 랜덤으로 섞은 배열을 만듦
+
+        for (int i = 0; i < 3; i++)
+        {
+            get3RandomSkills[i] = allOfTempSkills[i];
+        }
+
+        Skill1st = get3RandomSkills[0];
+        Skill2nd = get3RandomSkills[1];
+        Skill3rd = get3RandomSkills[2];
+
+        return get3RandomSkills;
+    }
+
+    private void SetRouletteImages()
+    {
+        // 스프라이트 적용
+        rouletteImages[0].sprite = get3RandomSkills[0].Icon;
+        rouletteImages[1].sprite = get3RandomSkills[1].Icon;
+        rouletteImages[2].sprite = get3RandomSkills[2].Icon;
+
+        // 텍스트에 설명 적용
+        rouletteImages[0].GetComponentInChildren<TextMeshProUGUI>(true).text = get3RandomSkills[0].Name;
+        rouletteImages[1].GetComponentInChildren<TextMeshProUGUI>(true).text = get3RandomSkills[1].Name;
+        rouletteImages[2].GetComponentInChildren<TextMeshProUGUI>(true).text = get3RandomSkills[2].Name;
+    }
+
+    private void ResetImageTransform()
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            rouletteImages[j].transform.localPosition = new Vector3(
+                rouletteImages[j].transform.localPosition.x, 400, rouletteImages[j].transform.localPosition.z
+            );
+        }
+    }
+    #endregion
+
+    public void OnClickSkill1stSkill()
+    {
+        player.GetSkill(Skill1st);
+        roletteCanvas.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void OnClickSkill2ndSkill()
+    {
+        player.GetSkill(Skill2nd);
+        roletteCanvas.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void OnClickSkill3rdSkill()
+    {
+        player.GetSkill(Skill3rd);
+        roletteCanvas.SetActive(false);
+        Time.timeScale = 1;
     }
 
     #region Coin
@@ -90,7 +217,23 @@ public class UIManager : Singleton<UIManager>
     public void OnClickPauseButton()
     {
         Time.timeScale = 0;
-        Debug.Log("Pause");
+        pauseHUD.SetActive(true);
+    }
+
+    public void OnClickBackButton()
+    {
+        Time.timeScale = 1;
+        pauseHUD.SetActive(false);
+    }
+
+    public void OnClickExitButton()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("StartScene");
+        pauseHUD.SetActive(false);
+        ResetStageFloor();
+        // 코인 저장하려면 따로 추가
+        Destroy(this.gameObject);
     }
     #endregion
 }
