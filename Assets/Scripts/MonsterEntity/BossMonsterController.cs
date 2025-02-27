@@ -68,7 +68,6 @@ public class BossMonsterController : BaseController
     // 보스몬스터의 이동로직
     protected override void HandleAction()
     {
-        // OOP 특강때 지우지 말라고 했던 것이 생각났다
         base.HandleAction();
 
         if (weaponHandler == null || target == null)

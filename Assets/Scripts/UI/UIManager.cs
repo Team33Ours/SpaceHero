@@ -36,9 +36,20 @@ public class UIManager : Singleton<UIManager>
     public GameObject pauseHUD;
     public Button PauseUI;
 
-    protected override void Awake()
+    public GameManager gameManager;
+
+    /// <summary>
+    /// 씬이 로드될 때 OnSceneLoaded 추가
+    /// </summary>
+    protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         base.Awake();
+
+        /// GameManager가 먼저 만들어져야한다
+        if (gameManager == null)
+        {
+            gameManager = GameManager.Instance;
+        }
 
         // Roulette
         player = GameObject.FindWithTag("Player").GetComponent<ResourceController>();
@@ -56,7 +67,38 @@ public class UIManager : Singleton<UIManager>
 
         // Pause
         PauseUI = GetComponent<Button>();
+
     }
+    /// <summary>
+    /// 씬이 언로드될때 OnDestroy 추가
+    /// </summary>
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+    }
+
+
+    //protected override void Awake()
+    //{
+    //    base.Awake();
+
+    //    // Roulette
+    //    player = GameObject.FindWithTag("Player").GetComponent<ResourceController>();
+    //    setRefeatTimes = new System.Random();
+
+    //    // Coin
+    //    coin = 0;
+    //    CoinText = GameObject.FindWithTag("Coin").GetComponent<TextMeshProUGUI>();
+    //    CoinText.text = $"{coin}";
+    //    isThereCoin = (CoinText != null) ? true : false;
+
+    //    // Stage
+    //    stageFloor = 0;
+    //    StageText.text = $"{stageFloor}";
+
+    //    // Pause
+    //    PauseUI = GetComponent<Button>();
+    //}
 
     #region Roulette
     public void RunRoulette()

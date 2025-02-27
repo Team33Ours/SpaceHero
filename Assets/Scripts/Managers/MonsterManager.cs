@@ -43,11 +43,11 @@ public class MonsterManager : Singleton<MonsterManager>
         greenMonsterPool = new List<GameObject>();
         bossMonsterPool = new List<GameObject>();
 
+        /// GameManager는 MonsterManager보다 먼저 생성되어야 한다
         if (gameManager == null)
         {
             gameManager = GameManager.Instance;
         }
-
 
         for (int i = 0; i < poolSize; i++)
         {
@@ -72,8 +72,6 @@ public class MonsterManager : Singleton<MonsterManager>
             boss.SetActive(false);
             bossMonsterPool.Add(boss);
         }
-
-
     }
     /// <summary>
     /// 씬이 언로드될때 OnDestroy 추가

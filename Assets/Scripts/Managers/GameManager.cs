@@ -30,14 +30,39 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
         obstacleSpawner = FindObjectOfType<ObstacleSpawner>();
 
-        /// 디버그용으로 하이러키에 올려놓은 Player와 연결한다
-        playerController = FindObjectOfType<PlayerController>();    // 실패. 프리팹이 연결된다
-        //GameObject playerObj = GameObject.Find("Player"); // 하이러키에서 'Player'라는 이름을 가진 오브젝트 찾기
-        //if (playerObj != null)
-        //{
-        //    playerController = playerObj.GetComponent<PlayerController>();
-        //}sd
 
+        /// 게임매니저를 생성할 때 하이러키에 Player인 오브젝트가 없다면 생성해야한다
+        /// 씬이 바뀔 때 null 참조 오류를 방지
+        if (FindObjectOfType<PlayerController>() == null)
+        {
+            // Player 프리팹을 다른 경로에서 로드해서 생성한다
+            GameObject playerPrefab = Resources.Load<GameObject>("Prefabs/Player/Player");
+            if (playerPrefab != null)
+            {
+                GameObject playerObj = Instantiate(playerPrefab);
+                // 플레이어의 위치
+                playerObj.transform.position = new Vector3(playerObj.transform.position.x,
+                    playerObj.transform.position.y - 7f,
+                    playerObj.transform.position.z);
+                // 이름에서 (Clone) 제거
+                playerObj.name = playerObj.name.Replace("(Clone)", "");
+
+                // 이동이 안되는 오류가 있다.
+
+
+
+                playerController = playerObj.GetComponent<PlayerController>();
+
+            }
+            else
+            {
+                Debug.Log("플레이어 프리팹을 찾지 못했습니다");
+            }
+        }
+        else
+        {
+            playerController = FindObjectOfType<PlayerController>();    // 하이러키에 이미 있는 경우
+        }
     }
     /// <summary>
     /// 씬이 언로드될때 OnDestroy 추가
