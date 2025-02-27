@@ -40,8 +40,6 @@ public class AchievementManager : MonoBehaviour
                 Debug.Log($"업적 달성! {achievement.title}");
             }
             SaveSystem.SaveAchievements(achievements);
-
-            AchievementUI.Instance.UpdateUI();  // UI 갱신
         }
     }
 

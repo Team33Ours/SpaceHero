@@ -12,7 +12,7 @@ public class StartSceneButton : MonoBehaviour
     {
         // 게임 씬으로 이동
         // 임시 ScyScene 연결
-        SceneManager.LoadScene("ScyScene");
+        SceneManager.LoadScene("MainScene");
     }
 
     public void OnClickOptionButton()

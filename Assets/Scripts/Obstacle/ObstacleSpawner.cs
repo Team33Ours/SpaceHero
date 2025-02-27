@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 
@@ -41,6 +42,11 @@ public class ObstacleSpawner : MonoBehaviour
         InitTileDictionary();
     }
 
+
+    void Start()
+    {
+        GameManager.Instance.currentStage = CreateFloorTiles((GameManager.Instance.stage - 1) / 10, 3, 5, 5);
+    }
     void InitTileDictionary()
     {
         foreach (var group in tileGroups)
