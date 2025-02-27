@@ -17,11 +17,13 @@ public class AchievementManager : MonoBehaviour
         LoadAchievements();
     }
 
-    public void AddAchievement(Achievement achievement)
+    public void AddAchievement(Achievement newAchievement)
     {
-        achievements.Add(achievement);
-        AchievementUI.Instance.UpdateUI();  // 업적 추가 후 UI 갱신
-
+        if (!achievements.Exists(a => a.id == newAchievement.id))
+        {
+            achievements.Add(newAchievement);
+            SaveSystem.SaveAchievements(achievements);
+        }
     }
 
     public void CheckAchievementProgress(string id, int amount)
@@ -35,26 +37,31 @@ public class AchievementManager : MonoBehaviour
             {
                 achievement.currentValue = achievement.goalValue;
                 achievement.isCompleted = true;
-                GrantReward(achievement);
                 Debug.Log($"업적 달성! {achievement.title}");
             }
+            SaveSystem.SaveAchievements(achievements);
+
+            AchievementUI.Instance.UpdateUI();  // UI 갱신
         }
-        // 업적 진행 상태가 변경되었으므로 UI 갱신
-        AchievementUI.Instance.UpdateUI();
     }
 
-    private void GrantReward(Achievement achievement)
+    public void ClaimReward(string id)
     {
-        Debug.Log($"{achievement.rewardAmount} 골드 지급!");
-    }
+        Achievement achievement = achievements.Find(a => a.id == id);
 
-    public void SaveAchievements()
-    {
-        SaveSystem.SaveAchievements(this);
+        if (achievement != null && achievement.isCompleted && !achievement.isRewarded)
+        {
+            achievement.isRewarded = true;
+            Debug.Log($"{achievement.rewardAmount} 골드 지급!");
+
+            // 골드 지급 코드 추가 (예: PlayerManager.Instance.AddGold(achievement.rewardAmount);)
+
+            SaveSystem.SaveAchievements(achievements);
+        }
     }
 
     public void LoadAchievements()
     {
-        SaveSystem.LoadAchievementData(this);
+        achievements = SaveSystem.LoadAchievements();
     }
 }
