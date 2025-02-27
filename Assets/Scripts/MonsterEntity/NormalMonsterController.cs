@@ -26,18 +26,37 @@ public class NormalMonsterController : BaseController
 
     public void Initialize(MonsterManager _monsterManager, Transform _target, float _followRange)
     {
-        monsterAnimator = GetComponentInChildren<Animator>();   // 몬스터의 animator 연결
+        // 그냥 이름으로 구분하는것이 좋아보인다
+        // 이름 뒤에 (Clone)이 붙는데, 떼고 사용한다
+        gameObject.name = gameObject.name.Replace("(Clone)", "");
 
+        if (gameObject.name.Equals("FlyingMonster"))
+        {
+            // 리소스매니저가 있으면 좋겠는데 지금 만들기엔 늦은듯...?
+            GameObject prefab = Resources.Load<GameObject>("/Prefabs/");
+            GameObject createdObj = Instantiate(prefab);
+            // 필요한 것들 하나씩
+        }
+        else if (gameObject.name.Equals("GreenMonster"))
+        {
+            GameObject prefab = Resources.Load<GameObject>("/Prefabs/");
+
+        }
+
+        // 아니라면
+        // 
+        Debug.Log("1234");
+
+
+        monsterAnimator = GetComponentInChildren<Animator>();   // 몬스터의 animator 연결
         monsterManager = _monsterManager;
         target = _target;
-
         // 몬스터마다 값이 다르므로 생성시에 지정해준다
         followRange = _followRange;
     }
     // 몬스터(일반)의 이동로직
     protected override void HandleAction()
     {
-        // OOP 특강때 지우지 말라고 했던 것이 생각났다
         base.HandleAction();
 
         if (weaponHandler == null || target == null)
@@ -45,17 +64,9 @@ public class NormalMonsterController : BaseController
             if (!movementDirection.Equals(Vector2.zero)) movementDirection = Vector2.zero;
             return;
         }
-
-
         // 거리,방향 구하기
         float distance = DistanceToTarget();
         Vector2 direction = DirectionToTarget();
-
-        // 공격하고 있지 않다
-        //isAttacking = false;
-        /// 몬스터의 animator 파라미터를 바꾼다
-        //monsterAnimator.SetBool("IsAttack", false);
-
         // 거리에 따른 판단
         if (distance <= followRange)
         {
@@ -75,8 +86,6 @@ public class NormalMonsterController : BaseController
                 {
                     isAttacking = true;
 
-                    // 여기서 바꾼다면....
-                    // 다음 프레임에 ....
                     /// 몬스터의 animator 파라미터를 바꾼다
                     monsterAnimator.SetBool("IsAttack", true);
                     Debug.LogFormat($"{monsterAnimator.transform.parent}   + IsAttack + {monsterAnimator.GetBool("IsAttack")}");
@@ -84,6 +93,13 @@ public class NormalMonsterController : BaseController
                 /// 이건 0으로 바꿀 필요가 있을까?
                 movementDirection = Vector2.zero;
                 return;
+            }
+            else
+            {
+                // 공격하고 있지 않다
+                isAttacking = false;
+                /// 몬스터의 animator 파라미터를 바꾼다
+                monsterAnimator.SetBool("IsAttack", false);
             }
             movementDirection = direction;
         }
@@ -105,8 +121,6 @@ public class NormalMonsterController : BaseController
     public override void Death()
     {
         base.Death();
-        // 죽은 건 오브젝트 풀링을 적용하여 List에 집어넣는다
-        // monsterManager.RemoveMonsterOnDeath(gameObject);
         GameManager.Instance.AddKillCount();
     }
 }
