@@ -36,7 +36,12 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-        //currentStage = obstacleSpawner.CreateFloorTiles((stage - 1) / 10, 3, 5, 5);
+        // 현재씬이 게임씬인지 확인하기
+        if (EditorSceneManager.GetActiveScene().name != "MainScene")
+        {
+            return;
+        }
+        currentStage = obstacleSpawner.CreateFloorTiles((stage - 1) / 10, 3, 5, 5);
 
         //// 업적 매니저 가져오기
         //achievementManager = AchievementManager.Instance;

@@ -12,7 +12,12 @@ public class Achievement
     public int currentValue;     // 현재 진행도
     public bool isCompleted;     // 완료 여부
     public int rewardAmount;     // 보상 (골드 등)
+    public bool isRewarded;      // 보상 지급 여부
 
+    public Achievement()
+    {
+
+    }
     public Achievement(string id, string title, string description, int goalValue, int rewardAmount)
     {
         this.id = id;
@@ -22,6 +27,7 @@ public class Achievement
         this.currentValue = 0;
         this.isCompleted = false;
         this.rewardAmount = rewardAmount;
+        this.isRewarded = false;
     }
 }
 
