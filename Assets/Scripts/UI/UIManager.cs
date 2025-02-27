@@ -10,12 +10,14 @@ using Unity.VisualScripting;
 using System.Linq;
 using System;
 using System.Collections;
+using UnityEngine.PlayerLoop;
 
 public class UIManager : Singleton<UIManager>
 {
     [Header("Roulette")]
     public GameObject roletteCanvas;
     public Image[] rouletteImages = new Image[3];
+    public ParticleSystem[] particles = new ParticleSystem[3]; // Rairty에 따라 다른 파티클을 적용
     private TempGameObject player;
     TempSkill[] allOfTempSkills; // Resources의 모든 스킬을 읽는다.
     TempSkill[] get3RandomSkills = new TempSkill[3];
@@ -93,8 +95,10 @@ public class UIManager : Singleton<UIManager>
         Debug.Log("룰렛 애니메이션 완료");
 
         ResetImageTransform();
+
         // 스킬 3개를 뽑음
         get3RandomSkills = Set3RandomSkills();
+
         // 뽑은 스킬을 이미지 UI에 적용
         SetRouletteImages();
 
@@ -135,15 +139,24 @@ public class UIManager : Singleton<UIManager>
 
     private void SetRouletteImages()
     {
-        // 스프라이트 적용
-        rouletteImages[0].sprite = get3RandomSkills[0].Icon;
-        rouletteImages[1].sprite = get3RandomSkills[1].Icon;
-        rouletteImages[2].sprite = get3RandomSkills[2].Icon;
+        for (int i = 0; i < 3; i++)
+        {
+            // 스프라이트 적용
+            rouletteImages[i].sprite = get3RandomSkills[i].Icon;
 
-        // 텍스트에 설명 적용
-        rouletteImages[0].GetComponentInChildren<TextMeshProUGUI>(true).text = get3RandomSkills[0].Name;
-        rouletteImages[1].GetComponentInChildren<TextMeshProUGUI>(true).text = get3RandomSkills[1].Name;
-        rouletteImages[2].GetComponentInChildren<TextMeshProUGUI>(true).text = get3RandomSkills[2].Name;
+            // 텍스트에 설명 적용
+            rouletteImages[i].GetComponentInChildren<TextMeshProUGUI>(true).text = get3RandomSkills[i].Name;
+
+            // 파티클 적용
+            if (get3RandomSkills[i].particles != null)
+            {
+                particles[i] = get3RandomSkills[i].particles.GetComponent<ParticleSystem>();
+            }
+            else
+            {
+                particles[i] = null;
+            }
+        }
     }
 
     private void ResetImageTransform()
@@ -157,6 +170,7 @@ public class UIManager : Singleton<UIManager>
     }
     #endregion
 
+    #region RouletteBtn
     public void OnClickSkill1stSkill()
     {
         player.GetSkill(Skill1st);
@@ -177,6 +191,7 @@ public class UIManager : Singleton<UIManager>
         roletteCanvas.SetActive(false);
         Time.timeScale = 1;
     }
+    #endregion
 
     #region Coin
     public void UpdateCoin()

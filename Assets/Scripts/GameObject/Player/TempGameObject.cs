@@ -10,14 +10,9 @@ public class TempGameObject : MonoBehaviour
 
     private void Awake()
     {
+        // UI에 스탯 정보 주입
         GameObjectUI uiNeedStat = GetComponent<GameObjectUI>();
         uiNeedStat.ObjectStat = Stat;
-    }
-
-    private void Update()
-    {
-        // Test
-        //Stat.currentHP -= Time.deltaTime * 3;
     }
 
     public void GetSkill(TempSkill newSkill)

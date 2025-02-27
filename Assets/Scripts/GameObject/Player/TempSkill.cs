@@ -16,10 +16,6 @@ public class TempSkill : ScriptableObject
     public string Name;
     public string Description;
     public Sprite Icon;
-
-    // 스킬 구현
-    public void ApplySkill()
-    {
-        Debug.Log($"Use Skill : {Name}");
-    }
+    public GameObject particles;
+    public int value;
 }
