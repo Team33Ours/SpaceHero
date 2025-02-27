@@ -286,9 +286,11 @@ MonoBehaviour:
   target: {fileID: 0}
   phase: 0
   monsterAnimator: {fileID: 0}
+  subSprite: {fileID: 0}
   followRange: 10
   gameManager: {fileID: 0}
   skillManager: {fileID: 0}
+  isSkill1OnCooldown: 0
   isSkill2OnCooldown: 0
 --- !u!114 &7505151443515382385
 MonoBehaviour:

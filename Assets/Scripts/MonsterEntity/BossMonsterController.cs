@@ -29,6 +29,8 @@ public class BossMonsterController : BaseController
 
     public Animator monsterAnimator;    // 몬스터 컨트롤러가 붙은 gameObject의 child에 있는 Animator
 
+    public SpriteRenderer subSprite;    // 자식의 스프라이트(애니메이션에 쓰기 위해 order in layer 조정을 해야한다)
+
 
     /// <summary>
     /// 이렇게 하니까 WeaponHandler가 null이다
@@ -58,6 +60,7 @@ public class BossMonsterController : BaseController
     {
         monsterAnimator = GetComponentInChildren<Animator>();   // 몬스터의 animator 연결
 
+        subSprite = GetComponentInChildren<SpriteRenderer>();
 
         monsterManager = _monsterManager;
         target = _target;
@@ -131,6 +134,7 @@ public class BossMonsterController : BaseController
         }
         else if (phase == eBossPhase.Phase_2)
         {
+            skillAction = StartSkill1;  /// 방법2.void를 반환하는 메서드 안에서 코루틴을 호출한다
             // 거리에 따른 판단
             if (distance <= followRange)
             {
@@ -139,7 +143,6 @@ public class BossMonsterController : BaseController
                 // 공격범위에 있다면 
 
                 //skillAction = () => StartCoroutine(UseSkill1()); // 방법1.람다
-                skillAction = StartSkill1;  /// 방법2.void를 반환하는 메서드 안에서 코루틴을 호출한다
                 movementDirection = Vector2.zero;  // 이동 안 함
                 lookDirection = direction;
                 //if (distance <= 10f)
@@ -189,6 +192,7 @@ public class BossMonsterController : BaseController
         if (phase == eBossPhase.Phase_1)
         {
             base.HandleAttackDelay();   // 일반공격
+            Debug.Log("일반공격");
         }
         else if (phase == eBossPhase.Phase_2)
         {
@@ -261,6 +265,7 @@ public class BossMonsterController : BaseController
             currentSkill = skillManager.bossMobSkills["IceBall"]; // 스킬 이름을 통해 해당 스킬을 할당
 
         monsterAnimator.SetBool("isUsingSkill1", true);      // 애니메이터 스킬 사용 트리거
+        Debug.Log("스킬1: 아이스볼");
 
         isSkill1OnCooldown = true;  /// 스킬1 쿨타임 시작
 
@@ -289,12 +294,14 @@ public class BossMonsterController : BaseController
             currentSkill = skillManager.bossMobSkills["ThunderTackle"]; // 스킬 이름을 통해 해당 스킬을 할당
 
         monsterAnimator.SetBool("isUsingSkill2", true);  // 애니메이터 스킬 사용 트리거
+        subSprite.sortingOrder = 9;
+        Debug.Log("스킬2: 썬더태클");
 
         isSkill2OnCooldown = true;   // 스킬2 쿨타임 시작
 
         yield return new WaitForSeconds(5);         // 쿨타임 후 시작: 5초
         isSkill2OnCooldown = false; /// 쿨타임 끝
-
+        subSprite.sortingOrder = 0;
         // 플레이어의 ResourceController 가져오기
         ResourceController playerResourceController = gameManager.playerController.GetComponent<ResourceController>();
         // 체력 감소만 적용
