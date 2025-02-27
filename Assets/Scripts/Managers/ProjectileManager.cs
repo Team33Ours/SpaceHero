@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// 
+/// </summary>
 public class ProjectileManager : MonoBehaviour
 {
     private static ProjectileManager instance;
