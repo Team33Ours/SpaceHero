@@ -51,12 +51,14 @@ public class NormalMonsterController : BaseController
         monsterAnimator = GetComponentInChildren<Animator>();   // 몬스터의 animator 연결
         monsterManager = _monsterManager;
         target = _target;
+
         // 몬스터마다 값이 다르므로 생성시에 지정해준다
         followRange = _followRange;
     }
     // 몬스터(일반)의 이동로직
     protected override void HandleAction()
     {
+        // OOP 특강때 지우지 말라고 했던 것이 생각났다
         base.HandleAction();
 
         if (weaponHandler == null || target == null)
@@ -64,9 +66,17 @@ public class NormalMonsterController : BaseController
             if (!movementDirection.Equals(Vector2.zero)) movementDirection = Vector2.zero;
             return;
         }
+
+
         // 거리,방향 구하기
         float distance = DistanceToTarget();
         Vector2 direction = DirectionToTarget();
+
+        // 공격하고 있지 않다
+        //isAttacking = false;
+        /// 몬스터의 animator 파라미터를 바꾼다
+        //monsterAnimator.SetBool("IsAttack", false);
+
         // 거리에 따른 판단
         if (distance <= followRange)
         {
@@ -86,6 +96,8 @@ public class NormalMonsterController : BaseController
                 {
                     isAttacking = true;
 
+                    // 여기서 바꾼다면....
+                    // 다음 프레임에 ....
                     /// 몬스터의 animator 파라미터를 바꾼다
                     monsterAnimator.SetBool("IsAttack", true);
                     Debug.LogFormat($"{monsterAnimator.transform.parent}   + IsAttack + {monsterAnimator.GetBool("IsAttack")}");
@@ -93,13 +105,6 @@ public class NormalMonsterController : BaseController
                 /// 이건 0으로 바꿀 필요가 있을까?
                 movementDirection = Vector2.zero;
                 return;
-            }
-            else
-            {
-                // 공격하고 있지 않다
-                isAttacking = false;
-                /// 몬스터의 animator 파라미터를 바꾼다
-                monsterAnimator.SetBool("IsAttack", false);
             }
             movementDirection = direction;
         }
@@ -121,6 +126,8 @@ public class NormalMonsterController : BaseController
     public override void Death()
     {
         base.Death();
+        // 죽은 건 오브젝트 풀링을 적용하여 List에 집어넣는다
+        // monsterManager.RemoveMonsterOnDeath(gameObject);
         GameManager.Instance.AddKillCount();
     }
 }

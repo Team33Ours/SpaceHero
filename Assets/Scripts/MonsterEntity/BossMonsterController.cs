@@ -27,7 +27,7 @@ public class BossMonsterController : BaseController
     public Transform target;
     public eBossPhase phase;
 
-    public Animator bossAnimator;    // 몬스터 컨트롤러가 붙은 gameObject의 child에 있는 Animator
+    public Animator monsterAnimator;    // 몬스터 컨트롤러가 붙은 gameObject의 child에 있는 Animator
 
 
     /// <summary>
@@ -48,14 +48,14 @@ public class BossMonsterController : BaseController
     public vDv skillAction; // 스킬을 저장할 delegate
     private BaseSkill currentSkill; // 현재 할당된 스킬
 
+    private void Start()
+    {
+        skillManager = SkillManager.Instance;
+    }
 
     public void Initialize(MonsterManager _monsterManager, Transform _target, float _followRange)
     {
-        skillManager = SkillManager.Instance;
-        bossAnimator = GetComponentInChildren<Animator>();   // 몬스터의 animator 연결
-
-        // 보스몬스터만 여기서 생성되니까 구분할 필요 없다
-        // 보스몬스터에 붙는 컴포넌트 올바른 자리에 다 붙일것
+        monsterAnimator = GetComponentInChildren<Animator>();   // 몬스터의 animator 연결
 
 
         monsterManager = _monsterManager;
@@ -109,32 +109,16 @@ public class BossMonsterController : BaseController
                     if (hit.collider != null && layerMaskTarget == (layerMaskTarget | (1 << hit.collider.gameObject.layer)))
                     {
                         isAttacking = true;
-
-                        /// 몬스터의 animator 파라미터를 바꾼다
-                        bossAnimator.SetBool("IsAttack", true);
-                        Debug.LogFormat($"{bossAnimator.transform.parent}   + IsAttack + {bossAnimator.GetBool("IsAttack")}");
-
                     }
                     /// 이건 0으로 바꿀 필요가 있을까?
                     movementDirection = Vector2.zero;
                     return;
-                }
-                else
-                {
-                    // 공격하고 있지 않다
-                    isAttacking = false;
-                    /// 몬스터의 animator 파라미터를 바꾼다
-                    bossAnimator.SetBool("IsAttack", false);
                 }
                 movementDirection = direction;
             }
         }
         else if (phase == eBossPhase.Phase_2)
         {
-            /// 몬스터의 animator 파라미터를 바꾼다
-            bossAnimator.SetBool("IsAttack", true);
-            Debug.LogFormat($"{bossAnimator.transform.parent}   + IsAttack + {bossAnimator.GetBool("IsAttack")}");
-
             //skillAction = () => StartCoroutine(UseSkill1()); // 방법1.람다
             skillAction = StartSkill1;  /// 방법2.void를 반환하는 메서드 안에서 코루틴을 호출한다
             movementDirection = Vector2.zero;  // 이동 안 함
@@ -147,18 +131,12 @@ public class BossMonsterController : BaseController
             // 스킬 쿨타임 중이라면 이동하지 않음
             if (isSkill2OnCooldown)
             {
-                // 공격하고 있지 않다
-                isAttacking = false;
-                /// 몬스터의 animator 파라미터를 바꾼다
-                bossAnimator.SetBool("IsAttack", false);
-
                 movementDirection = Vector2.zero;  // 쿨타임 중 이동하지 않음
                 return;
             }
             // 근거리 스킬을 사용할 때는 플레이어를 추격함
             if (distance <= followRange)
             {
-
                 lookDirection = direction;
                 movementDirection = direction;
             }
@@ -176,11 +154,10 @@ public class BossMonsterController : BaseController
 
         if (phase == eBossPhase.Phase_2)
         {
-            HandleAction(); // 이동을 안한다
+            HandleAction();
         }
         else
         {
-            // 이동한다
 
         }
     }
@@ -246,13 +223,6 @@ public class BossMonsterController : BaseController
 
     public IEnumerator UseSkill2()
     {
-        /// 몬스터의 animator 파라미터를 바꾼다
-        bossAnimator.SetBool("IsAttack", true);
-        Debug.LogFormat($"{bossAnimator.transform.parent}   + IsAttack + {bossAnimator.GetBool("IsAttack")}");
-
-
-
-
         if (currentSkill == null)
             yield break;
         // skillManager의 bossMobSkills["ThunderTackle"]
