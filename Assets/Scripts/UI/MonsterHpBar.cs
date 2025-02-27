@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonsterHpBar : TempMonster
 {
-    private TempStatus status;
+    private Status status;
 
     private void Start()
     {

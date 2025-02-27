@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class TempMonster : MonoBehaviour
 {
-    public TempStatus Stat;
+    public Status Stat;
 }

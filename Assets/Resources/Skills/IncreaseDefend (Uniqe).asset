@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a12f63a27789b9d4baca70e487c700b1, type: 3}
-  m_Name: IncreaseMaxHP
+  m_Name: IncreaseDefend (Uniqe)
   m_EditorClassIdentifier: 
   skillRarity: 0
-  Name: "\uCD5C\uB300 \uCCB4\uB825 \uC99D\uAC00"
-  Description: "\uCD5C\uB300 \uCCB4\uB825\uC774 10%\uB9CC\uD07C \uC99D\uAC00\uD569\uB2C8\uB2E4"
-  Icon: {fileID: 21300000, guid: 10591dcb0970b2a49a732cbb84f09ce6, type: 3}
-  particles: {fileID: 0}
-  value: 10
+  Name: "\uBC29\uC5B4\uB825 \uC99D\uAC00 (\uC720\uB2C8\uD06C)"
+  Description: "\uBC29\uC5B4\uB825\uC774 30%\uB9CC\uD07C \uC99D\uAC00\uD569\uB2C8\uB2E4"
+  Icon: {fileID: 21300000, guid: 7ee47324d198684418811e2cee0e2769, type: 3}
+  particles: {fileID: 832122466024944003, guid: 8458e2e309f71344db96580491a0e8ca, type: 3}
+  value: 30
