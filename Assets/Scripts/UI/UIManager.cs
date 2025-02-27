@@ -11,19 +11,21 @@ using System.Linq;
 using System;
 using System.Collections;
 using UnityEngine.PlayerLoop;
+using Coffee.UIExtensions;
 
 public class UIManager : Singleton<UIManager>
 {
     [Header("Roulette")]
     public GameObject roletteCanvas;
-    public Image[] rouletteImages = new Image[3];
-    public ParticleSystem[] particles = new ParticleSystem[3]; // Rairty에 따라 다른 파티클을 적용
-    private TempGameObject player;
     TempSkill[] allOfTempSkills; // Resources의 모든 스킬을 읽는다.
     TempSkill[] get3RandomSkills = new TempSkill[3];
     TempSkill Skill1st, Skill2nd, Skill3rd;
-    internal int moveCount;
+    public UIParticle[] UIParticles = new UIParticle[3]; // Rairty에 따라 다른 파티클을 적용
+    public Image[] rouletteImages = new Image[3];
+    private TempGameObject player;
+    public float duration = 1f;
     internal System.Random setRefeatTimes;
+    internal int moveCount;
 
     [Header("Coin")]
     [SerializeField]
@@ -39,10 +41,6 @@ public class UIManager : Singleton<UIManager>
     [Header("Pause")]
     public GameObject pauseHUD;
     public Button PauseUI;
-
-
-    // Test
-    public float duration = 1f;
 
     protected override void Awake()
     {
@@ -71,7 +69,7 @@ public class UIManager : Singleton<UIManager>
     {
         Time.timeScale = 0;
         roletteCanvas.SetActive(true);
-        moveCount = setRefeatTimes.Next(5, 8);
+        moveCount = setRefeatTimes.Next(2, 4);
 
         // Resources/Skills 폴더에 있는 모든 TempSkill 타입 에셋을 읽음
         allOfTempSkills = Resources.LoadAll<TempSkill>("Skills");
@@ -144,17 +142,21 @@ public class UIManager : Singleton<UIManager>
             // 스프라이트 적용
             rouletteImages[i].sprite = get3RandomSkills[i].Icon;
 
-            // 텍스트에 설명 적용
+            // 텍스트 이름 적용
             rouletteImages[i].GetComponentInChildren<TextMeshProUGUI>(true).text = get3RandomSkills[i].Name;
 
             // 파티클 적용
             if (get3RandomSkills[i].particles != null)
             {
-                particles[i] = get3RandomSkills[i].particles.GetComponent<ParticleSystem>();
+                UIParticles[i].gameObject.SetActive(true);
+                GameObject particle = get3RandomSkills[i].particles;
+                // 게임오브젝트 파티클 프리팹을 매개로 주면 UI에 표시되게 해줌
+                UIParticles[i].SetParticleSystemPrefab(particle);
+                particle.GetComponent<ParticleSystem>().Play();
             }
-            else
+            else if (get3RandomSkills[i].particles == null)
             {
-                particles[i] = null;
+                UIParticles[i].gameObject.SetActive(false);
             }
         }
     }
