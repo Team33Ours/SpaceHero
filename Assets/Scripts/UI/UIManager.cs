@@ -16,7 +16,7 @@ public class UIManager : Singleton<UIManager>
     PlayerSkill Skill1st, Skill2nd, Skill3rd;
     public UIParticle[] UIParticles = new UIParticle[3]; // Rairty에 따라 다른 파티클을 적용
     public Image[] rouletteImages = new Image[3];
-    private ResourceController player;
+    private UpStatusFromSkill player;
     public float duration = 1f;
     internal System.Random setRefeatTimes;
     internal int moveCount;
@@ -41,7 +41,7 @@ public class UIManager : Singleton<UIManager>
         base.Awake();
 
         // Roulette
-        player = GameObject.FindWithTag("Player").GetComponent<ResourceController>();
+        player = GameObject.FindWithTag("Player").GetComponent<UpStatusFromSkill>();
         setRefeatTimes = new System.Random();
 
         // Coin

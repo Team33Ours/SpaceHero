@@ -27,7 +27,7 @@ public class BaseController : MonoBehaviour
 
     [SerializeField] public WeaponHandler WeaponPrefab;
     //protected WeaponHandler weaponHandler;
-    [SerializeField] protected WeaponHandler weaponHandler;
+    [SerializeField] public WeaponHandler weaponHandler;
 
     protected bool isMonster;           // 애니메이션 flip문제로 캐릭터/몬스터 분할
     protected bool isMoving;

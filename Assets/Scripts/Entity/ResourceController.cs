@@ -44,6 +44,10 @@ public class ResourceController : MonoBehaviour
 
         // BaseController에 정보 주입
         baseController.Status = Status;
+
+        // UpStatusFromSkill에 정보 주입
+        UpStatusFromSkill upStatus = GetComponent<UpStatusFromSkill>();
+        upStatus.playerStatus = Status;
     }
 
     private void Update()
@@ -167,10 +171,5 @@ public class ResourceController : MonoBehaviour
         Status.currentSpeed -= delta;
         yield return new WaitForSeconds(time);  // 지속시간
         Status.currentSpeed += delta;      // 원래대로
-    }
-
-    public void GetSkill(PlayerSkill newSkill)
-    {
-        hasSkills.Add(newSkill);
     }
 }
