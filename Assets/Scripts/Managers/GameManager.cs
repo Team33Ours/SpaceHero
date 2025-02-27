@@ -19,7 +19,7 @@ public class GameManager : Singleton<GameManager>
     public GameObject currentStage;
 
     private AchievementManager achievementManager;
-    //public GameObject player;
+    public GameObject player;
     protected override void Awake()
     {
         base.Awake();
@@ -27,7 +27,7 @@ public class GameManager : Singleton<GameManager>
 
         /// 디버그용으로 하이러키에 올려놓은 Player와 연결한다
         playerController = FindObjectOfType<PlayerController>();    // 실패. 프리팹이 연결된다
-        //GameObject playerObj = GameObject.Find("Player"); // 하이러키에서 'Player'라는 이름을 가진 오브젝트 찾기
+        player = GameObject.Find("Player"); // 하이러키에서 'Player'라는 이름을 가진 오브젝트 찾기
         //if (playerObj != null)
         //{
         //    playerController = playerObj.GetComponent<PlayerController>();
@@ -74,9 +74,9 @@ public class GameManager : Singleton<GameManager>
         Destroy(currentStage);
         currentStage = obstacleSpawner.CreateFloorTiles((stage - 1) / 10, 3, 5, 5);
 
-        //player.transform.position = new Vector3(0, -5, 0);
-        
-        if(stage == 3)
+        player.transform.position = new Vector3(0, -5, 0);
+
+        if (stage == 3)
             SoundManager.Instance.ChangeBackGroundMusic(SoundManager.Instance.backgroundMusic[2]);
         else if(stage == 6)
             SoundManager.Instance.ChangeBackGroundMusic(SoundManager.Instance.backgroundMusic[3]);

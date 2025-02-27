@@ -9,7 +9,7 @@ using UnityEngine;
 /// 몬스터의 경우 오브젝트 풀링을 적용
 /// 2025.02.26.한만진
 /// </summary>
-public class MonsterManager : Singleton<MonsterManager>
+public class MonsterManager : MonoBehaviour
 {
     public int poolSize;
 
@@ -19,21 +19,21 @@ public class MonsterManager : Singleton<MonsterManager>
     public GameObject greenMonster;
     public GameObject bossMonster;
 
-    private List<GameObject> flyingMonsterPool;
+    public List<GameObject> flyingMonsterPool;
     private List<GameObject> greenMonsterPool;
     private List<GameObject> bossMonsterPool;
 
     [SerializeField]
-    Transform flyingMonsterParent;
+    public Transform flyingMonsterParent;
     [SerializeField]
-    Transform greenMonsterParent;
+    public Transform greenMonsterParent;
     [SerializeField]
-    Transform bossMonsterParent;
+    public Transform bossMonsterParent;
+
+    public NormalMonsterController normalMonsterController;
 
     private void Awake()
     {
-        base.Awake();
-
         flyingMonsterPool = new List<GameObject>();
         greenMonsterPool = new List<GameObject>();
         bossMonsterPool = new List<GameObject>();
@@ -67,23 +67,30 @@ public class MonsterManager : Singleton<MonsterManager>
         for (int i = 0; i < poolSize; i++)
         {
             GameObject flying = Instantiate(flyingMonster, flyingMonsterParent);
-            NormalMonsterController normalController1 = flying.GetComponent<NormalMonsterController>();
-            if (normalController1 != null)
-                normalController1.Initialize(this, gameManager.playerController.transform, 100f);
-            flying.SetActive(false);
+            //normalMonsterController = flying.GetComponent<NormalMonsterController>();
+
             flyingMonsterPool.Add(flying);
+            //if (normalMonsterController != null)
+            //{
+            //    Debug.Log("1");
+            //    //normalController1.Initializea(this, gameManager.playerController.transform, 100f);
+            //    flyingMonsterPool[i].GetComponent<NormalMonsterController>().Initializea(this, gameManager.playerController.transform, 100f);
+            //}
+            flying.SetActive(false);
+
+
 
             GameObject green = Instantiate(greenMonster, greenMonsterParent);
-            NormalMonsterController normalController2 = green.GetComponent<NormalMonsterController>();
-            if (normalController2 != null)
-                normalController2.Initialize(this, gameManager.playerController.transform, 100f);
+            //NormalMonsterController normalController2 = green.GetComponent<NormalMonsterController>();
+            //if (normalController2 != null)
+            //    normalController2.Initializea(this, gameManager.playerController.transform, 100f);
             green.SetActive(false);
             greenMonsterPool.Add(green);
 
             GameObject boss = Instantiate(bossMonster, bossMonsterParent);
-            BossMonsterController bossController = boss.GetComponent<BossMonsterController>();
-            if (bossController != null)
-                bossController.Initialize(this, gameManager.playerController.transform, 200f);
+            //BossMonsterController bossController = boss.GetComponent<BossMonsterController>();
+            //if (bossController != null)
+            //    bossController.Initialize(this, gameManager.playerController.transform, 200f);
             boss.SetActive(false);
             bossMonsterPool.Add(boss);
         }
@@ -102,6 +109,9 @@ public class MonsterManager : Singleton<MonsterManager>
         }
 
         GameObject flying = Instantiate(flyingMonster, flyingMonsterParent);
+        //NormalMonsterController normalController2 = flying.GetComponent<NormalMonsterController>();
+        //if (normalController2 != null)
+        //    normalController2.Initializea(this, gameManager.playerController.transform, 100f);
         flying.SetActive(true);
         flyingMonsterPool.Add(flying);
         return flying;

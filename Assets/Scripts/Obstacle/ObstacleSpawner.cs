@@ -36,7 +36,8 @@ public class ObstacleSpawner : MonoBehaviour
     private List<Bounds> itemObstacleBoundsList = new List<Bounds>(); // 아이템 장애물의 Bounds 리스트
     private List<Bounds> enemyBoundsList = new List<Bounds>(); // 적의 Bounds 리스트
 
-
+    [SerializeField]
+    private MonsterManager monsterManager;
     private void Awake()
     {
         if(GameManager.Instance.obstacleSpawner == null)
@@ -159,12 +160,12 @@ public class ObstacleSpawner : MonoBehaviour
 
             if (randomMonster == 0)
             {
-                GameObject flyEnemy = MonsterManager.Instance.FlyMonsterFromPool();
+                GameObject flyEnemy = monsterManager.FlyMonsterFromPool();
                 monster = flyEnemy;
             }
             else
             {
-                GameObject greenEnemy = MonsterManager.Instance.GreenMonsterFromPool();
+                GameObject greenEnemy = monsterManager.GreenMonsterFromPool();
                 monster = greenEnemy;
             }
 

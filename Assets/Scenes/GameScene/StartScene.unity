@@ -3373,10 +3373,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   killCount: 0
-  enemyCount: 0
+  enemyCount: 5
   stage: 1
+  obstacleSpawner: {fileID: 0}
   playerController: {fileID: 0}
   currentStage: {fileID: 0}
+  player: {fileID: 0}
 --- !u!4 &1185227687
 Transform:
   m_ObjectHideFlags: 0
