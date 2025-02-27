@@ -5,7 +5,7 @@ using UnityEngine;
 public class AnimationHandler : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer characterRenderer;
-    private static readonly int IsMoving = Animator.StringToHash("IsMove");
+    private static readonly int IsMove = Animator.StringToHash("IsMove");
     private static readonly int IsAttack = Animator.StringToHash("IsAttack");
     private static readonly int IsDamage = Animator.StringToHash("IsDamage");
 
@@ -21,12 +21,12 @@ public class AnimationHandler : MonoBehaviour
 
     public void Move(Vector2 obj)
     {
-        animator.SetBool(IsMoving, obj.magnitude > .5f);
+        animator.SetBool(IsMove, obj.magnitude > .5f);
 
         bool isRight = obj.x > 0f;
         characterRenderer.flipX = isRight;
 
-        Debug.LogFormat($"{animator.transform.parent}  + IsMoving + {animator.GetBool("IsMoving")}");
+        Debug.LogFormat($"{animator.transform.parent}  + IsMove + {animator.GetBool("IsMove")}");
 
         animator.SetFloat(MoveX, obj.x);
         animator.SetFloat(MoveY, obj.y);
