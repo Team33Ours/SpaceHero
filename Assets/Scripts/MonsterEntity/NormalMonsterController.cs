@@ -7,6 +7,9 @@ using UnityEngine;
 /// 일반몬스터의 이동,공격 기능
 /// 보스몬스터는 다른 Controller를 통해 이동,공격,스킬 적용한다
 /// 2025.02.24.ImSeonggyun
+/// 
+/// 이곳에 animator를 선언한다면, 몬스터의 animator를 관리할 수 있다
+/// 2025.02.27.ImSeonggyun
 /// </summary>
 public class NormalMonsterController : BaseController
 {
@@ -15,12 +18,16 @@ public class NormalMonsterController : BaseController
     //private Transform target;
     public Transform target;
 
+    public Animator monsterAnimator;    // 몬스터 컨트롤러가 붙은 gameObject의 child에 있는 Animator
+
     // 몬스터 종류에 따라 다른 값들
     //[SerializeField] private float followRange;
     [SerializeField] public float followRange;
 
     public void Initialize(MonsterManager _monsterManager, Transform _target, float _followRange)
     {
+        monsterAnimator = GetComponentInChildren<Animator>();   // 몬스터의 animator 연결
+
         monsterManager = _monsterManager;
         target = _target;
 
@@ -42,10 +49,12 @@ public class NormalMonsterController : BaseController
 
         // 거리,방향 구하기
         float distance = DistanceToTarget();
-        Vector2 direction = DirectionToTarget();   
+        Vector2 direction = DirectionToTarget();
 
         // 공격하고 있지 않다
-        isAttacking = false;
+        //isAttacking = false;
+        /// 몬스터의 animator 파라미터를 바꾼다
+        //monsterAnimator.SetBool("IsAttack", false);
 
         // 거리에 따른 판단
         if (distance <= followRange)
@@ -57,7 +66,7 @@ public class NormalMonsterController : BaseController
             {
                 // 공격
                 int layerMaskTarget = weaponHandler.target;
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, weaponHandler.AttackRange * 1.5f, 
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, weaponHandler.AttackRange * 1.5f,
                     (1 << LayerMask.NameToLayer("Level")) | layerMaskTarget);
 
                 // 충돌체가 있다면, 충돌해서 처리해야하는 layer가 맞는지 확인한다
@@ -65,6 +74,12 @@ public class NormalMonsterController : BaseController
                 if (hit.collider != null && layerMaskTarget == (layerMaskTarget | (1 << hit.collider.gameObject.layer)))
                 {
                     isAttacking = true;
+
+                    // 여기서 바꾼다면....
+                    // 다음 프레임에 ....
+                    /// 몬스터의 animator 파라미터를 바꾼다
+                    monsterAnimator.SetBool("IsAttack", true);
+                    Debug.LogFormat($"{monsterAnimator.transform.parent}   + IsAttack + {monsterAnimator.GetBool("IsAttack")}");
                 }
                 /// 이건 0으로 바꿀 필요가 있을까?
                 movementDirection = Vector2.zero;

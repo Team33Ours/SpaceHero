@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -32,6 +33,7 @@ public class BaseController : MonoBehaviour
     protected bool isMonster;           // 애니메이션 flip문제로 캐릭터/몬스터 분할
     protected bool isMoving;
     protected bool isAttacking;
+    protected bool isDead;
     private float timeSinceLastAttack = float.MaxValue;
 
     protected virtual void Awake()
@@ -50,11 +52,19 @@ public class BaseController : MonoBehaviour
 
     }
 
+    protected virtual void OnEnable()
+    {
+        isDead = false;
+    }
+
     protected virtual void Update()
     {
-        HandleAction();
-        Rotate(lookDirection);
-        HandleAttackDelay();
+        if (!isDead)
+        {
+            HandleAction();
+            Rotate(lookDirection);
+            HandleAttackDelay();
+        }
     }
 
     protected virtual void FixedUpdate()
@@ -91,7 +101,7 @@ public class BaseController : MonoBehaviour
         animationHandler.Move(direction);
     }
 
-    private void Rotate(Vector2 direction)
+    protected virtual void Rotate(Vector2 direction)
     {
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         bool isLeft = Mathf.Abs(rotZ) > 90f;
@@ -127,6 +137,7 @@ public class BaseController : MonoBehaviour
         {
             timeSinceLastAttack = 0;
             animationHandler.Attack(true);
+            Debug.Log("공격애니메이션 재생");
             Attack();
         }
 
