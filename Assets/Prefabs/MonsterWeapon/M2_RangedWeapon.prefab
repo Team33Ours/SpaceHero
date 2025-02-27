@@ -194,6 +194,7 @@ MonoBehaviour:
   isOnKnockback: 0
   knockbackPower: 0.1
   knockbackTime: 0.5
+  attackSoundClip: {fileID: 8300000, guid: 65682a87bd780ed4db37d90f6bf06f59, type: 3}
   projectileSpawnPosition: {fileID: 7829656616241907982}
   bulletIndex: 0
   bulletSize: 1
@@ -201,4 +202,4 @@ MonoBehaviour:
   spread: 1
   numberofProjectilesPerShot: 1
   multipleProjectilesAngel: 1
-  projectileColor: {r: 1, g: 1, b: 0, a: 1}
+  projectileColor: {r: 1, g: 1, b: 1, a: 1}
