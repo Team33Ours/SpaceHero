@@ -29,12 +29,12 @@ public class GameManager : Singleton<GameManager>
         //if (playerObj != null)
         //{
         //    playerController = playerObj.GetComponent<PlayerController>();
-        //}
+        //}sd
     }
 
     void Start()
     {
-        //currentStage = obstacleSpawner.CreateFloorTiles((stage - 1) / 10, 3, 5, 5);
+        currentStage = obstacleSpawner.CreateFloorTiles((stage - 1) / 10, 3, 5, 5);
     }
     void Update()
     {
