@@ -149,9 +149,9 @@ GameObject:
   - component: {fileID: 8704191396868886751}
   - component: {fileID: 6068005107368061325}
   - component: {fileID: 105181312310086335}
+  - component: {fileID: 2707991009301727638}
   - component: {fileID: 7505151443515382385}
   - component: {fileID: 8386380510562371075}
-  - component: {fileID: 2707991009301727638}
   m_Layer: 7
   m_Name: BossMonster
   m_TagString: Untagged
@@ -262,6 +262,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthChangeDelay: 0.5
   damageClip: {fileID: 0}
+--- !u!114 &2707991009301727638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5127828454102927722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62cf3d2156c1fa841bf567cc4c1acc63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterRenderer: {fileID: 2224840236128114575}
+  weaponPivot: {fileID: 8119233799021284350}
+  WeaponPrefab: {fileID: 2389727811059481689, guid: b553f611a7049824097c043207ee9772, type: 3}
+  weaponHandler: {fileID: 0}
+  monsterManager: {fileID: 0}
+  target: {fileID: 0}
+  phase: 0
+  followRange: 0
+  gameManager: {fileID: 0}
+  skillManager: {fileID: 0}
+  isSkill2OnCooldown: 0
 --- !u!114 &7505151443515382385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,23 +314,3 @@ MonoBehaviour:
   maxMana: 0
   maxSpeed: 3
   exp: 500
---- !u!114 &2707991009301727638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5127828454102927722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62cf3d2156c1fa841bf567cc4c1acc63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterRenderer: {fileID: 2224840236128114575}
-  weaponPivot: {fileID: 8119233799021284350}
-  WeaponPrefab: {fileID: 7669425147887084683, guid: 5c301033348c1a84bad1c883883557a2, type: 3}
-  monsterManager: {fileID: 0}
-  target: {fileID: 0}
-  phase: 0
-  RangeWeaponPrefab: {fileID: 2389727811059481689, guid: b553f611a7049824097c043207ee9772, type: 3}
-  followRange: 0

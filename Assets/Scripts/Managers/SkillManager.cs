@@ -33,7 +33,7 @@ public class SkillManager : Singleton<SkillManager>
     public void Start()
     {
         // 임시
-        SaveDefaultSkills();
+        //SaveDefaultSkills();
 
 
         // 데이터매니저로부터 스킬을 가져온다
