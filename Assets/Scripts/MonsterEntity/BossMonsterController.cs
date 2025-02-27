@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Define;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// 보스의 Phase
@@ -25,6 +26,9 @@ public class BossMonsterController : BaseController
     public MonsterManager monsterManager;
     public Transform target;
     public eBossPhase phase;
+
+    public Animator monsterAnimator;    // 몬스터 컨트롤러가 붙은 gameObject의 child에 있는 Animator
+
 
     /// <summary>
     /// 이렇게 하니까 WeaponHandler가 null이다
@@ -51,6 +55,9 @@ public class BossMonsterController : BaseController
 
     public void Initialize(MonsterManager _monsterManager, Transform _target, float _followRange)
     {
+        monsterAnimator = GetComponentInChildren<Animator>();   // 몬스터의 animator 연결
+
+
         monsterManager = _monsterManager;
         target = _target;
 
@@ -135,6 +142,27 @@ public class BossMonsterController : BaseController
             }
         }
     }
+
+    /// <summary>
+    /// BaseController의 Update를 사용하면 
+    /// phase1,3일때에도 HandleAttackDelay를 들어가 원거리 공격을 하게 된다
+    /// </summary>
+    protected override void Update()
+    {
+        HandleAction();         // 자신의 HandleAction
+        Rotate(LookDirection);       //
+
+        if (phase == eBossPhase.Phase_2)
+        {
+            HandleAction();
+        }
+        else
+        {
+
+        }
+    }
+
+
     protected float DistanceToTarget()
     {
         return Vector3.Distance(transform.position, target.position);
