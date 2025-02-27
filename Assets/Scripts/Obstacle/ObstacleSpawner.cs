@@ -39,6 +39,8 @@ public class ObstacleSpawner : MonoBehaviour
 
     private void Awake()
     {
+        if(GameManager.Instance.obstacleSpawner == null)
+            GameManager.Instance.obstacleSpawner = this;
         InitTileDictionary();
     }
 
