@@ -17,6 +17,8 @@ public class GameManager : Singleton<GameManager>
     public PlayerController playerController; // 몬스터 생성시 타겟에 넣어야 한다
 
     public GameObject currentStage;
+
+    private AchievementManager achievementManager;
     //public GameObject player;
     protected override void Awake()
     {
@@ -35,13 +37,17 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         currentStage = obstacleSpawner.CreateFloorTiles((stage - 1) / 10, 3, 5, 5);
+
+        //// 업적 매니저 가져오기
+        //achievementManager = AchievementManager.Instance;
+
+        //// 업적 저장
+        //achievementManager.SaveAchievements();
+
     }
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    AddKillCount();
-        //}
+
     }
     public void AddKillCount()
     {
@@ -51,7 +57,7 @@ public class GameManager : Singleton<GameManager>
             killCount = 0;
             currentStage.GetComponentInChildren<DoorOpener>().UnlockDoor();
             currentStage.GetComponentInChildren<BoxCollider2D>().enabled = true;
-            NextStage(); // test
+            //NextStage(); // test
         }
     }
 

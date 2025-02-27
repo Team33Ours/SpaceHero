@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8951174741841005842}
   - component: {fileID: 8722177718832277555}
+  - component: {fileID: 5221743853287803585}
   - component: {fileID: 3855835310090501697}
   m_Layer: 0
   m_Name: DecoObstacle3_Blue
@@ -85,6 +86,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5221743853287803585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3249824802382669400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53de7f41c2923b94080e94c3ab4735f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!60 &3855835310090501697
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -114,7 +127,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
