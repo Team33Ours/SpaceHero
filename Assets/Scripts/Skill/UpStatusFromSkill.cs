@@ -14,13 +14,11 @@ public class UpStatusFromSkill : MonoBehaviour
     internal Status playerStatus;
     private ResourceController resource;
     private BaseController baseController;
-    //private RangeWeaponHandler weaponHandler;
 
     private void Awake()
     {
         resource = GetComponent<ResourceController>();
         baseController = GetComponent<BaseController>();
-        //weaponHandler = (RangeWeaponHandler)baseController.weaponHandler;
     }
 
     public void GetSkill(PlayerSkill newSkill)

@@ -46,8 +46,11 @@ public class ResourceController : MonoBehaviour
         baseController.Status = Status;
 
         // UpStatusFromSkill에 정보 주입
-        UpStatusFromSkill upStatus = GetComponent<UpStatusFromSkill>();
-        upStatus.playerStatus = Status;
+        if (this.gameObject == CompareTag("Player"))
+        {
+            UpStatusFromSkill upStatus = GetComponent<UpStatusFromSkill>();
+            upStatus.playerStatus = Status;
+        }
     }
 
     private void Update()
@@ -90,6 +93,10 @@ public class ResourceController : MonoBehaviour
         if (currentHP <= 0)
         {
             Death();
+            if (this.gameObject != CompareTag("Player"))
+            {
+                // 보석 프리팹 동적 생성 1~2개
+            }
         }
         return true;
     }

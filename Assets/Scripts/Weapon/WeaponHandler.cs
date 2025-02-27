@@ -36,7 +36,8 @@ public class WeaponHandler : MonoBehaviour
     
     private static readonly int IsAttack = Animator.StringToHash("IsAttack");
     private static readonly int aniSpeed = Animator.StringToHash("Speed");
-    
+
+    public Stat_Item statItem { get; set; }
     public AudioClip attackSoundClip;
 
     
@@ -121,5 +122,11 @@ public class WeaponHandler : MonoBehaviour
     public virtual void UpgradeBulletNumber(int upgrade)
     {
         
+    }
+
+    public void SaveItemInfo()
+    {
+        statItem.atkPower = (int)power;
+        statItem.atkSpeed = Speed;
     }
 }

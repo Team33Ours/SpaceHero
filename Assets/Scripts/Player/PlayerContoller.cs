@@ -30,6 +30,35 @@ public class PlayerController : BaseController
         }
     }
 
+    public override void Death()
+    {
+        lookDirection = Vector2.zero;
+        movementDirection = Vector2.zero;
+        animationHandler.Die();
+        isDead = true;
+        
+        foreach (SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
+        {
+            // a값만 바꾼다
+            Color color = renderer.color;
+            color.a = 0.3f;
+            renderer.color = color;
+        }
+        
+        // 플레이어 사망시 무기 작동 안하게 null처리
+        // weaponHandler.SaveItemInfo();
+        weaponHandler = null;
+        
+        
+        StartCoroutine(WaitForDead());
+    }
+    IEnumerator WaitForDead()
+    {
+        // 사망 애니메이션 시간 2.5초
+        yield return new WaitForSeconds(2.5f);
+        gameObject.SetActive(false);
+    }
+
     //UI에 연결하여 player의 weapon에 업그레이드
     
     public void WeaponUpgradeDamage(float damage)
