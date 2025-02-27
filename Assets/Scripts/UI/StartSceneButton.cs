@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartSceneButton : StartSceneDirection
+public class StartSceneButton : MonoBehaviour
 {
+    public Canvas OptionCanvas;
+
     public void OnClickStartButton()
     {
         // 게임 씬으로 이동
@@ -25,10 +27,5 @@ public class StartSceneButton : StartSceneDirection
     {
         // 게임 종료
         Application.Quit();
-    }
-
-    public void Update()
-    {
-        ;
     }
 }
