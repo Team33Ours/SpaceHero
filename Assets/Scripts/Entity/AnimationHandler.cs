@@ -8,6 +8,7 @@ public class AnimationHandler : MonoBehaviour
     private static readonly int IsMoving = Animator.StringToHash("IsMove");
     private static readonly int IsAttack = Animator.StringToHash("IsAttack");
     private static readonly int IsDamage = Animator.StringToHash("IsDamage");
+    private static readonly int IsDie = Animator.StringToHash("IsDie");
 
     private static readonly int MoveX = Animator.StringToHash("MoveX");
     private static readonly int MoveY = Animator.StringToHash("MoveY");
@@ -45,9 +46,16 @@ public class AnimationHandler : MonoBehaviour
 
         animator.SetBool(IsDamage, true);
     }
+    public void Die()
+    {
+        animator.SetTrigger(IsDie);
+    }
 
     public void InvincibilityEnd()
     {
         animator.SetBool(IsDamage, false);
+        
+        
     }
+    
 }
