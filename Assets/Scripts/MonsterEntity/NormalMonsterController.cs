@@ -108,5 +108,6 @@ public class NormalMonsterController : BaseController
         // 죽은 건 오브젝트 풀링을 적용하여 List에 집어넣는다
         // monsterManager.RemoveMonsterOnDeath(gameObject);
         GameManager.Instance.AddKillCount();
+        AchievementManager.Instance.CheckAchievementProgress("10001", 1);
     }
 }

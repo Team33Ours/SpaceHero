@@ -123,7 +123,7 @@ public class ObstacleSpawner : MonoBehaviour
             do
             {
                 float itemXPos = Random.Range(-5f, 5f); 
-                float itemYPos = Random.Range(-9f, 24f);
+                float itemYPos = Random.Range(-9f, 20f);
                 spawnPos = transform.position + new Vector3(itemXPos, itemYPos, 0);
 
                 // 부품의 새로운 Bounds를 생성
@@ -177,7 +177,7 @@ public class ObstacleSpawner : MonoBehaviour
             do
             {
                 float monsterXPos = Random.Range(-5f, 5f);
-                float monsterYPos = Random.Range(-9f, 24f);
+                float monsterYPos = Random.Range(-9f, 20f);
 
                 spawnPos = new Vector3(monsterXPos, monsterYPos, 0);
                 Bounds newMonsterBounds = new Bounds(spawnPos, monsterBounds.size);
