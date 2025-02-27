@@ -24,8 +24,10 @@ public class PlayerController : BaseController
     public void IsAttack(bool isAttack, Transform target)
     {
         isAttacking = isAttack;
-        lookDirection = ((Vector2)target.position - (Vector2)transform.position).normalized;
-        
+        if (target?.position != null)
+        {
+            lookDirection = ((Vector2)target?.position - (Vector2)transform.position).normalized;
+        }
     }
 
     //UI에 연결하여 player의 weapon에 업그레이드

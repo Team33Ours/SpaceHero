@@ -16,3 +16,5 @@ MonoBehaviour:
   Name: "\uC774\uB3D9 \uC18D\uB3C4 \uC99D\uAC00 (\uC720\uB2C8\uD06C)"
   Description: "\uC774\uB3D9 \uC18D\uB3C4\uAC00 20% \uC99D\uAC00\uD569\uB2C8\uB2E4."
   Icon: {fileID: 21300000, guid: ea7029c5c743d6f42b79721fa682728c, type: 3}
+  particles: {fileID: 832122466024944003, guid: 8458e2e309f71344db96580491a0e8ca, type: 3}
+  value: 30

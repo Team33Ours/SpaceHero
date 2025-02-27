@@ -77,10 +77,10 @@ public class ResourceController : MonoBehaviour
         {
             animationHandler.Damage();
 
-            //if (damageClip != null)
-            //    SoundManager.PlayClip(damageClip);
-
+            if (damageClip != null)
+                SoundManager.PlayClip(damageClip);
         }
+        
         if (CurrentHealth <= 0)
         {
             Death();

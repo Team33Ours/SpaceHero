@@ -215,5 +215,6 @@ public class BossMonsterController : BaseController
         playerResourceController.TakeDamage(currentSkill.value1);
 
         Debug.Log($"사용한 스킬: {currentSkill.skillName}, 데미지: {currentSkill.value1}");
+
     }
 }

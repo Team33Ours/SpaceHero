@@ -790,7 +790,6 @@ MonoBehaviour:
   stage: 1
   playerController: {fileID: 5404968540588789585}
   currentStage: {fileID: 0}
-  player: {fileID: 6135192892459435115, guid: 47939b4c8e254bc47b70dcf0ecc46555, type: 3}
 --- !u!4 &1026776587
 Transform:
   m_ObjectHideFlags: 0
@@ -803,7 +802,8 @@ Transform:
   m_LocalPosition: {x: -1.6802269, y: -2.3581147, z: 0.037914366}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2006986678}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1040480712
@@ -1150,6 +1150,54 @@ Transform:
   - {fileID: 484695418}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2006986677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2006986678}
+  - component: {fileID: 2006986679}
+  m_Layer: 0
+  m_Name: ProjectileManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2006986678
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006986677}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.6802269, y: 2.3581147, z: -0.037914366}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1026776587}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2006986679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006986677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0cfded0fbc2bc54fab9115831891a03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefabs:
+  - {fileID: 6599247085500083619, guid: 9fd8c3a79fdaa3147bcc8b03e655394a, type: 3}
+  - {fileID: 3775579976433407859, guid: 88c9c6376a81e1b46a8dbbe9a5fbe6fa, type: 3}
+  - {fileID: 7619094795827662613, guid: 83415b1062fc4154499384197d176984, type: 3}
 --- !u!1 &2014138272
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,6 +1428,7 @@ MonoBehaviour:
   characterRenderer: {fileID: 955889266948120157}
   weaponPivot: {fileID: 1164088474857415685}
   WeaponPrefab: {fileID: 6948556320698675280, guid: 1a59eee49d713a5419a5fe4a665164f1, type: 3}
+  weaponHandler: {fileID: 0}
 --- !u!58 &6008217315679968347
 CircleCollider2D:
   m_ObjectHideFlags: 0
