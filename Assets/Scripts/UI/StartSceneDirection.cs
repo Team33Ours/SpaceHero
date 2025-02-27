@@ -8,7 +8,6 @@ public class StartSceneDirection : MonoBehaviour
     private CanvasGroup titleTextCanvasGroup;
     public Canvas buttonCanvas;
     private CanvasGroup ButtonCanvasGroup;
-    public Canvas OptionCanvas;
 
     private void Start()
     {
