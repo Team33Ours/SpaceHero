@@ -9,6 +9,7 @@ using UnityEngine;
 public class SkillManager : Singleton<SkillManager>
 {
     // 스킬은 이름만 저장한다
+    public Dictionary<string, BaseSkill> playerSkills;  // 플레이어 스킬
     public Dictionary<string, BaseSkill> playerLearned; // 플레이어가 배운 스킬
     public Dictionary<string, BaseSkill> bossMobSkills; // 보스몬스터 스킬
 
@@ -19,6 +20,8 @@ public class SkillManager : Singleton<SkillManager>
 
 
         // 멤버의 초기화는 Awake
+        if (playerSkills == null)
+            playerSkills = new Dictionary<string, BaseSkill>();
         if (playerLearned == null)
             playerLearned = new Dictionary<string, BaseSkill>();
         if (bossMobSkills == null)
