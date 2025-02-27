@@ -61,7 +61,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7782311213379148785}
   - component: {fileID: 1221914022751389689}
-  - component: {fileID: 455442998237762198}
   m_Layer: 0
   m_Name: RedWall_3_3
   m_TagString: Untagged
@@ -136,55 +135,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &455442998237762198
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3088038155846256349}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.5, y: -0.421875}
-      - {x: 0.5, y: -0.421875}
-      - {x: 0.5, y: 0.3671875}
-      - {x: -0.5, y: 0.3671875}
-  m_UseDelaunayMesh: 0
 --- !u!1 &3607188455492811777
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,11 +546,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.08203125, y: 0.421875}
-      - {x: -0.5, y: 0.3671875}
-      - {x: -0.5, y: -0.42578125}
-      - {x: -0.12109375, y: -0.44921875}
-      - {x: 0.4375, y: -0.44921875}
+    - - {x: 0.030427694, y: 0.421875}
+      - {x: -0.005861759, y: 0.3671875}
+      - {x: 0.00095403194, y: -0.4121499}
+      - {x: 0.107232094, y: -0.42195606}
+      - {x: 0.4272765, y: -0.41173244}
       - {x: 0.5, y: -0.42578125}
       - {x: 0.5, y: 0.421875}
   m_UseDelaunayMesh: 0
@@ -736,7 +686,7 @@ PolygonCollider2D:
     - - {x: -0.5, y: 0.421875}
       - {x: -0.5, y: -0.42578125}
       - {x: -0.42578125, y: -0.44921875}
-      - {x: 0.5, y: -0.44921875}
-      - {x: 0.5, y: 0.3671875}
+      - {x: -0.006911397, y: -0.43430996}
+      - {x: 0.006044686, y: 0.27302837}
       - {x: 0, y: 0.421875}
   m_UseDelaunayMesh: 0

@@ -197,7 +197,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3037905326189510308}
   - component: {fileID: 5390000713968066816}
-  - component: {fileID: 7753441020276452750}
   m_Layer: 0
   m_Name: YellowWall_8_3
   m_TagString: Untagged
@@ -272,55 +271,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &7753441020276452750
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4755793243889222252}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.5, y: -0.421875}
-      - {x: 0.5, y: -0.421875}
-      - {x: 0.5, y: -0.21875}
-      - {x: -0.5, y: -0.21875}
-  m_UseDelaunayMesh: 0
 --- !u!1 &5594124840050299472
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,11 +536,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.5, y: -0.421875}
+    - - {x: 0.010230601, y: -0.4077019}
       - {x: 0.5, y: -0.421875}
       - {x: 0.5, y: -0.1640625}
-      - {x: -0.16015625, y: -0.1640625}
-      - {x: -0.5, y: -0.18359375}
+      - {x: 0.07873225, y: -0.1612279}
+      - {x: 0.029762983, y: -0.1668971}
+      - {x: 0.01306504, y: -0.19776674}
   m_UseDelaunayMesh: 0
 --- !u!1 &8261679480600843656
 GameObject:
@@ -723,7 +674,7 @@ PolygonCollider2D:
     m_Paths:
     - - {x: -0.5, y: -0.1640625}
       - {x: -0.5, y: -0.421875}
-      - {x: 0.5, y: -0.421875}
-      - {x: 0.5, y: -0.21875}
-      - {x: -0.00390625, y: -0.1640625}
+      - {x: -0.001726687, y: -0.39919803}
+      - {x: -0.0045612454, y: -0.20457703}
+      - {x: -0.035888433, y: -0.15205629}
   m_UseDelaunayMesh: 0

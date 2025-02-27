@@ -273,8 +273,8 @@ PolygonCollider2D:
     - - {x: -0.5, y: 0.421875}
       - {x: -0.5, y: -0.42578125}
       - {x: -0.42578125, y: -0.44921875}
-      - {x: 0.5, y: -0.44921875}
-      - {x: 0.5, y: 0.3671875}
+      - {x: 0.010025084, y: -0.4285884}
+      - {x: -0.00029021502, y: 0.28982306}
       - {x: 0, y: 0.421875}
   m_UseDelaunayMesh: 0
 --- !u!1 &3444743089761064277
@@ -406,10 +406,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.08203125, y: 0.421875}
-      - {x: -0.5, y: 0.3671875}
-      - {x: -0.5, y: -0.42578125}
-      - {x: -0.12109375, y: -0.44921875}
+    - - {x: 0.04175192, y: 0.43219042}
+      - {x: -0.0048676133, y: 0.3465569}
+      - {x: 0.015762985, y: -0.30199814}
+      - {x: 0.02331984, y: -0.42343068}
       - {x: 0.4375, y: -0.44921875}
       - {x: 0.5, y: -0.42578125}
       - {x: 0.5, y: 0.421875}
@@ -475,7 +475,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7780746791326230936}
   - component: {fileID: 5297980466007304587}
-  - component: {fileID: 5371115956709455649}
   m_Layer: 0
   m_Name: YellowWall_3_3
   m_TagString: Untagged
@@ -550,55 +549,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &5371115956709455649
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5008144285495183293}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.5, y: -0.421875}
-      - {x: 0.5, y: -0.421875}
-      - {x: 0.5, y: 0.3671875}
-      - {x: -0.5, y: 0.3671875}
-  m_UseDelaunayMesh: 0
 --- !u!1 &6061012441263466931
 GameObject:
   m_ObjectHideFlags: 0
