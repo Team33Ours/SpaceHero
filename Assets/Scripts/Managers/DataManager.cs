@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 /// <summary>
@@ -19,20 +20,52 @@ public class DataManager : Singleton<DataManager>
 
     public SkillManager skillManager;
 
-    private void Awake()
+    /// <summary>
+    /// 씬이 로드될 때 OnSceneLoaded 추가
+    /// </summary>
+    protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // 멤버의 초기화는 Awake
+        base.OnSceneLoaded(scene, mode);  // 부모 클래스 로그 출력 유지
+
+        // 씬 변경될 때 실행할 코드 추가
+
+        // 초기화 코드 
         if (playerSkills == null)
             playerSkills = new List<BaseSkill>();
         if (playerLearned == null)
             playerLearned = new List<BaseSkill>();
         if (bossMobSkills == null)
             bossMobSkills = new List<BaseSkill>();
+
+
+        // SkillManager가 null이면 다시 가져오기(SkillManager가 DataManager보다 먼저 생성)
+        if (skillManager == null)
+        {
+            skillManager = SkillManager.Instance;
+        }
     }
-    public void Start()
+    /// <summary>
+    /// 씬이 언로드될때 OnDestroy 추가
+    /// </summary>
+    protected override void OnDestroy()
     {
-        skillManager = SkillManager.Instance;
+        base.OnDestroy();
     }
+
+    //private void Awake()
+    //{
+    //    //// 멤버의 초기화는 Awake
+    //    //if (playerSkills == null)
+    //    //    playerSkills = new List<BaseSkill>();
+    //    //if (playerLearned == null)
+    //    //    playerLearned = new List<BaseSkill>();
+    //    //if (bossMobSkills == null)
+    //    //    bossMobSkills = new List<BaseSkill>();
+    //}
+    //public void Start()
+    //{
+    //    //skillManager = SkillManager.Instance;
+    //}
 
     public string GetFilePath(string filename, bool isSaveFile = false)
     {
