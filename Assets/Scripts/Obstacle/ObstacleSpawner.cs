@@ -48,7 +48,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     void Start()
     {
-        GameManager.Instance.currentStage = CreateFloorTiles((GameManager.Instance.stage - 1) / 10, 3, 5, 5);
+        GameManager.Instance.currentStage = CreateFloorTiles((GameManager.Instance.stage - 1) / 4, 3, 5, 5);
     }
     void InitTileDictionary()
     {

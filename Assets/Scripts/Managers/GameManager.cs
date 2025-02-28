@@ -72,7 +72,7 @@ public class GameManager : Singleton<GameManager>
         //UIManager.Instance.AcendStage();
         //enemyCount = 0;    
         Destroy(currentStage);
-        currentStage = obstacleSpawner.CreateFloorTiles((stage - 1) / 10, 3, 5, 5);
+        currentStage = obstacleSpawner.CreateFloorTiles((stage - 1) / 4, 3, 5, 5);
 
         player.transform.position = new Vector3(0, -5, 0);
 
