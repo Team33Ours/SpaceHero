@@ -59,7 +59,7 @@ public class UIManager : Singleton<UIManager>
         isThereCoin = (CoinText != null) ? true : false;
 
         // Stage
-        stageFloor = 0;
+        stageFloor = 1;
         StageText.text = $"{stageFloor}";
 
         // Pause
