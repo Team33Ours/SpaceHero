@@ -61,6 +61,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1954162448484666938}
   - component: {fileID: 7805704357493842759}
+  - component: {fileID: 6690891742567042824}
   m_Layer: 0
   m_Name: PinkWall_4_4
   m_TagString: Untagged
@@ -135,6 +136,66 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &6690891742567042824
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2223550759349597802}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.046875, y: 0.05859375}
+      - {x: 0.16015625, y: 0.17578125}
+      - {x: 0.4296875, y: 0.44140625}
+      - {x: 0.4296875, y: 0.5}
+      - {x: -0.421875, y: 0.5}
+      - {x: -0.4609375, y: 0.35546875}
+      - {x: -0.4609375, y: 0.1796875}
+      - {x: -0.44140625, y: 0.15234375}
+      - {x: -0.4609375, y: -0.14453125}
+      - {x: -0.4609375, y: -0.296875}
+      - {x: -0.421875, y: -0.5}
+      - {x: -0.03515625, y: -0.5}
+      - {x: -0.03125, y: -0.4296875}
+      - {x: -0.02734375, y: -0.10546875}
+      - {x: -0.078125, y: -0.015625}
+  m_UseDelaunayMesh: 0
 --- !u!1 &2749511834562665844
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,6 +206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3679886078902692138}
   - component: {fileID: 3853448156789519816}
+  - component: {fileID: 482010945564563707}
   m_Layer: 0
   m_Name: PinkWall_4_3
   m_TagString: Untagged
@@ -219,6 +281,66 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &482010945564563707
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2749511834562665844}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.27734375, y: -0.3046875}
+      - {x: 0.15625, y: -0.16015625}
+      - {x: 0.0859375, y: -0.16015625}
+      - {x: -0.15625, y: 0.08203125}
+      - {x: -0.12890625, y: 0.09375}
+      - {x: -0.12109375, y: 0.10546875}
+      - {x: -0.42578125, y: 0.40625}
+      - {x: -0.49609375, y: 0.421875}
+      - {x: -0.5, y: 0.421875}
+      - {x: -0.5, y: -0.4296875}
+      - {x: -0.4296875, y: -0.5}
+      - {x: 0.42578125, y: -0.5}
+      - {x: 0.43359375, y: -0.49609375}
+      - {x: 0.43359375, y: -0.453125}
+      - {x: 0.4296875, y: -0.421875}
+  m_UseDelaunayMesh: 0
 --- !u!1 &2810389828522355515
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,6 +351,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5199836482558590485}
   - component: {fileID: 194689835170555329}
+  - component: {fileID: 7723804735915499267}
   m_Layer: 0
   m_Name: PinkWall_4_2
   m_TagString: Untagged
@@ -303,6 +426,62 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &7723804735915499267
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2810389828522355515}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.3125, y: 0.45703125}
+      - {x: 0.09765625, y: 0.45703125}
+      - {x: -0.1484375, y: 0.453125}
+      - {x: -0.16796875, y: 0.45703125}
+      - {x: -0.39453125, y: 0.45703125}
+      - {x: -0.5, y: 0.421875}
+      - {x: -0.5, y: -0.4375}
+      - {x: -0.34765625, y: -0.44921875}
+      - {x: 0.3828125, y: -0.44921875}
+      - {x: 0.5, y: -0.4296875}
+      - {x: 0.5, y: 0.421875}
+  m_UseDelaunayMesh: 0
 --- !u!1 &4350690560546822156
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,6 +492,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5790088590556498346}
   - component: {fileID: 6945439265470371214}
+  - component: {fileID: 6966813318207324634}
   m_Layer: 0
   m_Name: PinkWall_4_1
   m_TagString: Untagged
@@ -387,6 +567,64 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &6966813318207324634
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4350690560546822156}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.4765625, y: 0.421875}
+      - {x: 0.33984375, y: 0.3359375}
+      - {x: 0.09765625, y: 0.10546875}
+      - {x: 0.1484375, y: 0.08203125}
+      - {x: -0.1640625, y: -0.1640625}
+      - {x: -0.203125, y: -0.234375}
+      - {x: -0.1875, y: -0.2421875}
+      - {x: -0.37890625, y: -0.37890625}
+      - {x: -0.43359375, y: -0.44921875}
+      - {x: -0.43359375, y: -0.5}
+      - {x: 0.453125, y: -0.5}
+      - {x: 0.5, y: -0.43359375}
+      - {x: 0.5, y: 0.421875}
+  m_UseDelaunayMesh: 0
 --- !u!1 &6192939679949086345
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,6 +635,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4403117972424859912}
   - component: {fileID: 4810557634006465385}
+  - component: {fileID: 1147273751284351075}
   m_Layer: 0
   m_Name: PinkWall_4_5
   m_TagString: Untagged
@@ -471,3 +710,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1147273751284351075
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6192939679949086345}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.4609375, y: 0.21875}
+      - {x: 0.4609375, y: 0.27734375}
+      - {x: 0.421875, y: 0.5}
+      - {x: -0.4296875, y: 0.5}
+      - {x: -0.4296875, y: 0.45703125}
+      - {x: -0.390625, y: 0.40625}
+      - {x: -0.18359375, y: 0.2109375}
+      - {x: -0.0546875, y: 0.03125}
+      - {x: 0.03125, y: -0.09375}
+      - {x: 0.00390625, y: -0.28515625}
+      - {x: 0.02734375, y: -0.5}
+      - {x: 0.421875, y: -0.5}
+      - {x: 0.4609375, y: -0.375}
+      - {x: 0.4609375, y: -0.19921875}
+      - {x: 0.44140625, y: -0.171875}
+  m_UseDelaunayMesh: 0

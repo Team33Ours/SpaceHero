@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4459461858628951714}
   - component: {fileID: 67224644552946127}
+  - component: {fileID: 8445624553230900339}
   m_Layer: 0
   m_Name: RedWall_2_2
   m_TagString: Untagged
@@ -84,6 +85,60 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &8445624553230900339
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39582073770377988}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.4296875, y: 0.390625}
+      - {x: 0.4296875, y: 0.5}
+      - {x: 0.1328125, y: 0.5}
+      - {x: -0.5, y: -0.15234375}
+      - {x: -0.5, y: -0.421875}
+      - {x: -0.36328125, y: -0.421875}
+      - {x: -0.328125, y: -0.33203125}
+      - {x: 0.0546875, y: -0.01953125}
+      - {x: 0.02734375, y: 0.09375}
+  m_UseDelaunayMesh: 0
 --- !u!1 &864516049565656291
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 763653178556430354}
   - component: {fileID: 7493289909697079384}
+  - component: {fileID: 3210212569099131325}
   m_Layer: 0
   m_Name: RedWall_2_1
   m_TagString: Untagged
@@ -168,6 +224,64 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &3210212569099131325
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864516049565656291}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.4609375, y: 0.171875}
+      - {x: 0.4609375, y: 0.265625}
+      - {x: 0.4375, y: 0.28125}
+      - {x: 0.421875, y: 0.5}
+      - {x: 0.03515625, y: 0.5}
+      - {x: 0.03515625, y: 0.40625}
+      - {x: 0.04296875, y: 0.38671875}
+      - {x: 0.03515625, y: 0.32421875}
+      - {x: 0.03515625, y: -0.5}
+      - {x: 0.42578125, y: -0.5}
+      - {x: 0.4609375, y: -0.30859375}
+      - {x: 0.4609375, y: -0.203125}
+      - {x: 0.42578125, y: -0.19140625}
+  m_UseDelaunayMesh: 0
 --- !u!1 &2609742109485341039
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,6 +292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1150289966939765201}
   - component: {fileID: 9032466686506803645}
+  - component: {fileID: 4959763959863526758}
   m_Layer: 0
   m_Name: RedWall_2_4
   m_TagString: Untagged
@@ -252,6 +367,71 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &4959763959863526758
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2609742109485341039}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.4609375, y: -0.23046875}
+      - {x: 0.4609375, y: -0.1015625}
+      - {x: 0.42578125, y: -0.0859375}
+      - {x: 0.4609375, y: 0.09765625}
+      - {x: 0.4609375, y: 0.48046875}
+      - {x: 0.44921875, y: 0.5}
+      - {x: 0.15625, y: 0.5}
+      - {x: 0.08203125, y: 0.42578125}
+      - {x: 0.03515625, y: 0.3046875}
+      - {x: 0.03515625, y: 0.11328125}
+      - {x: 0.0390625, y: 0.0859375}
+      - {x: 0.03515625, y: 0.01171875}
+      - {x: 0.03515625, y: -0.265625}
+      - {x: 0.0703125, y: -0.2734375}
+      - {x: 0.03515625, y: -0.42578125}
+      - {x: 0.03515625, y: -0.5}
+      - {x: 0.44921875, y: -0.5}
+      - {x: 0.4609375, y: -0.484375}
+      - {x: 0.4609375, y: -0.3984375}
+      - {x: 0.44921875, y: -0.37890625}
+  m_UseDelaunayMesh: 0
 --- !u!1 &7040839329094209985
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,6 +492,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3346644105799140253}
   - component: {fileID: 825138106880331886}
+  - component: {fileID: 205006632019828133}
   m_Layer: 0
   m_Name: RedWall_2_3
   m_TagString: Untagged
@@ -386,3 +567,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &205006632019828133
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7420486561533956357}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.45703125, y: -0.16015625}
+      - {x: 0.16015625, y: -0.43359375}
+      - {x: 0.16015625, y: -0.5}
+      - {x: 0.42578125, y: -0.5}
+      - {x: 0.5, y: -0.42578125}
+      - {x: 0.5, y: -0.16015625}
+  m_UseDelaunayMesh: 0
