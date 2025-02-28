@@ -52,6 +52,11 @@ public class BossMonsterController : BaseController
     public vDv skillAction; // 스킬을 저장할 delegate
     private BaseSkill currentSkill; // 현재 할당된 스킬
 
+    protected override void OnEnable()
+    {
+        target = GameManager.Instance.playerController.transform;
+    }
+
 
     private void Start()
     {

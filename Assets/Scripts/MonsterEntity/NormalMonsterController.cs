@@ -34,6 +34,12 @@ public class NormalMonsterController : BaseController
         followRange = 100.0f;
 
     }
+
+    protected override void OnEnable()
+    {
+        target = GameManager.Instance.playerController.transform;
+    }
+
     //public void Initializea(Transform _target, float _followRange)
     //{
     //    Debug.Log("2");

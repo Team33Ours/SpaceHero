@@ -34,7 +34,6 @@ public class GameManager : Singleton<GameManager>
         //    playerController = playerObj.GetComponent<PlayerController>();
         //}sd
     }
-
     void Start()
     {
         //// 현재씬이 게임씬인지 확인하기
