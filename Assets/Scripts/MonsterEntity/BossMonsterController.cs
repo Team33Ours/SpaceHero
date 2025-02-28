@@ -245,7 +245,11 @@ public class BossMonsterController : BaseController
     }
     protected override void Attack()
     {
-        skillAction();
+        if (phase == eBossPhase.Phase_2 && isSkill1OnCooldown) return;  // 스킬1 사용 중이면 실행 X
+        if (phase == eBossPhase.Phase_3 && isSkill2OnCooldown) return;  // 스킬2 사용 중이면 실행 X
+        // 이렇게 하면 isSkill1OnCooldown이 true일 때는 skillAction()을 실행하지 않으니까, 코루틴이 끝날 때까지 중복 실행되지 않는다
+
+        skillAction?.Invoke();
     }
 
 

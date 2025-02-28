@@ -184,10 +184,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb53868ef34b7a478a0ae8c5ba7bb49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 200
   maxMana: 0
-  maxSpeed: 10
-  exp: 0
+  Speed: 0
+  EXP: 0
 --- !u!114 &7745065630319021297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +201,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthChangeDelay: 0.5
+  Status: {fileID: 0}
+  hasSkills: []
   damageClip: {fileID: 8300000, guid: e25ff94f767658b4fb27c352fe34db91, type: 3}
 --- !u!1 &8729735719669750370
 GameObject:

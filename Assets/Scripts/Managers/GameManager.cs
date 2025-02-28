@@ -80,7 +80,8 @@ public class GameManager : Singleton<GameManager>
             SoundManager.Instance.ChangeBackGroundMusic(SoundManager.Instance.backgroundMusic[2]);
         else if(stage == 6)
             SoundManager.Instance.ChangeBackGroundMusic(SoundManager.Instance.backgroundMusic[3]);
-        if (stage >= 20)
+        //if (stage >= 20)    
+        if (stage >= 10)    // 테스트용
         {
             SceneManager.LoadScene("ClearScene");
         }
