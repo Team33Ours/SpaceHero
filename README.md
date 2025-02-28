@@ -38,7 +38,7 @@
 ### 맵의 장애물 배치
 - 벽으로 쓰는 타일을 만약 맵에 포함한다면, 벽으로 쓰는 타일을 장애물로 만들 때, 기존의 벽에 덮어씌워질 수 있습니다 <br>
   맵을 만들 때 바닥타일만 깔고, 벽타일을 포함하지 않으며, 장애물을 설치할 때 벽으로 쓰는 타일을 이용하여 가장자리에 경계를 먼저 설치한 다음 내부에 장애물을 설치합니다. 또한, 벽 타일 중에서 계단은 제외하였습니다 <br>
-### Scriptable 객체를 사용하는데 데이터를 읽지 못하는 문
+### Scriptable 객체를 사용하는데 데이터를 읽지 못하는 문제
 - Getcompoent<TempGameObjectUI>();로 데이터를 읽어주려 했으나 실패. Scriptable 에셋은 그게 안됩니다(아마도 에디터에서 메모리 주소를 참조하고 있기때문에?)<br>
 TempStatus를 가지고 있는 Player(GameObject 객체) 클래스의 Start 부분에서 GameObjectUI에 Stat을 주입함으로써 해결했습니다. <br>
 이 때 GameObjectUI의 TempStatus stat의 보안수준이 public이라 에디터에서 볼 수 있었는데, internal로 에디터에서 안보이게끔 처리했습니다 <br>
