@@ -69,7 +69,7 @@ public class GameManager : Singleton<GameManager>
     public void NextStage()
     {
         stage++;
-        //UIManager.Instance.AcendStage();
+        UIManager.Instance.AcendStage();
         //enemyCount = 0;    
         Destroy(currentStage);
         currentStage = obstacleSpawner.CreateFloorTiles((stage - 1) / 10, 3, 5, 5);
@@ -80,6 +80,10 @@ public class GameManager : Singleton<GameManager>
             SoundManager.Instance.ChangeBackGroundMusic(SoundManager.Instance.backgroundMusic[2]);
         else if(stage == 6)
             SoundManager.Instance.ChangeBackGroundMusic(SoundManager.Instance.backgroundMusic[3]);
+        if (stage >= 20)
+        {
+            SceneManager.LoadScene("ClearScene");
+        }
     }
 
     public void AddEnemyCount()

@@ -51,9 +51,6 @@ public class ResourceController : MonoBehaviour
         {
             UpStatusFromSkill upStatus = GetComponent<UpStatusFromSkill>(); 
             upStatus.playerStatus = Status;
-
-            GetEXP getEXP;
-            gameObject.AddComponent<GetEXP>();
         }
 
         if (this.gameObject == CompareTag("Monster"))
@@ -73,12 +70,8 @@ public class ResourceController : MonoBehaviour
                 animationHandler.InvincibilityEnd();
             }
         }
-        
-        if (Status.EXP > 100 && this.gameObject == CompareTag("Player"))
-        {
-            LevelUP();
-        }
     }
+
     #region Health
     public virtual bool ChangeHealth(float change)
     {
@@ -115,13 +108,17 @@ public class ResourceController : MonoBehaviour
     {
         // BaseController knows who die
         baseController.Death();
+        DropExp();
+        UIManager.Instance.PlusCoin(100);
+    }
 
-
+    private void DropExp()
+    {
         System.Random rand = new();
         int count = rand.Next(1, 4);
-        Vector3 pos = new (transform.position.x + rand.Next(-1, 2), transform.position.y + rand.Next(-1, 2), transform.position.z + rand.Next(-1, 2));
+        Vector3 pos = new(transform.position.x + rand.Next(-1, 2), transform.position.y + rand.Next(-1, 2), transform.position.z + rand.Next(-1, 2));
 
-        for (int i =0; rand.Next(1, 4) < 3; i++)
+        for (int i = 0; rand.Next(1, 4) < 3; i++)
         {
             Instantiate(Resources.Load("Prefabs/EXP"), transform.position, Quaternion.Euler(0, 0, rand.Next(-10, 10) * 10));
         }
@@ -165,6 +162,7 @@ public class ResourceController : MonoBehaviour
     {
         currentHP = currentHP > damage ? (currentHP - damage) : 0;
     }
+
     public IEnumerator TakeDamageAndDebuff(float damage, float speed, float time)
     {
         currentHP -= damage;
@@ -180,13 +178,5 @@ public class ResourceController : MonoBehaviour
         Status.currentSpeed -= delta;
         yield return new WaitForSeconds(time);  // 지속시간
         Status.currentSpeed += delta;      // 원래대로
-    }
-
-    public void LevelUP()
-    {
-        Status.EXP -= 100;
-        UIManager.Instance.RunRoulette();
-        if (Status.EXP >= 100)
-            LevelUP();
     }
 }

@@ -20,6 +20,7 @@ public class UIManager : Singleton<UIManager>
     public float duration = 1f;
     internal System.Random setRefeatTimes;
     internal int moveCount;
+    internal int EXP;
 
     [Header("Coin")]
     [SerializeField]
@@ -36,6 +37,10 @@ public class UIManager : Singleton<UIManager>
     public GameObject pauseHUD;
     public Button PauseUI;
 
+    [Header("EXP")]
+    [SerializeField]
+    private Slider EXPSlider;
+
     protected override void Awake()
     {
         base.Awake();
@@ -43,6 +48,9 @@ public class UIManager : Singleton<UIManager>
         // Roulette
         player = GameObject.FindWithTag("Player").GetComponent<UpStatusFromSkill>();
         setRefeatTimes = new System.Random();
+
+        // Level
+        EXP = 0;
 
         // Coin
         coin = 0;
@@ -56,10 +64,28 @@ public class UIManager : Singleton<UIManager>
 
         // Pause
         PauseUI = GetComponent<Button>();
+
+        // EXP
+        EXPSlider = GetComponentInChildren<Slider>();
+        EXPSlider.maxValue = 150;
+        EXPSlider.value = 0;
+    }
+
+    private void Update()
+    {
+        EXPSlider.value = EXP;
+    }
+
+    public void LevelUP()
+    {
+        EXP -= 150;
+        RunRoulette();
+        if (EXP >= 150)
+            LevelUP();
     }
 
     #region Roulette
-    public void RunRoulette()
+    private void RunRoulette()
     {
         Time.timeScale = 0;
         roletteCanvas.SetActive(true);
@@ -249,4 +275,5 @@ public class UIManager : Singleton<UIManager>
         Destroy(this.gameObject);
     }
     #endregion
+
 }

@@ -30,6 +30,7 @@ public class GameObjectUI : MonoBehaviour
         if (ObjectStat != null)
             ReadObjectStatus();
     }
+
     private void ReadObjectStatus()
     {
         HPSlider.maxValue = ObjectStat.maxHealth;
