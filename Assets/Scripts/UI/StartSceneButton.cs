@@ -12,7 +12,7 @@ public class StartSceneButton : MonoBehaviour
     {
         // 게임 씬으로 이동
         // 임시 ScyScene 연결
-        //SoundManager.Instance.ChangeBackGroundMusic(SoundManager.Instance.backgroundMusic[1]);
+        SoundManager.Instance.ChangeBackGroundMusic(SoundManager.Instance.backgroundMusic[1]);
         SceneManager.LoadScene("MainScene");
     }
 

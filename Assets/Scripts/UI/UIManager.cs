@@ -239,6 +239,8 @@ public class UIManager : Singleton<UIManager>
 
     public void OnClickExitButton()
     {
+        
+        SoundManager.Instance.ChangeBackGroundMusic(SoundManager.Instance.backgroundMusic[0]);
         Time.timeScale = 1;
         SceneManager.LoadScene("StartScene");
         pauseHUD.SetActive(false);

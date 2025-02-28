@@ -53,6 +53,11 @@ public class ResourceController : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        currentHP = Status.maxHealth;
+    }
+
     private void Update()
     {
         if (timeSinceLastChange < healthChangeDelay)
