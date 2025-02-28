@@ -49,7 +49,7 @@ public class ResourceController : MonoBehaviour
         // UpStatusFromSkill에 정보 주입
         if (this.gameObject == CompareTag("Player"))
         {
-            UpStatusFromSkill upStatus = GetComponent<UpStatusFromSkill>();
+            UpStatusFromSkill upStatus = GetComponent<UpStatusFromSkill>(); 
             upStatus.playerStatus = Status;
 
             GetEXP getEXP;
@@ -61,11 +61,6 @@ public class ResourceController : MonoBehaviour
             BossMonsterResourceController boMonReCon = GetComponent<BossMonsterResourceController>();
             boMonReCon.Status = Status;
         }
-    }
-
-    private void OnEnable()
-    {
-        currentHP = Status.maxHealth;
     }
 
     private void Update()
