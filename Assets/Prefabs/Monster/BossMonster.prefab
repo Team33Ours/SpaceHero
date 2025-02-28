@@ -285,9 +285,9 @@ MonoBehaviour:
   monsterManager: {fileID: 0}
   target: {fileID: 0}
   phase: 1
-  monsterAnimator: {fileID: 0}
+  monsterAnimator: {fileID: 7235857946806482377}
   subSprite: {fileID: 0}
-  RangeWeaponPrefab: {fileID: 0}
+  RangeWeaponPrefab: {fileID: 4635330654355668698, guid: e5b53a5ae9c6d1d4ebeb1725a3bf76be, type: 3}
   projectileManager: {fileID: 0}
   followRange: 10
   gameManager: {fileID: 0}

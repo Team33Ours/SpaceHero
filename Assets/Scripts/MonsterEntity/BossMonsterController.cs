@@ -66,7 +66,7 @@ public class BossMonsterController : BaseController
 
     public void Initialize(MonsterManager _monsterManager, Transform _target, float _followRange)
     {
-        monsterAnimator = GetComponentInChildren<Animator>();   // 몬스터의 animator 연결
+        //monsterAnimator = GetComponentInChildren<Animator>();   // 몬스터의 animator 연결
 
         subSprite = GetComponentInChildren<SpriteRenderer>();
 

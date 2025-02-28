@@ -54,17 +54,17 @@ public class DataManager : Singleton<DataManager>
 
     private void Awake()
     {
-        //// 멤버의 초기화는 Awake
-        //if (playerSkills == null)
-        //    playerSkills = new List<BaseSkill>();
-        //if (playerLearned == null)
-        //    playerLearned = new List<BaseSkill>();
-        //if (bossMobSkills == null)
-        //    bossMobSkills = new List<BaseSkill>();
+        // 멤버의 초기화는 Awake
+        if (playerSkills == null)
+            playerSkills = new List<BaseSkill>();
+        if (playerLearned == null)
+            playerLearned = new List<BaseSkill>();
+        if (bossMobSkills == null)
+            bossMobSkills = new List<BaseSkill>();
     }
     public void Start()
     {
-        //skillManager = SkillManager.Instance;
+        skillManager = SkillManager.Instance;
     }
 
     public string GetFilePath(string filename, bool isSaveFile = false)
@@ -111,6 +111,11 @@ public class DataManager : Singleton<DataManager>
     }
     public void LoadAllMonsterSkills()
     {
+        // null 참조 오류를 위한 임시방편
+        if (skillManager == null)
+            skillManager = SkillManager.Instance;
+
+
         string filePath = GetFilePath("AllMonsterSkillDatas.json", false);
         // 읽은 정보는 playerSkills에 저장
         if (File.Exists(filePath))

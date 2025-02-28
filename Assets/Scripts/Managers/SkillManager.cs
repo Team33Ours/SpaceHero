@@ -95,7 +95,8 @@ public class SkillManager : Singleton<SkillManager>
 
 
         // 몬스터
-        dataManager.LoadAllMonsterSkills();
+        if (bossMobSkills.Count == 0)
+            dataManager.LoadAllMonsterSkills();
     }
 
     // 플레이어, 몬스터가 스킬을 호출할 때 delegate에 추가하고 삭제하는 것은 여기서 하지 않고, PlayerController와 BossMonsterController에서 한다
