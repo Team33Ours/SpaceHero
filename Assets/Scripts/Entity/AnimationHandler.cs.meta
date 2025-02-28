@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/ObstacleSpawner.cs.meta
+guid: aee68efacc8d8d3439cb8003fb177b9c
+========
+guid: ce51db1d4afad2b44a0f97d919edd570
+>>>>>>>> Dev:Assets/Scripts/Player/AnimationHandler.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
