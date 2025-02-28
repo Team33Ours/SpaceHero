@@ -122,7 +122,7 @@ public class BaseController : MonoBehaviour
         knockbackDuration = duration;
         knockback = -(other.position - transform.position).normalized * power;
     }
-    private void HandleAttackDelay()
+    protected virtual void HandleAttackDelay()
     {
         if (weaponHandler == null)
             return;

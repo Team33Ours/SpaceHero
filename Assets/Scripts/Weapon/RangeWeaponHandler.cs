@@ -86,4 +86,11 @@ public class RangeWeaponHandler : WeaponHandler
         // 투사체 발사 각도 ++점점 넓어짐
         multipleProjectilesAngel += upgrade * 2;
     }
+
+    // 보스몬스터 총알교체
+    public void ChangeBossBullet(Vector2 _lookDirection, float angle)
+    {
+        projectileManager.ChangeBossBullet(this, projectileSpawnPosition.position,
+            RotateVector2(_lookDirection, angle), 4);
+    }
 }

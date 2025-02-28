@@ -7,11 +7,19 @@ public class PlayerController : BaseController
 {
     private Camera camera;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        if(GameManager.Instance.playerController == null)
+            GameManager.Instance.playerController = this;
+    }
+
     protected override void Start()
     {
         base.Start();
         camera = Camera.main;
     }
+    
 
     protected override void HandleAction()
     {

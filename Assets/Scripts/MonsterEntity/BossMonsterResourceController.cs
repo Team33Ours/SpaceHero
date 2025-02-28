@@ -8,8 +8,7 @@ using UnityEngine.UIElements;
 /// 2025.02.26.ImSeonggyun
 /// </summary>
 public class BossMonsterResourceController : ResourceController
-{
-    Status status;
+{    
     SkillManager skillManager;
     BossMonsterController bossController;
 
@@ -32,12 +31,12 @@ public class BossMonsterResourceController : ResourceController
     {
         // Hp 변화 확인 후 
         // phase변화를 확인한다
-        if (currentHP >= 0.7 * status.maxHealth)
+        if (currentHP >= 0.7 * Status.maxHealth)
         {
             // phase1
             bossController.phase = eBossPhase.Phase_1;
         }
-        else if (currentHP >= 0.4 * status.maxHealth)
+        else if (currentHP >= 0.4 * Status.maxHealth)
         {
             // phase2
             bossController.phase = eBossPhase.Phase_2;

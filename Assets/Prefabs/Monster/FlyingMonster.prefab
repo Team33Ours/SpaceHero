@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 6343280086570024964}
   m_Layer: 7
   m_Name: FlyingMonster
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -265,7 +265,7 @@ MonoBehaviour:
   healthChangeDelay: 0.5
   Status: {fileID: 11400000, guid: 3fc719124cfd24842bc7b6b4742fdc52, type: 2}
   hasSkills: []
-  damageClip: {fileID: 0}
+  damageClip: {fileID: 8300000, guid: 636ef5e636ba23748b1fc4e6a5cec025, type: 3}
 --- !u!114 &1360368171404044968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +284,7 @@ MonoBehaviour:
   weaponHandler: {fileID: 0}
   monsterManager: {fileID: 0}
   target: {fileID: 0}
+  monsterAnimator: {fileID: 0}
   followRange: 5
 --- !u!114 &5811234705101494298
 MonoBehaviour:

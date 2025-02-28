@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 8053361418177731280}
   m_Layer: 7
   m_Name: GreenMonster
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,6 +283,7 @@ MonoBehaviour:
   weaponHandler: {fileID: 0}
   monsterManager: {fileID: 0}
   target: {fileID: 0}
+  monsterAnimator: {fileID: 0}
   followRange: 1
 --- !u!114 &3725265983294745820
 MonoBehaviour:

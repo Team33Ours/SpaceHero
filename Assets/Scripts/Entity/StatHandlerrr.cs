@@ -10,10 +10,10 @@ using UnityEngine;
 [Serializable]
 public class StatHandlerrr : MonoBehaviour
 {
-    [SerializeField] private float maxHealth;   
-    [SerializeField] private float maxMana;    
-    [SerializeField] private float Speed;      
-    [SerializeField] private float EXP;      
+    [SerializeField] public float maxHealth;   
+    [SerializeField] public float maxMana;    
+    [SerializeField] public float Speed;      
+    [SerializeField] public float EXP;      
     public float MaxHealth
     {
         get => maxHealth;

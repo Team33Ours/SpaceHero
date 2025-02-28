@@ -24,16 +24,33 @@ public class NormalMonsterController : BaseController
     //[SerializeField] private float followRange;
     [SerializeField] public float followRange;
 
-    public void Initialize(MonsterManager _monsterManager, Transform _target, float _followRange)
+    private void Start()
     {
-        monsterAnimator = GetComponentInChildren<Animator>();   // 몬스터의 animator 연결
 
-        monsterManager = _monsterManager;
-        target = _target;
+        monsterManager = FindObjectOfType<MonsterManager>();
+        monsterAnimator = GetComponentInChildren<Animator>();
 
-        // 몬스터마다 값이 다르므로 생성시에 지정해준다
-        followRange = _followRange;
+        target = GameObject.FindWithTag("Player").transform;
+        followRange = 100.0f;
+
     }
+
+    protected override void OnEnable()
+    {
+        target = GameManager.Instance.playerController.transform;
+    }
+
+    //public void Initializea(Transform _target, float _followRange)
+    //{
+    //    Debug.Log("2");
+    //       // 몬스터의 animator 연결
+    //    Debug.Log("4");
+    //    target = _target;
+    //    Debug.Log("5");
+    //    // 몬스터마다 값이 다르므로 생성시에 지정해준다
+    //    followRange = _followRange;
+    //    Debug.Log("6");
+    //}
     // 몬스터(일반)의 이동로직
     protected override void HandleAction()
     {
@@ -104,9 +121,10 @@ public class NormalMonsterController : BaseController
     }
     public override void Death()
     {
-        base.Death();
+        //base.Death();
         // 죽은 건 오브젝트 풀링을 적용하여 List에 집어넣는다
-        // monsterManager.RemoveMonsterOnDeath(gameObject);
+        monsterManager.RemoveMonsterOnDeath(gameObject);
         GameManager.Instance.AddKillCount();
+        AchievementManager.Instance.CheckAchievementProgress("10001", 1);
     }
 }

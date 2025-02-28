@@ -36,9 +36,12 @@ public class ObstacleSpawner : MonoBehaviour
     private List<Bounds> itemObstacleBoundsList = new List<Bounds>(); // 아이템 장애물의 Bounds 리스트
     private List<Bounds> enemyBoundsList = new List<Bounds>(); // 적의 Bounds 리스트
 
-
+    [SerializeField]
+    private MonsterManager monsterManager;
     private void Awake()
     {
+        if(GameManager.Instance.obstacleSpawner == null)
+            GameManager.Instance.obstacleSpawner = this;
         InitTileDictionary();
     }
 
@@ -123,7 +126,7 @@ public class ObstacleSpawner : MonoBehaviour
             do
             {
                 float itemXPos = Random.Range(-5f, 5f); 
-                float itemYPos = Random.Range(-9f, 24f);
+                float itemYPos = Random.Range(-9f, 20f);
                 spawnPos = transform.position + new Vector3(itemXPos, itemYPos, 0);
 
                 // 부품의 새로운 Bounds를 생성
@@ -157,12 +160,12 @@ public class ObstacleSpawner : MonoBehaviour
 
             if (randomMonster == 0)
             {
-                GameObject flyEnemy = MonsterManager.Instance.FlyMonsterFromPool();
+                GameObject flyEnemy = monsterManager.FlyMonsterFromPool();
                 monster = flyEnemy;
             }
             else
             {
-                GameObject greenEnemy = MonsterManager.Instance.GreenMonsterFromPool();
+                GameObject greenEnemy = monsterManager.GreenMonsterFromPool();
                 monster = greenEnemy;
             }
 
@@ -177,7 +180,7 @@ public class ObstacleSpawner : MonoBehaviour
             do
             {
                 float monsterXPos = Random.Range(-5f, 5f);
-                float monsterYPos = Random.Range(-9f, 24f);
+                float monsterYPos = Random.Range(-9f, 20f);
 
                 spawnPos = new Vector3(monsterXPos, monsterYPos, 0);
                 Bounds newMonsterBounds = new Bounds(spawnPos, monsterBounds.size);
