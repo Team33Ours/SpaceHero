@@ -284,9 +284,11 @@ MonoBehaviour:
   weaponHandler: {fileID: 0}
   monsterManager: {fileID: 0}
   target: {fileID: 0}
-  phase: 0
+  phase: 1
   monsterAnimator: {fileID: 0}
   subSprite: {fileID: 0}
+  RangeWeaponPrefab: {fileID: 0}
+  projectileManager: {fileID: 0}
   followRange: 10
   gameManager: {fileID: 0}
   skillManager: {fileID: 0}

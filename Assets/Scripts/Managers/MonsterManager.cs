@@ -147,6 +147,7 @@ public class MonsterManager : MonoBehaviour
             greenMonsterPool.Add(green);
 
             GameObject boss = Instantiate(bossMonster, bossMonsterParent);
+            
             //BossMonsterController bossController = boss.GetComponent<BossMonsterController>();
             //if (bossController != null)
             //    bossController.Initialize(this, gameManager.playerController.transform, 200f);
