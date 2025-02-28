@@ -53,10 +53,11 @@ public class ResourceController : MonoBehaviour
             upStatus.playerStatus = Status;
         }
 
-        if (this.gameObject == CompareTag("Monster"))
+        if (this.gameObject == CompareTag("Enemy"))
         {
             BossMonsterResourceController boMonReCon = GetComponent<BossMonsterResourceController>();
-            boMonReCon.Status = Status;
+            if(boMonReCon != null)
+                boMonReCon.Status = Status;
         }
     }
 
